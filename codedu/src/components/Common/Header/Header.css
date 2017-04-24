@@ -1,0 +1,50 @@
+.header-wrap {
+  display: flex;
+  height: 4rem;
+  background-color: white;
+  align-items: center;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #d8d8d8;
+}
+
+.header-wrap div {
+  padding: 0 1rem 0 1rem;
+}
+
+.header-wrap .logo {
+  padding-left: 2rem;
+  flex-grow: 1;
+}
+
+.header-wrap .logo a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  
+}
+.header-wrap .logo img {
+  width: 256px;
+  
+}
+
+.header-wrap .logo a:visited {
+  color: black;
+}
+
+.header-wrap .user {
+  display: flex;
+  align-items: center;
+}
+
+.header-wrap .user .user-name {
+  padding: 0;
+}
+
+.header-wrap .user .user-icon {
+  padding-left: 0.3rem;
+}
+
+.header-wrap .user .user-icon img {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 100%;
+}
