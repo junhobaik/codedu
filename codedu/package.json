@@ -8,7 +8,9 @@
     "mongoose": "^4.9.6",
     "mysql": "^2.13.0",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "semantic-ui-css": "^2.2.10",
+    "semantic-ui-react": "^0.68.1"
   },
   "devDependencies": {
     "connect-flash": "^0.1.1",
