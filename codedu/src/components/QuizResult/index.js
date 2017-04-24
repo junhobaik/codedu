@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 
-class IndexPage extends Component {
+class QuizResult extends Component {
     render() {
         return (
             <div>
-               IndexPage 
+                QuizResult
             </div>
         );
     }
 }
 
-IndexPage.propTypes = {
+QuizResult.propTypes = {
 
 };
 
-export default IndexPage;
+export default QuizResult;

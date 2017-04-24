@@ -7,7 +7,7 @@ class App extends Component {
       <div className="wrap">
         <Header/>
         <div className="content-wrap">
-          content
+          {this.props.children}
         </div>
         <Footer/>
       </div>
