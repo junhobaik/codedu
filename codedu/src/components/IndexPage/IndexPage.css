@@ -1,0 +1,37 @@
+.index-wrap {
+    flex-grow: 1;
+    display: flex;
+}
+
+.index-wrap .space {
+    flex-grow: 1;
+}
+
+.index-wrap .inner-wrap {
+    display: flex;
+    align-items: center;
+    
+}
+
+@media screen and (max-width:640px) {
+    .index-wrap .inner-wrap {
+        display: flex;
+        flex-direction: column;
+        flex-flow: column-reverse;
+        align-items: center;
+    }
+}
+
+.index-wrap .intro-wrap {
+    width: 480px;
+    height: 480px;
+    margin: 2rem;
+    background-color: red;
+}
+
+.index-wrap .join-wrap {
+    width: 320px;
+    height: 480px;
+    margin: 2rem;
+    background-color: blue;
+}
