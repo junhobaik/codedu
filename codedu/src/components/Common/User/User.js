@@ -1,13 +1,26 @@
 import React, { Component } from 'react';
 
+import faker from 'faker';
+import 'semantic-ui-css/semantic.min.css';
+import { Dropdown, Image } from 'semantic-ui-react';
+
+
 class User extends Component {
   render() {
+    const trigger = (
+        <span>
+            {faker.name.findName()} <Image avatar src={faker.internet.avatar()} />
+        </span>
+    );
+
+    const options = [
+        { key: 'settings', text: '회원정보수정', icon: 'settings' },
+        { key: 'sign-out', text: '로그아웃', icon: 'sign out' },
+    ];
+
     return (
         <div className="user">
-            <div className="user-name">userName</div>
-            <div className="user-icon">
-                <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTzPkKhDbKwS_6df4hkJTf1ABa4yQLQfQ9NHENiiMliS1Yqlifc" alt="icon"/>
-            </div>
+            <Dropdown trigger={trigger} options={options} pointing='top right' icon={null} />
         </div>
     );
   }
