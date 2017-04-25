@@ -1,0 +1,22 @@
+.study-wrap {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.study-header {
+  margin-top: 2rem;
+  position: relative;
+}
+
+.study-start-button.top {
+  
+}
+
+.study-start-button.bottom {
+  margin-top: 2rem !important;
+  width: 50%;
+}
+
+.study-content {
+  margin-top: 2rem;
+}
