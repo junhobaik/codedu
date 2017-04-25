@@ -22,9 +22,11 @@ class UserInfoForm extends Component {
     state = {}
 
     handleChange = (e, { value }) => this.setState({ value })
+    handleClick = (e) => {}
 
     render() {
         const { value } = this.state
+
         return (
             <Form className='user-info-form'>
                 <Form.Group widths='equal'>
@@ -35,27 +37,27 @@ class UserInfoForm extends Component {
                 <Form.Group inline className='user-icon'>
                     <label>User icon</label>
                     <div>
-                        <img src={imgCastle}/>
+                        <img src={imgCastle} onClick={this.handleClick} className='radio-on'/>
                         <Form.Radio className='radio-item' value='castle' checked={value === 'castle'} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <img src={imgDesert}/>
+                        <img src={imgDesert} onClick={this.handleClick} className='radio-off'/>
                         <Form.Radio className='radio-item' value='desert' checked={value === 'desert'} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <img src={imgIceberg}/>
+                        <img src={imgIceberg} onClick={this.handleClick} className='radio-off'/>
                         <Form.Radio className='radio-item' value='iceberg' checked={value === 'iceberg'} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <img src={imgMountains}/>
+                        <img src={imgMountains} onClick={this.handleClick} className='radio-off'/>
                         <Form.Radio className='radio-item' value='mountains' checked={value === 'mountains'} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <img src={imgVillage}/>
+                        <img src={imgVillage} onClick={this.handleClick} className='radio-off'/>
                         <Form.Radio className='radio-item' value='village' checked={value === 'village'} onChange={this.handleChange} />
                     </div>
                     <div>
-                        <img src={imgWaterfall}/>
+                        <img src={imgWaterfall} onClick={this.handleClick} className='radio-off'/>
                         <Form.Radio className='radio-item' value='waterfall' checked={value === 'waterfall'} onChange={this.handleChange} />
                     </div>
                 </Form.Group>

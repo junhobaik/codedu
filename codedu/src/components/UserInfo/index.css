@@ -18,11 +18,21 @@
 .radio-item {
     display: none;
 }
+/*
 .user-icon>div>img {
-    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
 }
 .user-icon>div>img:hover {
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+}*/
+
+.radio-on {
     -webkit-filter: grayscale(0%); /* Safari 6.0 - 9.0 */
     filter: grayscale(0%);
+}
+.radio-off {
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
 }
