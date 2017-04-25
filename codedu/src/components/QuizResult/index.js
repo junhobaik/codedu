@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, Progress } from 'semantic-ui-react';
+import { Button } from 'semantic-ui-react';
 import './result.css';
-
+import Experience from './Experience/Experience';
+import Message from './Message/Message';
 class QuizResult extends Component {
     render() {
         const rightAnswer = 3;
@@ -20,21 +21,15 @@ class QuizResult extends Component {
                     <a href="/"><Button floated="right" className="result-button-out">나가기</Button></a>
                 </div>
                 <div className="result-content">
-                    <div className="result-exp">
-                        <div className="result-level">
-                            Lv. {userLevel}
-                        </div>
-                        <Progress percent={totalExp} style={{margin: 0}}/>
-                        <div className="result-up">
-                            + {gainExp}%
-                        </div>
-                    </div>
-
-                    <div className="result-message">
-                        <p>정답 : {rightAnswer} / {totalAnswer}</p>
-
-                        <p>다시 공부하세요</p>
-                    </div>
+                    <Experience 
+                        userLevel={userLevel}
+                        totalExp={totalExp}
+                        gainExp={gainExp}
+                    />
+                    <Message 
+                        rightAnswer={rightAnswer}
+                        totalAnswer={totalAnswer}
+                    />
                 </div>
             </div>
         );
