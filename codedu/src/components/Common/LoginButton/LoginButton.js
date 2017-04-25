@@ -9,11 +9,11 @@ class LoginButton extends Component {
             <Form>
               <Form.Field>
                 <label>E-Mail</label>
-                <input placeholder='E-Mail' width={2} />
+                <input type='email' placeholder='E-Mail' />
               </Form.Field>
               <Form.Field>
                 <label>Password</label>
-                <input placeholder='Password' width={2} />
+                <input type='password' placeholder='Password' />
               </Form.Field>
               <Button type='submit'>Go</Button>
             </Form>
