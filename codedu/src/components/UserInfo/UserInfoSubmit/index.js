@@ -5,7 +5,7 @@ import { Button } from 'semantic-ui-react'
 class UserInfoSubmit extends Component {
     render() {
         return (
-            <Button>적용</Button>
+            <Button className='user-info-submit'>적용</Button>
         );
     }
 }
