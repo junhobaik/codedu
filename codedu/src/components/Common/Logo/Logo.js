@@ -6,7 +6,7 @@ class Logo extends Component {
     return (
       <div className="logo">
         <a href=""><img src={logo}/></a>
-    </div>
+      </div>
     );
   }
 }
