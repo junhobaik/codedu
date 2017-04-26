@@ -2,34 +2,42 @@ import React, { Component, PropTypes } from 'react';
 import { Grid } from 'semantic-ui-react'
 import DaysOfWeek from './DaysOfWeek';
 import Part from './Part';
-import Quiz from './Quiz';
-import Test from './Test';
 import UserExp from './UserExp';
 import UserLevel from './UserLevel';
 import './index.css';
 
+const options = [
+    { key: '01', text: 'basic01', value: 'basic01'},
+    { key: '02', text: 'basic02', value: 'basic02'},
+    { key: '03', text: 'basic03', value: 'basic03'}
+]
+
 class Main extends Component {
     render() {
+        const listItems = options.map((option) =>
+            <div className='part-wrap'><Part/></div>
+        );
         return (
-            <Grid className='main-wrap'>
-                <Grid.Column width={12}>
-                    <div className='part-wrap'>
-                        <Part/>
+            <div className='main-wrap'>
+                <Grid>
+                    <Grid.Column width={10}>
+                        {listItems}
+                    </Grid.Column>
+                    <Grid.Column width={6}>
+                        <div className='exp-level-wrap'>
+                            <div>
+                                <h3>경험치</h3>
+                                <UserLevel className='level'/>
+                            </div>
+                            <UserExp/>
                     </div>
-                </Grid.Column>
-                <Grid.Column width={4}>
-                    <div className='exp-level-wrap'>
-                        <div>
-                            <h3>경험치</h3>
-                            <UserLevel/>
-                        </div>
-                        <UserExp/>
-                   </div>
-                   <div className='days-of-week-wrap'>
-                       <DaysOfWeek/>
-                   </div>
-                </Grid.Column>
-            </Grid> 
+                    <div className='days-of-week-wrap'>
+                        <h3>공부한날</h3>
+                        <DaysOfWeek/>
+                    </div>
+                    </Grid.Column>
+                </Grid>
+            </div>
         );
     }
 }

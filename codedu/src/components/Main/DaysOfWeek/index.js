@@ -4,7 +4,7 @@ import { Icon, Table } from 'semantic-ui-react'
 class UserExp extends Component {
     render() {
         return (
-            <Table>
+            <Table textAlign='center'>
                 <Table.Body>
                     <Table.Row>
                         <Table.Cell positive>M</Table.Cell>
