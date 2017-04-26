@@ -1,4 +1,4 @@
-html {
+/*html {
   position: relative;
   min-height: 100%;
 }
@@ -15,4 +15,42 @@ body {
 
 .content-wrap {
   min-height: 100%;
+}*/
+
+html {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  min-height: 100%;
+}
+
+body #root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+body #root .wrap{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+body #root .wrap .content-wrap{
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+body #root .wrap .content-wrap{
+  overflow: scroll;
 }
