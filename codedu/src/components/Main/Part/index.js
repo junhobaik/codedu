@@ -22,7 +22,7 @@ class UserExp extends Component {
         return (
             <div>
                 <h2>{this.state.partTitle}</h2>
-                <div>{listItems}</div>
+                <div className='part-item-list'>{listItems}</div>
             </div>
         );
     }

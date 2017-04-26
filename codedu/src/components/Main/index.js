@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Grid } from 'semantic-ui-react'
 import DaysOfWeek from './DaysOfWeek';
 import Part from './Part';
+import Test from './Test';
 import UserExp from './UserExp';
 import UserLevel from './UserLevel';
 import './index.css';
@@ -15,7 +16,10 @@ const options = [
 class Main extends Component {
     render() {
         const listItems = options.map((option) =>
-            <div className='part-wrap'><Part/></div>
+            <div className='part-wrap'>
+                <Part/>
+                <Test/>
+            </div>
         );
         return (
             <div className='main-wrap'>
