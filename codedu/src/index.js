@@ -5,6 +5,9 @@ import App from './App';
 import './index.css';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { IndexPage, Main, Quiz, QuizResult, Study, UserInfo } from './components';
+
+import 'semantic-ui-css/semantic.min.css';
+
 ReactDOM.render(
   <App />,
   document.getElementById('root')

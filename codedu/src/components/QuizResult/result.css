@@ -1,0 +1,43 @@
+.result-wrap {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.result-header {
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.result-button-out {
+}
+
+.result-content {
+  margin-top: 2rem;
+}
+
+.result-exp {
+  display: flex;
+  background-color: bisque;
+  align-items: center;
+  height: 50px;
+}
+
+.result-exp .result-level {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.result-exp .progress {
+  flex-grow: 4;
+}
+
+.result-exp .result-up {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.result-message {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
