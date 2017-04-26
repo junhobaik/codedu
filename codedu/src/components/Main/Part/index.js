@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Progress } from 'semantic-ui-react';
+import { Progress, Button, Divider } from 'semantic-ui-react';
 import Quiz from '../Quiz'
 
 
@@ -17,12 +17,15 @@ class UserExp extends Component {
 
     render() {
         const listItems = options.map((option) =>
-            <Quiz/>
+            <Button.Group widths='3'>
+                <Quiz className='quiz-button'/>
+            </Button.Group>
         );
         return (
             <div>
                 <h2>{this.state.partTitle}</h2>
                 <div className='part-item-list'>{listItems}</div>
+                <Divider/>
             </div>
         );
     }
