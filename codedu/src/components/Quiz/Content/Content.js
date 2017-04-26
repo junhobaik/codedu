@@ -1,17 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 
-class IndexPage extends Component {
+class Content extends Component {
     render() {
         return (
-            <div>
-               IndexPage 
+            <div className='content-wrap'>
             </div>
         );
     }
 }
 
-IndexPage.propTypes = {
+Content.propTypes = {
 
 };
 
-export default IndexPage;
+export default Content;
