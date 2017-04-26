@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
 import { Progress } from 'semantic-ui-react';
-import 'semantic-ui-css/semantic.min.css';
 
 class ProgressBar extends Component {
     render() {

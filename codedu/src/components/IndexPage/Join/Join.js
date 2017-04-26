@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
 import { Button, Form, Input, Message, Icon } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css';
 
 class Join extends Component {
     render() {

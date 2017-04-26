@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import faker from 'faker';
-import 'semantic-ui-css/semantic.min.css';
 import { Dropdown, Image } from 'semantic-ui-react';
 
 

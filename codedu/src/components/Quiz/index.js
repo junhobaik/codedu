@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import './Quiz.css';
 
 import { Button } from 'semantic-ui-react';
-import 'semantic-ui-css/semantic.min.css';
 
 import ProgressBar from './ProgressBar/ProgressBar';
 import Content from './Content/Content';
