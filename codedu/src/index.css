@@ -50,3 +50,7 @@ body #root .wrap .content-wrap{
   display: flex;
   flex-direction: column;
 }
+
+body #root .wrap .content-wrap{
+  overflow: scroll;
+}

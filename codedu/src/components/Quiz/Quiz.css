@@ -13,7 +13,8 @@
     min-width: 640px;
     max-width: 860px;
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
+    margin-top:6rem;
 }
 
 .quiz-wrap .outter-wrap .inner-wrap{
@@ -22,6 +23,7 @@
     min-width: 100%;
     height: 480px;
     padding: 2rem;
+    margin-bottom: 2rem;
 }
 
 .quiz-wrap .outter-wrap .inner-wrap .top h2{

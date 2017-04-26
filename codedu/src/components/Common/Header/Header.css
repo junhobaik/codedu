@@ -1,6 +1,9 @@
 .header-wrap {
+  position: relative;
   display: flex;
   height: 6rem;
+  min-height: 6rem;
+  z-index: 1;
   background-color: white;
   align-items: center;
   font-size: 1.2rem;
