@@ -5,6 +5,7 @@ import QuizResult from './QuizResult';
 import Study from './Study';
 import UserInfo from './UserInfo';
 import 'semantic-ui-css/semantic.min.css';
+import './index.css'
 
 export {
     IndexPage,

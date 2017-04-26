@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Modal, Form } from 'semantic-ui-react';
 
-import { Button } from 'semantic-ui-react';
-
 class LoginButton extends Component {
   render() {
     return (
