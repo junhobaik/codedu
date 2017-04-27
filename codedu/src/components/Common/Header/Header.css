@@ -8,14 +8,10 @@
   align-items: center;
   font-size: 1.2rem;
   border-bottom: 2px solid #d8d8d8;
-}
-
-.header-wrap div {
-  padding: 0 1rem 0 1rem;
+  padding: 0 2rem 0 2rem;
 }
 
 .header-wrap .logo {
-  padding-left: 2rem;
   flex-grow: 1;
 }
 
