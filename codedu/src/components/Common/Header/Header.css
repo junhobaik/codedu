@@ -27,3 +27,8 @@
 .header-wrap .logo img {
   height: 3.2rem;
 }
+.header-wrap .user .user-icon img {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 100%;
+}

@@ -1,0 +1,26 @@
+.main-wrap {
+    padding: 40px;
+}
+
+.part-wrap,
+.exp-level-wrap,
+.days-of-week-wrap {
+    border: 1px solid lightgray;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.user-level {
+    text-align: right;
+    margin-top: 0;
+    padding-bottom: 10px;
+}
+
+.part-item-list {
+    margin-bottom: 10px;
+    line-height: 42px;
+}
+
+.test-button {
+    width: 100%;
+}
