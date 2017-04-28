@@ -6,9 +6,12 @@ import { Dropdown, Image } from 'semantic-ui-react';
 
 class User extends Component {
   render() {
+
+      const {userName} = this.props;
+
     const trigger = (
         <span>
-            {faker.name.findName()} <Image avatar src={faker.internet.avatar()} />
+            {userName} <Image avatar src={faker.internet.avatar()} />
         </span>
     );
 
