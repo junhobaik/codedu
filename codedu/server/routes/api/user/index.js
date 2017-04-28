@@ -27,7 +27,7 @@ router.post('/', function(req, res) {
   } else if(pass !== password) {
     return res.json({isLogin: false, message: "아이디나 비밀번호가 다릅니다"})
   } else {
-    return res.json({isLogin: true, message: "로그인 성공", userName: "email"})
+    return res.json({isLogin: true, message: "로그인 성공", userName: email})
   }
 })
 
