@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const path = require('path')
 
-const mysqlConfig = require('../../../../config/mysql_config')
+const mysqlConfig = require(path.resolve(__dirname, '../../../../config/mysql_config'))
 
 const mysql = require('mysql')
 const connection = mysql.createConnection(mysqlConfig)
