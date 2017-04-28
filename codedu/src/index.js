@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { IndexPage, Main, Quiz, QuizResult, Study, UserInfo } from './components';
+import { IndexPage, Main, Quiz, QuizResult, Study, UserInfo, NotFound } from './components';
 
 import 'semantic-ui-css/semantic.min.css';
 
@@ -22,7 +22,7 @@ ReactDOM.render(
       <Route path="/result" component={QuizResult}/>
       <Route path="/study" component={Study}/>
       <Route path="/user" component={UserInfo}/>
-      <Route path="*" component={IndexPage}/>
+      <Route path="*" component={NotFound}/>
     </Route>
   </Router>
   ,document.getElementById('root')
