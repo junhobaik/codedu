@@ -54,3 +54,15 @@ body #root .wrap .content-wrap{
 body #root .wrap .content-wrap{
   overflow: scroll;
 }
+
+.notfound-wrap {
+  text-align: center;
+  padding: 1rem;
+  color: white;
+  background-color: black;
+  min-width: 100vw;
+  min-height: 100vh;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 999;
+}
