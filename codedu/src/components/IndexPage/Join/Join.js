@@ -11,16 +11,16 @@ class Join extends Component {
                     학습하시려면 가입해주세요.
                 </div>
                 <hr/>
-                <Form>
-                    <Form.Input iconPosition='left' label='Email' placeholder='이메일 주소' >
+                <Form action="/api/join" method="post">
+                    <Form.Input name='email' iconPosition='left' label='Email' placeholder='이메일 주소' >
                         <Icon name='at'/>
                         <input/>
                     </Form.Input>
-                    <Form.Input iconPosition='left' label="Password" name="password" type="password" placeholder='비밀번호'>
+                    <Form.Input name='password' iconPosition='left' label="Password" name="password" type="password" placeholder='비밀번호'>
                         <Icon name='lock'/>
                         <input/>
                     </Form.Input>
-                    <Form.Input iconPosition='left' label="Vertify password" name="password" type="password" placeholder='비밀번호 확인'>
+                    <Form.Input name='passwordVertify' iconPosition='left' label="Vertify password" type="password" placeholder='비밀번호 확인'>
                         <Icon name='lock'/>
                         <input/>
                     </Form.Input>
