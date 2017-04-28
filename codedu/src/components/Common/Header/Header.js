@@ -10,9 +10,9 @@ class App extends Component {
 
     return (
       <div className="header-wrap">
-            <Logo/>
+            <Logo isLogin={isLogin} />
             
-            {isLogin ? <User userName={userName}/> : <LoginButton onClick={onClick} message={message}/>}
+            {isLogin ? <User userName={userName}/> : <LoginButton onClick={onClick} message={message} />}
             {/*<LoginButton
               onClick={onClick}
             />
