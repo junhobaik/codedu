@@ -27,5 +27,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "server": "nodemon ./server"
-  }
+  },
+  "proxy": "http://localhost:4000/"
 }
