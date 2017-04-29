@@ -3,6 +3,23 @@ const app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
 
+
+/**********passport */
+var passport = require('passport')
+var LocalStrategy = require('passport-local').Strategy
+var session = require('express-session')
+var flash = require('connect-flash')
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
+/********** */
+
+
 const route = require('./routes/index')
 
 app.use('/', express.static(path.resolve(__dirname, '../build')))
