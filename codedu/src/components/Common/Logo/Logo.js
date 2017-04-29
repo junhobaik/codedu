@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import logo from '../../../image/bg_bright_codedu.png';
+import {Link} from 'react-router';
 
 class Logo extends Component {
   render() {
+
+    const {isLogin} = this.props;
+
     return (
       <div className="logo">
-        <a href="/"><img src={logo}/></a>
+        <Link to={isLogin ? "/main" : "/"}><img src={logo}/></Link>
       </div>
     );
   }
