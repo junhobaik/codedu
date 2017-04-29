@@ -11,6 +11,18 @@ class User extends Component {
 		browserHistory.push('/user');
 	}
 
+    logOut = () => {
+        fetch('/api/logout', {
+            method: 'get'
+        })
+        .then((response) => {
+          console.log(response);
+          if(response.status === 200) {
+              browserHistory.push('/');
+          }  
+        });
+    }
+
   render() {
 
       const {userName} = this.props;
@@ -31,7 +43,7 @@ class User extends Component {
             <Dropdown trigger={trigger} pointing='top right' icon={null}>
                 <Dropdown.Menu>
                     <Dropdown.Item key='settings' text='회원정보수정' icon='settings' onClick={this.linkSetting} />
-                    <Dropdown.Item key='sign-out' text='로그아웃' icon='sign out' />
+                    <Dropdown.Item key='sign-out' text='로그아웃' icon='sign out' onClick={this.logOut} />
                 </Dropdown.Menu>
             </Dropdown>
         </div>
