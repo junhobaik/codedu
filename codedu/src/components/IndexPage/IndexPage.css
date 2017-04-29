@@ -61,6 +61,11 @@
     margin: 3rem 0 0 0;
 }
 
+.index-wrap .inner-wrap .join-wrap .messege {
+    text-align: center;
+    padding-top: 1rem;
+    color: red;
+}
 
 /*intro*/
 
@@ -81,3 +86,4 @@
     height: auto;
     border-radius: 3%;
 }
+
