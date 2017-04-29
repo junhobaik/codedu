@@ -37,8 +37,9 @@ class App extends Component {
     })
     .then((responseData) => {
       console.log(responseData);
-      browserHistory.push('/main');
+      
       this.setState({isLogin: responseData.isLogin, message: responseData.message, userName: responseData.userName});
+      if(responseData.isLogin) browserHistory.push('/main');
     })
     .catch((error) => {
       console.log('Error Fetch', error);
