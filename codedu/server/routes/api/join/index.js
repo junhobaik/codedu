@@ -3,21 +3,14 @@ const router = express.Router()
 const app = express()
 const path = require('path')
 
-var bodyParser = require('body-parser')
-var passport = require('passport')
+
+const passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
-var session = require('express-session')
-var flash = require('connect-flash')
 
 //MySQL
+const mysqlConfig = require(path.resolve(__dirname, '../../../../config/mysql_config'))
 var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: 'bjh0324',
-  database: 'codedu'
-});
+var connection = mysql.createConnection(mysqlConfig);
 connection.connect(function (err) {
   if (err) {
     console.log("! mysql connection error");
@@ -27,17 +20,6 @@ connection.connect(function (err) {
     console.log("* mysql connection success");
   }
 });
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(flash())
 
 /******************join******************/
 passport.serializeUser(function (user, done) {
