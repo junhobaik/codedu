@@ -38,8 +38,13 @@ class App extends Component {
     .then((responseData) => {
       console.log(responseData);
       
-      this.setState({isLogin: responseData.isLogin, message: responseData.message, userName: responseData.userName});
-      if(responseData.isLogin) browserHistory.push('/main');
+      if(responseData.isLogin) {
+        this.setState({isLogin: responseData.isLogin, message: responseData.message, userName: responseData.userName});
+        browserHistory.push('/main');
+      } else {
+        this.setState({isLogin: responseData.isLogin, message: responseData.message})
+      }
+      
     })
     .catch((error) => {
       console.log('Error Fetch', error);

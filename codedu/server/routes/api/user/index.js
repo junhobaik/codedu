@@ -32,11 +32,11 @@ passport.use('local-login', new LocalStrategy({
     if(err) return done(err)
     if(!rows.length) {
       console.log("email")
-      return done(null, false, {message : 'Login Fail Email'})
+      return done(null, false, {message : '이메일, 비밀번호가 일치하지 않습니다.'})
     } else {
       if(rows[0].password !== password) {
         console.log("password")
-        return done(null, false, {message : 'Login Fail Password'})
+        return done(null, false, {message : '이메일, 비밀번호가 일치하지 않습니다.'})
       } else {
         console.log(rows[0])
         return done(null, {email : email})
@@ -49,7 +49,7 @@ router.post('/', function(req, res, next) {
   passport.authenticate('local-login', function(err, user, info) {
     console.log('authenticate')
     if(err) res.json(err)
-    if(!user) return res.json(info.message)
+    if(!user) return res.json({isLogin: false, message: info.message})
 
     req.logIn(user, function(err) {
       if(err) return next(err)
