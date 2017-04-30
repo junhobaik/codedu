@@ -78,12 +78,14 @@ router.post('/', function (req, res, next) {
     console.log("data=", data);
     const passwordMinLength = 7;
     const passwordMaxLength = 16;
-    if (data.email === '' || data.password === '' || data.vpassword === '') {
-      res.json({
-        'message': "입력되지 않은 값이 있습니다"
-      });
-      }
-      else if (data.email.indexOf('@') === -1 || data.email.indexOf('.') === -1) {
+    const isTest = true;
+
+    if (!isTest) {
+      if (data.email === '' || data.password === '' || data.vpassword === '') {
+        res.json({
+          'message': "입력되지 않은 값이 있습니다"
+        });
+      } else if (data.email.indexOf('@') === -1 || data.email.indexOf('.') === -1 || isTest) {
         res.json({
           'message': "이메일을 양식에 맞게 작성해주세요"
         });
@@ -107,7 +109,19 @@ router.post('/', function (req, res, next) {
           }
         })
       }
-      },
+    } else {
+      var query = connection.query('select * from user where email=?', [data.email], function (err, rows) {
+        if (err) throw err;
+        else if (rows.length) {
+          res.json({
+            'message': "이미 가입된 이메일입니다"
+          });
+        } else {
+          next();
+        }
+      })
+    }
+  },
   passport.authenticate('local-join', {
     successRedirect: '/main', //성공시 리다이렉트
     failureRedirect: '/', //실패시 리다이렉트
