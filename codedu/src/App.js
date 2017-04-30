@@ -51,11 +51,24 @@ class App extends Component {
     })
   }
 
+  logOut = () => {
+      fetch('/api/logout', {
+          method: 'get'
+      })
+      .then((response) => {
+        console.log(response);
+        if(response.status === 200) {
+            this.setState({isLogin: false, message: null, userName: null});
+            browserHistory.push('/');
+        }  
+      });
+  }
+
   render() {
     return (
       <div className="wrap">
         <Header
-          onClick={this.login}
+          onClick={[this.login, this.logOut]}
           isLogin={this.state.isLogin}
           userName={this.state.userName}
           message={this.state.message}
