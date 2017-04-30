@@ -19,12 +19,18 @@ const options = [
 ]
 
 class UserInfoForm extends Component {
-    state = {}
+
+    state = {
+        email: 'test@test.com',
+        password: 'test1234',
+        newpassword: '',
+        icon: 'castle'
+    }
 
     toggleClass = (target, a, b) => {
         target.className = target.className.replace(a, b)
     }
-    
+
     handleChange = (e, { value }) => this.setState({ value })
 
     handleClick = (e) => {
@@ -50,17 +56,39 @@ class UserInfoForm extends Component {
         }
     }
     
+    
+    validate = () => {
+        let form = document.querySelectorAll('.input>input');
+
+        let password = form[1].value
+        let passwordConfirm = form[2].value
+        let newPassword = form[3].value
+
+        let button = document.querySelector('.user-info-submit')
+        
+        if(password === passwordConfirm && newPassword !== '') {
+            // enable submit button
+            button.disabled = false
+            button.classList.remove('disabled')
+            console.log('good to go!')
+        } else {
+            // disable submit button
+            button.disabled = true
+            button.classList.add('disabled')
+        }
+    }
+
     render() {
         const { value } = this.state
 
         return (
             <Form className='user-info-form' action='/api/userinfo' method='post'>
                 <Form.Group widths='equal'>
-                    <Form.Input name='email' label='E-mail' placeholder='codedu@codedu.com' value='' disabled/>
-                    <Form.Input name='password' label='Password' placeholder='Password' value=''/>
-                    <Form.Input name='passwordConfirm'label='Password (confirm)' placeholder='Password' value=''/>
-                    <Form.Input name='newPassword'label='New Password' placeholder='New Password' value=''/>
-                    <Form.Input type='hidden' name='icon' value='castle'/>
+                    <Form.Input type='text' name='email' label='E-mail' placeholder='codedu@codedu.com' value={ this.state.email } disabled/>
+                    <Form.Input type='password' name='password' label='Password' placeholder='Password' onChange={ this.validate }/>
+                    <Form.Input type='password' name='passwordConfirm'label='Password (confirm)' placeholder='Password' onChange={ this.validate }/>
+                    <Form.Input type='password' name='newPassword'label='New Password' placeholder='New Password' onChange={ this.validate }/>
+                    <Form.Input type='hidden' name='icon' value={ this.state.icon }/>
                 </Form.Group>
                 <Form.Group inline className='user-icon'>
                     <label>User icon</label>
