@@ -78,7 +78,7 @@ router.post('/', function (req, res, next) {
     console.log("data=", data);
     const passwordMinLength = 7;
     const passwordMaxLength = 16;
-    const isTest = true;
+    const isTest = false;
 
     if (!isTest) {
       if (data.email === '' || data.password === '' || data.vpassword === '') {
