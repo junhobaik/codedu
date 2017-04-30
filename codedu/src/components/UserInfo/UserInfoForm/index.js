@@ -21,45 +21,55 @@ const options = [
 class UserInfoForm extends Component {
     state = {}
 
+    toggleClass = (target, a, b) => {
+        target.className = target.className.replace(a, b)
+    }
+    
     handleChange = (e, { value }) => this.setState({ value })
-    handleClick = (e) => {}
 
+    handleClick = (e) => {
+
+        // toggleClass and set form input icon value
+        if(e.target.classList.contains('radio-off')) {
+
+            this.toggleClass(e.target, 'radio-off', 'radio-on')
+            let siblings = e.target.parentElement.children;
+
+            for(let i=1; i<siblings.length; i++) {
+
+                if(siblings[i] === e.target) {
+                    let inputIcon = document.querySelector('input[name=icon]')
+                    inputIcon.value = e.target.classList[0]
+                }
+                
+                if(siblings[i].classList.contains('radio-on') && (siblings[i] !== e.target)) {
+                    this.toggleClass(siblings[i], 'radio-on', 'radio-off');
+                }
+
+            }
+        }
+    }
+    
     render() {
         const { value } = this.state
 
         return (
-            <Form className='user-info-form'>
+            <Form className='user-info-form' action='/api/userinfo' method='post'>
                 <Form.Group widths='equal'>
-                    <Form.Input label='E-mail' placeholder='codedu@codedu.com' />
-                    <Form.Input label='Password' placeholder='Password' />
-                    <Form.Input label='Password (confirm)' placeholder='Password' />
+                    <Form.Input name='email' label='E-mail' placeholder='codedu@codedu.com' value='' disabled/>
+                    <Form.Input name='password' label='Password' placeholder='Password' value=''/>
+                    <Form.Input name='passwordConfirm'label='Password (confirm)' placeholder='Password' value=''/>
+                    <Form.Input name='newPassword'label='New Password' placeholder='New Password' value=''/>
+                    <Form.Input type='hidden' name='icon' value='castle'/>
                 </Form.Group>
                 <Form.Group inline className='user-icon'>
                     <label>User icon</label>
-                    <div>
-                        <img src={imgCastle} onClick={this.handleClick} className='radio-on'/>
-                        <Form.Radio className='radio-item' value='castle' checked={value === 'castle'} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <img src={imgDesert} onClick={this.handleClick} className='radio-off'/>
-                        <Form.Radio className='radio-item' value='desert' checked={value === 'desert'} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <img src={imgIceberg} onClick={this.handleClick} className='radio-off'/>
-                        <Form.Radio className='radio-item' value='iceberg' checked={value === 'iceberg'} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <img src={imgMountains} onClick={this.handleClick} className='radio-off'/>
-                        <Form.Radio className='radio-item' value='mountains' checked={value === 'mountains'} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <img src={imgVillage} onClick={this.handleClick} className='radio-off'/>
-                        <Form.Radio className='radio-item' value='village' checked={value === 'village'} onChange={this.handleChange} />
-                    </div>
-                    <div>
-                        <img src={imgWaterfall} onClick={this.handleClick} className='radio-off'/>
-                        <Form.Radio className='radio-item' value='waterfall' checked={value === 'waterfall'} onChange={this.handleChange} />
-                    </div>
+                    <img src={imgCastle} onClick={this.handleClick} className='castle radio-on'/>
+                    <img src={imgDesert} onClick={this.handleClick} className='desert radio-off'/>
+                    <img src={imgIceberg} onClick={this.handleClick} className='iceberg radio-off'/>
+                    <img src={imgMountains} onClick={this.handleClick} className='mountains radio-off'/>
+                    <img src={imgVillage} onClick={this.handleClick} className='village radio-off'/>
+                    <img src={imgWaterfall} onClick={this.handleClick} className='waterfall radio-off'/>
                 </Form.Group>
             </Form>
         );
