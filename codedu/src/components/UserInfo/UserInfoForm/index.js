@@ -24,7 +24,8 @@ class UserInfoForm extends Component {
         email: 'test@test.com',
         password: 'test1234',
         newpassword: '',
-        icon: 'castle'
+        icon: 'castle',
+        validateMSG: ''
     }
 
     toggleClass = (target, a, b) => {
@@ -66,12 +67,27 @@ class UserInfoForm extends Component {
 
         let button = document.querySelector('.user-info-submit')
         
-        if(password === passwordConfirm && newPassword !== '') {
+        let hasEmptyInput = password === '' || passwordConfirm === '' || newPassword === ''
+        let hasBothPassword = password !== '' || passwordConfirm !== '' 
+        let isPasswordEqual = password === passwordConfirm
+        let isNewPasswordEmpty =  newPassword === ''
+
+
+        if(!hasEmptyInput && isPasswordEqual && !isNewPasswordEmpty) {
             // enable submit button
+            this.setState({ validateMSG : ''})
             button.disabled = false
             button.classList.remove('disabled')
-            console.log('good to go!')
         } else {
+
+            if(hasBothPassword && isNewPasswordEmpty) {
+                this.setState({ validateMSG : '(새 비밀번호를 입력하세요.)'})
+            }
+
+            if(hasBothPassword && !isPasswordEqual) {
+                this.setState({ validateMSG : '(비밀번호와 비밀번호 확인이 일치하지 않습니다.)'})
+            }
+
             // disable submit button
             button.disabled = true
             button.classList.add('disabled')
@@ -83,6 +99,7 @@ class UserInfoForm extends Component {
 
         return (
             <Form className='user-info-form' action='/api/userinfo' method='post'>
+                <p>{ this.state.validateMSG }</p>
                 <Form.Group widths='equal'>
                     <Form.Input type='text' name='email' label='E-mail' placeholder='codedu@codedu.com' value={ this.state.email } disabled/>
                     <Form.Input type='password' name='password' label='Password' placeholder='Password' onChange={ this.validate }/>
