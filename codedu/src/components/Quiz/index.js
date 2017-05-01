@@ -2,10 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import './Quiz.css';
 
 import { Button } from 'semantic-ui-react';
+import { Link } from 'react-router';
 
 import ProgressBar from './ProgressBar/ProgressBar';
 import Content from './Content/Content';
 import Result from './Result/Result';
+
 
 
 class Quiz extends Component {
@@ -18,7 +20,7 @@ class Quiz extends Component {
                     <div className='inner-wrap'>
                         <div className='top'>
                             <h2>{pageTitle}</h2>
-                            <Button floated='right'>나가기</Button>
+                            <Link to="main"><Button floated='right'>나가기</Button></Link>
                         </div>
                         <ProgressBar/>
                         <Content/>
