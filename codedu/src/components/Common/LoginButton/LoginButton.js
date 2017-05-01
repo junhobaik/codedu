@@ -22,9 +22,10 @@ class LoginButton extends Component {
                 <label>Password</label>
                 <input type='password' name='password' placeholder='Password' />
               </Form.Field>
+              <div>{message}</div>
               <Button type='submit' onClick={onClick}>Go</Button>
             </Form>
-            <div>{message}</div>
+            
           </Modal.Content>
         </Modal>
     );

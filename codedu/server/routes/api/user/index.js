@@ -1,30 +1,62 @@
 const express = require('express')
 const router = express.Router()
+const path = require('path')
 
-const mysqlConfig = require('../../../../config/mysql_config')
-
+const mysqlConfig = require(path.resolve(__dirname, '../../../../config/mysql_config'))
 const mysql = require('mysql')
 const connection = mysql.createConnection(mysqlConfig)
+connection.connect()
 
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+
+passport.serializeUser(function(user, done) {
+  done(null, user.email)
+})
+
+passport.deserializeUser(function(email, done) {
+  done(null, email)
+})
 router.get('/', function(req, res) {
   res.send("router user")
 })
 
-router.post('/', function(req, res) {
-  const id = "test@test.com"
-  const pass= "test1234"
+passport.use('local-login', new LocalStrategy({
+  usernameField : 'email',
+  passwordField : 'password',
+  passReqToCallback : true
+}, function(req, email, password, done) {
+  console.log('local-login callback called')
+  const query = connection.query('select email, password, photo from user where email = ?', [email], function(err, rows) {
+    console.log('query')
+    if(err) return done(err)
+    if(!rows.length) {
+      console.log("email")
+      return done(null, false, {message : '이메일, 비밀번호가 일치하지 않습니다.'})
+    } else {
+      if(rows[0].password !== password) {
+        console.log("password")
+        return done(null, false, {message : '이메일, 비밀번호가 일치하지 않습니다.'})
+      } else {
+        console.log(rows[0])
+        return done(null, {email : email}, {photo: rows[0].photo})
+      }
+    }
+  })
+}))
 
-  const {email, password} = req.body
-  console.log(req.body)
-  console.log(email, password)
+router.post('/', function(req, res, next) {
+  passport.authenticate('local-login', function(err, user, info) {
+    console.log('authenticate')
+    if(err) res.json(err)
+    if(!user) return res.json({isLogin: false, message: info.message})
 
-  if(email !== id) {
-    return res.json({isLogin: false, message: "아이디나 비밀번호가 다릅니다."})
-  } else if(pass !== password) {
-    return res.json({isLogin: false, message: "아이디나 비밀번호가 다릅니다"})
-  } else {
-    return res.json({isLogin: true, message: "로그인 성공", userName: email})
-  }
+    req.logIn(user, function(err) {
+      if(err) return next(err)
+      console.log(user)
+      return res.json({isLogin: true, message: "Succese", userName: user.email, photo: info.photo})
+    })
+  })(req, res, next);
 })
 
 module.exports = router

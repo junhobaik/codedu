@@ -6,12 +6,10 @@ const path = require('path')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
-const mysqlConfig = require('../../../../config/mysql_config')
-
 //MySQL
+const mysqlConfig = require(path.resolve(__dirname, '../../../../config/mysql_config'))
 var mysql = require('mysql');
 var connection = mysql.createConnection(mysqlConfig);
-
 connection.connect(function (err) {
   if (err) {
     console.log("! mysql connection error");
@@ -21,7 +19,6 @@ connection.connect(function (err) {
     console.log("* mysql connection success");
   }
 });
-
 
 /******************join******************/
 passport.serializeUser(function (user, done) {

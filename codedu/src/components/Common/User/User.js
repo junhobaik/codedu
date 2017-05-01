@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 
 import faker from 'faker';
 import { Dropdown, Image } from 'semantic-ui-react';
-
+import { browserHistory } from 'react-router';
+import * as profileImages from '../../../image/index';
 
 class User extends Component {
+
+  linkSetting = () => {
+		browserHistory.push('/user');
+    }
+
   render() {
 
-      const {userName} = this.props;
+    const {onClick, userName, userPhoto} = this.props;
 
     const trigger = (
         <span>
-            {userName} <Image avatar src={faker.internet.avatar()} />
+            {userName} <Image avatar src={profileImages[userPhoto]} />
         </span>
     );
 
@@ -22,7 +28,12 @@ class User extends Component {
 
     return (
         <div className="user">
-            <Dropdown trigger={trigger} options={options} pointing='top right' icon={null} />
+            <Dropdown trigger={trigger} pointing='top right' icon={null}>
+                <Dropdown.Menu>
+                    <Dropdown.Item key='settings' text='회원정보수정' icon='settings' onClick={this.linkSetting} />
+                    <Dropdown.Item key='sign-out' text='로그아웃' icon='sign out' onClick={onClick} />
+                </Dropdown.Menu>
+            </Dropdown>
         </div>
     );
   }

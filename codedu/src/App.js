@@ -10,7 +10,8 @@ class App extends Component {
     this.state = {
       isLogin: false,
       message: null,
-      userName: null
+      userName: null,
+      userPhoto: null
     }
   }
 
@@ -37,22 +38,42 @@ class App extends Component {
     })
     .then((responseData) => {
       console.log(responseData);
-      browserHistory.push('/main');
-      this.setState({isLogin: responseData.isLogin, message: responseData.message, userName: responseData.userName});
+      
+      if(responseData.isLogin) {
+        this.setState({isLogin: responseData.isLogin, message: responseData.message, userName: responseData.userName, userPhoto: responseData.photo});
+        browserHistory.push('/main');
+      } else {
+        this.setState({isLogin: responseData.isLogin, message: responseData.message})
+      }
+      
     })
     .catch((error) => {
       console.log('Error Fetch', error);
     })
   }
 
+  logOut = () => {
+      fetch('/api/logout', {
+          method: 'get'
+      })
+      .then((response) => {
+        console.log(response);
+        if(response.status === 200) {
+            this.setState({isLogin: false, message: null, userName: null});
+            browserHistory.push('/');
+        }  
+      });
+  }
+
   render() {
     return (
       <div className="wrap">
         <Header
-          onClick={this.login}
+          onClick={[this.login, this.logOut]}
           isLogin={this.state.isLogin}
           userName={this.state.userName}
           message={this.state.message}
+          userPhoto={this.state.userPhoto}
         />
         <div className="content-wrap">
           {this.props.children}
