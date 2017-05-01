@@ -9,15 +9,12 @@ const LocalStrategy = require('passport-local').Strategy
 const session = require('express-session')
 const flash = require('connect-flash')
 
+const mysqlConfig = require('../../../../config/mysql_config')
+
 //MySQL
 var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host: 'localhost',
-  port: 3306,
-  user: 'root',
-  password: 'bjh0324',
-  database: 'codedu'
-});
+var connection = mysql.createConnection(mysqlConfig);
+
 connection.connect(function (err) {
   if (err) {
     console.log("! mysql connection error");
