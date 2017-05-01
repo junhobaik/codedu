@@ -27,7 +27,7 @@ passport.use('local-login', new LocalStrategy({
   passReqToCallback : true
 }, function(req, email, password, done) {
   console.log('local-login callback called')
-  const query = connection.query('select email, password from user where email = ?', [email], function(err, rows) {
+  const query = connection.query('select email, password, photo from user where email = ?', [email], function(err, rows) {
     console.log('query')
     if(err) return done(err)
     if(!rows.length) {
@@ -39,7 +39,7 @@ passport.use('local-login', new LocalStrategy({
         return done(null, false, {message : '이메일, 비밀번호가 일치하지 않습니다.'})
       } else {
         console.log(rows[0])
-        return done(null, {email : email})
+        return done(null, {email : email}, {photo: rows[0].photo})
       }
     }
   })
@@ -54,7 +54,7 @@ router.post('/', function(req, res, next) {
     req.logIn(user, function(err) {
       if(err) return next(err)
       console.log(user)
-      return res.json({isLogin: true, message: "Succese", userName: user.email})
+      return res.json({isLogin: true, message: "Succese", userName: user.email, photo: info.photo})
     })
   })(req, res, next);
 })

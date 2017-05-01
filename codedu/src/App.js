@@ -10,7 +10,8 @@ class App extends Component {
     this.state = {
       isLogin: false,
       message: null,
-      userName: null
+      userName: null,
+      userPhoto: null
     }
   }
 
@@ -39,7 +40,7 @@ class App extends Component {
       console.log(responseData);
       
       if(responseData.isLogin) {
-        this.setState({isLogin: responseData.isLogin, message: responseData.message, userName: responseData.userName});
+        this.setState({isLogin: responseData.isLogin, message: responseData.message, userName: responseData.userName, userPhoto: responseData.photo});
         browserHistory.push('/main');
       } else {
         this.setState({isLogin: responseData.isLogin, message: responseData.message})
@@ -72,6 +73,7 @@ class App extends Component {
           isLogin={this.state.isLogin}
           userName={this.state.userName}
           message={this.state.message}
+          userPhoto={this.state.userPhoto}
         />
         <div className="content-wrap">
           {this.props.children}
