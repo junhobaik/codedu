@@ -6,7 +6,7 @@ import 'semantic-ui-css/semantic.min.css';
 class Result extends Component {
     render() {
         const x = { 
-            text: <div> <Icon name='remove' size='big' /> <div >"오답" 입니다.</div> </div>,
+            text: <div> <Icon name='remove' size='big' /> <div className="text">"오답" 입니다.</div> </div>,
             style: { backgroundColor : '#FF1912' }
         };
         const o = { 
