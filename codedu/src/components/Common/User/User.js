@@ -3,13 +3,7 @@ import React, { Component } from 'react';
 import faker from 'faker';
 import { Dropdown, Image } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
-import castle from '../../../image/castle.png';
-import desert from '../../../image/desert.png';
-import iceberg from '../../../image/iceberg.png';
-import mountains from '../../../image/mountains.png';
-import village from '../../../image/village.png';
-import waterfall from '../../../image/waterfall.png';
-
+import * as profileImages from '../../../image/index';
 
 class User extends Component {
 
@@ -20,15 +14,6 @@ class User extends Component {
   render() {
 
     const {onClick, userName, userPhoto} = this.props;
-
-    const profileImages = {
-        "castle": castle, 
-        "desert": desert,
-        "iceberg": iceberg,
-        "mountains": mountains,
-        "village": village,
-        "waterfall": waterfall
-    };
 
     const trigger = (
         <span>

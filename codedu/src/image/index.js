@@ -1,4 +1,4 @@
-import castle from './caslte.png';
+import castle from './castle.png';
 import desert from './desert.png';
 import iceberg from './iceberg.png';
 import mountains from './mountains.png';
@@ -13,3 +13,4 @@ export {
   village,
   waterfall
 }
+
