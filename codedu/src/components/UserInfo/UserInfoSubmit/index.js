@@ -32,6 +32,10 @@ class UserInfoSubmit extends Component {
         .then((response) => {
             console.log('responseData', response)
             this.setState({responseMessage: response})
+            if(response.status === 200) {
+                console.log('redirect')
+                return
+            }
         })
         .catch((error) => {
             console.log(error)

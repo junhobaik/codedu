@@ -31,6 +31,7 @@ router.post('/', function(req, res, next) {
               if(rows) {
                   console.log('update successful:')
                   console.log(rows)
+                  res.send()
               }
           })
       } else {
