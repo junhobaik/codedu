@@ -3,11 +3,8 @@ const router = express.Router()
 const app = express()
 const path = require('path')
 
-const bodyParser = require('body-parser')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
-const session = require('express-session')
-const flash = require('connect-flash')
 
 const mysqlConfig = require('../../../../config/mysql_config')
 
@@ -25,18 +22,6 @@ connection.connect(function (err) {
   }
 });
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({
-  extended: true
-}))
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(flash())
 
 /******************join******************/
 passport.serializeUser(function (user, done) {
