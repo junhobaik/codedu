@@ -3,6 +3,18 @@ const app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
 
+/* mongoose */
+const mongoose = require('mongoose')
+
+const db = mongoose.connection
+db.on('error', console.error)
+db.once('open', function() {
+  console.log('Connected to mongod server')
+})
+
+mongoose.connect('mongodb://localhost/mongodb_tutorial')
+
+const Book = require('../model/book')
 
 /**********passport */
 var passport = require('passport')
@@ -42,3 +54,4 @@ app.listen(4000, function() {
 })
 
 app.use(route)
+
