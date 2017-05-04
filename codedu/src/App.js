@@ -27,6 +27,7 @@ class App extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      credentials : 'same-origin',
       body: JSON.stringify({
         email: form[0].value,
         password: form[1].value
@@ -54,7 +55,8 @@ class App extends Component {
 
   logOut = () => {
       fetch('/api/logout', {
-          method: 'get'
+          method: 'get',
+          credentials : 'same-origin'
       })
       .then((response) => {
         console.log(response);

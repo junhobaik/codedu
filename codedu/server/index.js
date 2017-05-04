@@ -17,6 +17,16 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
+
+passport.serializeUser(function (user, done) {
+  console.log('passport session save : ', user.email)
+  done(null, user.email)
+});
+
+passport.deserializeUser(function (email, done) {
+  console.log('passport session get id: ', email)
+  done(null, email);
+})
 /********** */
 
 

@@ -10,13 +10,6 @@ connection.connect()
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 
-passport.serializeUser(function(user, done) {
-  done(null, user.email)
-})
-
-passport.deserializeUser(function(email, done) {
-  done(null, email)
-})
 router.get('/', function(req, res) {
   res.send("router user")
 })
@@ -53,7 +46,7 @@ router.post('/', function(req, res, next) {
 
     req.logIn(user, function(err) {
       if(err) return next(err)
-      console.log(user)
+      console.log("req.logIn", req.user)
       return res.json({isLogin: true, message: "Succese", userName: user.email, photo: info.photo})
     })
   })(req, res, next);
