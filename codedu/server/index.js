@@ -12,9 +12,7 @@ db.once('open', function() {
   console.log('Connected to mongod server')
 })
 
-mongoose.connect('mongodb://localhost/mongodb_tutorial')
-
-const Book = require('../model/book')
+mongoose.connect('mongodb://localhost/codedu_mongo')
 
 /**********passport */
 var passport = require('passport')

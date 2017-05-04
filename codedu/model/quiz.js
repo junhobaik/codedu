@@ -6,4 +6,4 @@ const quizSchema = new Schema({
   quiz_content: String
 })
 
-module.exports = mongoose.model('quiz', quizSchema)
+module.exports = mongoose.model('quizs', quizSchema)
