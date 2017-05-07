@@ -14,6 +14,7 @@ const options = [
 ]
 
 class Main extends Component {
+    
     render() {
         const listItems = options.map((option) =>
             <div className='part-wrap'>

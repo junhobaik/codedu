@@ -28,6 +28,7 @@ router.post('/', function(req, res, next) {
       if(rows.length === 1) {
           for(let i in rows) {
               console.log(rows[0])
+              res.send(rows[0])
           }
       }
   })

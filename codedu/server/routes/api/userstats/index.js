@@ -23,8 +23,9 @@ router.post('/', function(req, res, next) {
       if(err) throw err
 
       if(rows.length === 1) {
-          console.log('selected: ')
+          console.log('(userstats)selected: ')
           console.log(rows[0])
+          res.send(rows[0])
       } else {
           console.log('wrong id')
       }
