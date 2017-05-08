@@ -22,7 +22,9 @@ router.post('/', function(req, res, next) {
       if(err) throw err
 
       if(rows.length === 1) {
-          res.send(rows[0])
+          const user = rows[0]
+          delete user.password
+          res.send(user)
       } else {
           console.log('wrong id')
           res.send(err)
