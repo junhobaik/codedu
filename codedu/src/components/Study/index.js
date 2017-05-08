@@ -1,6 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Button } from 'semantic-ui-react';
 import './study.css';
+import ReactMarkdown from 'react-markdown';
+import testmd from './test.md';
+import base64js from 'base64-js';
+import './markdown.css';
 
 class StudyMaterial extends Component {
 
@@ -8,7 +12,8 @@ class StudyMaterial extends Component {
         super(props);
         this.state = {
             title: null,
-            content: null
+            content: null,
+            md : null
         }
     }
     getData = () => {
@@ -33,10 +38,31 @@ class StudyMaterial extends Component {
         })
     }
 
+    getMdData = () => {
+        fetch('/test.md', {
+            method: "get",
+            credentials: 'same-origin'
+        })
+        .then((response) => {
+            console.log(response);
+            return response.text();
+        })
+        .then((responseData) => {
+            console.log(responseData);
+            this.setState({md:responseData});
+        })
+        .catch((error) => {
+            console.log('fetch error', error);
+        })
+    }
+
     componentDidMount() {
         this.getData();
+        this.getMdData();
     }
     render() {
+
+        const input = this.state.md;
 
         return (
             <div className="study-wrap">
@@ -49,6 +75,7 @@ class StudyMaterial extends Component {
                 <div className="study-content">
                     {this.state.content}
                 </div>
+                <ReactMarkdown className="markdown" source={input} />
                 <Button fluid className="study-start-button bottom">시작</Button>
             </div>
         );
