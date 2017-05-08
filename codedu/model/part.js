@@ -15,22 +15,18 @@ const quizSchema = new Schema({
 module.exports = mongoose.model('part', partSchema)
 
 // {
-//   part_title: Part1,
+//   part_title: 'Javascirpt Basic of Basic',
 //   quiz: [
 //     {
-//       quiz_title: Quiz1,
-//       quiz_content: quiz1.md,
-//       problems: [pro1.md, pro2.md, pro3.md]
+//       order: 0,
+//       quiz_title: 'First Step',
+//       quiz_content: 'quiz1.md',
+//       problems: [{prob:'pro1.md', ans:3}, 'pro2.md', 'pro3.md', 'pro4.md', 'pro5.md']
 //     },
 //     {
-//       quiz_title: Quiz2,
-//       quiz_content: quiz2.md,
-//       problems: [pro1.md, pro2.md, pro3.md]
-//     },
-//     {
-//       quiz_title: Quiz3,
-//       quiz_content: quiz3.md,
-//       problems: [pro1.md, pro2.md, pro3.md]
+//       quiz_title: 'Variable',
+//       quiz_content: 'quiz2.md',
+//       problems: ['pro1.md', 'pro2.md', 'pro3.md', 'pro4.md', 'pro5.md']
 //     }
 //   ]
 // }

@@ -12,7 +12,7 @@ db.once('open', function() {
   console.log('Connected to mongod server')
 })
 
-mongoose.connect('mongodb://localhost/codedu_mongo')
+mongoose.connect('mongodb://localhost/codedu_quiz')
 
 /**********passport */
 var passport = require('passport')
