@@ -1,5 +1,6 @@
 
 import React, { Component, PropTypes } from 'react';
+import {browserHistory} from 'react-router';
 import { Button } from 'semantic-ui-react'
 
 class UserInfoSubmit extends Component {
@@ -11,10 +12,9 @@ class UserInfoSubmit extends Component {
 
     update = (e) => {
         e.preventDefault()
+
         const form = document.querySelector('.user-info-form')
 
-        console.log(form)
-        
         fetch('/api/userinfo', {
             method: 'POST',
             dataType: 'json',
@@ -30,19 +30,14 @@ class UserInfoSubmit extends Component {
             })
         })
         .then((response) => {
-            console.log('responseData', response)
-            this.setState({responseMessage: response})
-            if(response.status === 200) {
-                console.log('redirect')
-                return
-            }
+            const path = '/main'
+            browserHistory.push(path)
         })
         .catch((error) => {
             console.log(error)
         })
     }
     render() {
-
         return (
             <Button onClick={this.update} className='disabled user-info-submit'>적용</Button>
         );
