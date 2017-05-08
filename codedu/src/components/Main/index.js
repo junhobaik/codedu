@@ -33,6 +33,8 @@ class Main extends Component {
         .then((responseData) => {
             const ynArr = responseData.days_of_week.split('')
             this.setState({
+                level: responseData.level,
+                exp: responseData.exp,
                 daysOfWeek: {
                     yn: ynArr,
                     sevenDays: this.state.daysOfWeek.sevenDays
@@ -60,7 +62,7 @@ class Main extends Component {
     }
 
     render() {
-        
+
         const listItems = options.map((option) =>
             <div className='part-wrap'>
                 <Part/>
@@ -87,9 +89,9 @@ class Main extends Component {
                         <div className='exp-level-wrap'>
                             <div>
                                 <h3>경험치</h3>
-                                <UserLevel className='level'/>
+                                <UserLevel className='level' level={ this.state.level }/>
                             </div>
-                            <UserExp/>
+                            <UserExp exp={ this.state.exp }/>
                     </div>
                     <div className='days-of-week-wrap'>
                         <h3>공부한날</h3>
