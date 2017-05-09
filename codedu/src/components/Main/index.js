@@ -40,7 +40,23 @@ class Main extends Component {
             for(let i = 0; i < responseData.length; i++){
                 data[i] = {title:responseData[i].part_title, quiz:responseData[i].quiz}
             }
-            data[1] = {title:'test', quiz:[{problems:[], quiz_content:'quiz1.md', quiz_title:'test quiz 1'},{problems:[], quiz_content:'quiz1.md', quiz_title:'test quiz 2'}]}
+            // data[1] = {
+            //     title: 'test',
+            //     quiz: [{
+            //         problems: [],
+            //         quiz_content: 'quiz1.md',
+            //         quiz_title: 'test quiz 1'
+            //     }, {
+            //         problems: [],
+            //         quiz_content: 'quiz1.md',
+            //         quiz_title: 'test quiz 2'
+            //     }, {
+            //         problems: [],
+            //         quiz_content: 'quiz1.md',
+            //         quiz_title: 'test quiz 3'
+            //     }
+            //     ]
+            // }
             console.log("data is", data);
             this.setState({
                 data: data
@@ -51,27 +67,8 @@ class Main extends Component {
         })
     }
 
-    // getMdData = () => {
-    //     fetch('/test.md', {
-    //         method: "get",
-    //         credentials: 'same-origin'
-    //     })
-    //     .then((response) => {
-    //         console.log(response);
-    //         return response.text();
-    //     })
-    //     .then((responseData) => {
-    //         //console.log(responseData);
-    //         this.setState({md:responseData});
-    //     })
-    //     .catch((error) => {
-    //         console.log('fetch error', error);
-    //     })
-    // }
-
     componentDidMount() {
         this.getData();
-        //this.getMdData();
     }
     
     render() {

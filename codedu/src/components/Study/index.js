@@ -30,7 +30,7 @@ class StudyMaterial extends Component {
             return response.json();
         })
         .then((responseData) => {
-            console.log(responseData);
+            console.log("study responseData is",responseData);
             this.setState({title: responseData.quiz_title, content: responseData.quiz_content})
         })
         .catch((error) => {
@@ -48,7 +48,7 @@ class StudyMaterial extends Component {
             return response.text();
         })
         .then((responseData) => {
-            console.log(responseData);
+            //console.log(responseData);
             this.setState({md:responseData});
         })
         .catch((error) => {
@@ -58,7 +58,7 @@ class StudyMaterial extends Component {
 
     componentDidMount() {
         this.getData();
-        this.getMdData();
+        //this.getMdData();
     }
     render() {
 
