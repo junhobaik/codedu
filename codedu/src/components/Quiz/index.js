@@ -11,6 +11,36 @@ import Result from './Result/Result';
 
 
 class Quiz extends Component {
+
+    fetchProblem = () => {
+        fetch('/api/quiz', 
+        {
+            method: "GET",
+            dataType: 'json',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials : 'same-origin'
+        }
+        )
+        .then((response) => {
+            console.log(response);
+            return response.json();
+        })
+        .then((responseData) => {
+            console.log(responseData);
+        })
+        .catch((error) => {
+            console.log("Fetch Error", error);
+        })
+    }
+
+    componentDidMount() {
+        this.fetchProblem();
+    }
+
+
     render() {
         const pageTitle = "PART 1 > BASIC";
         return (

@@ -10,7 +10,6 @@ class StudyMaterial extends Component {
         super(props);
         this.state = {
             title: null,
-            content: null,
             md : null
         }
     }
@@ -29,7 +28,7 @@ class StudyMaterial extends Component {
         })
         .then((responseData) => {
             console.log(responseData);
-            this.setState({title: responseData.quiz_title, content: responseData.quiz_content})
+            this.setState({title: responseData.quiz_title})
         })
         .catch((error) => {
             console.log('fetch error', error);
@@ -37,7 +36,7 @@ class StudyMaterial extends Component {
     }
 
     getMdData = () => {
-        fetch('/test.md', {
+        fetch('/subjects/quiz1.md', {
             method: "get",
             credentials: 'same-origin'
         })
@@ -71,9 +70,9 @@ class StudyMaterial extends Component {
                     <Button floated='right' className="study-start-button top">시작</Button>
                 </div>
                 <div className="study-content">
-                    {this.state.content}
+                    <ReactMarkdown className="markdown" source={input} />
                 </div>
-                <ReactMarkdown className="markdown" source={input} />
+                
                 <Button fluid className="study-start-button bottom">시작</Button>
             </div>
         );
