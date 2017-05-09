@@ -17,7 +17,7 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={IndexPage}/>
-      <Route path="/main" component={Main}/>
+      <Route path="/main/:user" component={Main}/>
       <Route path="/quiz" component={Quiz}/>
       <Route path="/result" component={QuizResult}/>
       <Route path="/study/:part" component={Study}/>

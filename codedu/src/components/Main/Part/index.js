@@ -14,16 +14,18 @@ class UserExp extends Component {
     state = { 
         partTitle: 'THE basic of basics'
     };
-
+    
     render() {
-        const listItems = options.map((option) =>
+        const quiz = this.props.quiz;
+        console.log(quiz);
+        const listItems = quiz.map((v) =>
             <Button.Group widths='3'>
-                <Quiz className='quiz-button'/>
+                <Quiz quiz={v} className='quiz-button'/>
             </Button.Group>
         );
         return (
             <div>
-                <h2>{this.state.partTitle}</h2>
+                <h2>{this.props.title}</h2>
                 <div className='part-item-list'>{listItems}</div>
                 <Divider/>
             </div>

@@ -6,21 +6,15 @@ const userinfo = require('./userinfo/index')
 const join = require('./join/index')
 const logout = require('./logout/index')
 const study = require('./study/index')
+const main = require('./main/index')
 
-const Book = require('../../../model/book')
 
 router.use('/user', user)
 router.use('/userinfo', userinfo)
 router.use('/join', join)
 router.use('/logout', logout)
 router.use('/study', study)
+router.use('/main', main)
 
-// router.get('/books', function(req, res) {
-//   console.log('api/books')
-
-//   Book.find(function(err, books) {
-//     res.json(books)
-//   })
-// })
 
 module.exports = router

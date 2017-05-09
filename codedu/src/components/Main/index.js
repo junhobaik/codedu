@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react'
 import DaysOfWeek from './DaysOfWeek';
 import Part from './Part';
@@ -14,13 +14,82 @@ const options = [
 ]
 
 class Main extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        }
+    }
+    getData = () => {
+        fetch('/api'+window.location.pathname, {
+            method: "get",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        })
+        .then((response) => {
+            console.log("getData response is",response);
+            return response.json();
+        })
+        .then((responseData) => {
+            console.log("getData responseData is",responseData);
+            const data = [];
+            for(let i = 0; i < responseData.length; i++){
+                data[i] = {title:responseData[i].part_title, quiz:responseData[i].quiz}
+            }
+            data[1] = {title:'test', quiz:[{problems:[], quiz_content:'quiz1.md', quiz_title:'test quiz 1'},{problems:[], quiz_content:'quiz1.md', quiz_title:'test quiz 2'}]}
+            console.log("data is", data);
+            this.setState({
+                data: data
+            })
+        })
+        .catch((error) => {
+            console.log('fetch error', error);
+        })
+    }
+
+    // getMdData = () => {
+    //     fetch('/test.md', {
+    //         method: "get",
+    //         credentials: 'same-origin'
+    //     })
+    //     .then((response) => {
+    //         console.log(response);
+    //         return response.text();
+    //     })
+    //     .then((responseData) => {
+    //         //console.log(responseData);
+    //         this.setState({md:responseData});
+    //     })
+    //     .catch((error) => {
+    //         console.log('fetch error', error);
+    //     })
+    // }
+
+    componentDidMount() {
+        this.getData();
+        //this.getMdData();
+    }
+    
     render() {
-        const listItems = options.map((option) =>
+        console.log("this.state is",this.state)
+        console.log("options is",options)
+        const state = [...this.state.data];
+        console.log("state is", state)
+
+
+        const listItems = state.map((v) =>
             <div className='part-wrap'>
-                <Part/>
+                <Part title={v.title} quiz={v.quiz}/>
                 <Test/>
             </div>
         );
+        console.log("listItems is",listItems);
+
+
         return (
             <div className='main-wrap'>
                 <Grid>
@@ -45,9 +114,5 @@ class Main extends Component {
         );
     }
 }
-
-Main.propTypes = {
-
-};
 
 export default Main;

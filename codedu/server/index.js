@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 
 /* mongoose */
 const mongoose = require('mongoose')
@@ -12,7 +13,7 @@ db.once('open', function() {
   console.log('Connected to mongod server')
 })
 
-mongoose.connect('mongodb://localhost/codedu_mongo')
+mongoose.connect('mongodb://localhost/codedu_quiz')
 
 /**********passport */
 var passport = require('passport')
@@ -46,6 +47,8 @@ app.use('/', express.static(path.resolve(__dirname, '../build')))
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
+app.use(morgan('dev'))
+
 
 app.listen(4000, function() {
   console.log('Server Start Port Number : 4000')

@@ -9,8 +9,9 @@ const options = [
 
 class Quiz extends Component {
     render() {
+        console.log("quiz is",this.props.quiz)
         return (
-            <Button key={options.key}>BASIC</Button>
+            <Button key={options.key}>{this.props.quiz.quiz_title}</Button>
         );
     }
 }
