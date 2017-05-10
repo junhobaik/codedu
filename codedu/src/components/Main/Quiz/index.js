@@ -10,7 +10,7 @@ class Quiz extends Component {
         
         return (
             <div className="quiz-button">
-                <Link to={"/study/"+this.props.title+"-"+this.props.quiz.quiz_title}><Button>{this.props.quiz.quiz_title}</Button></Link>
+                <Link to={"/study/"+this.props.title+"&"+this.props.quiz.quiz_title}><Button>{this.props.quiz.quiz_title}</Button></Link>
             </div>
         );
     }

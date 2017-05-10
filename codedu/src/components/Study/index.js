@@ -11,9 +11,9 @@ class StudyMaterial extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: null,
+            part_title: null,
+            quiz_title: null,
             content: null,
-            md : null
         }
     }
     getData = () => {
@@ -31,15 +31,16 @@ class StudyMaterial extends Component {
         })
         .then((responseData) => {
             console.log("study responseData is",responseData);
-            this.setState({title: responseData.quiz_title, content: responseData.quiz_content})
+            this.setState({part_title: responseData[0].part_title, quiz_title: responseData[0].quiz[0].quiz_title, content: responseData[0].quiz[0].quiz_content})
         })
         .catch((error) => {
             console.log('fetch error', error);
         })
     }
 
-    getMdData = () => {
-        fetch('/test.md', {
+    getMdData = (title) => {
+        console.log(title);
+        fetch('/subjects/'+ title, {
             method: "get",
             credentials: 'same-origin'
         })
@@ -58,24 +59,19 @@ class StudyMaterial extends Component {
 
     componentDidMount() {
         this.getData();
-        //this.getMdData();
+        //this.getMdData(this.state.content);
     }
     render() {
-
-        const input = this.state.md;
 
         return (
             <div className="study-wrap">
                 <div className="study-header">
                     <span className="mile">
-                        PART1 > {this.state.title}
+                        {this.state.part_title} > {this.state.quiz_title}
                     </span>
                     <Button floated='right' className="study-start-button top">시작</Button>
                 </div>
-                <div className="study-content">
-                    {this.state.content}
-                </div>
-                <ReactMarkdown className="markdown" source={input} />
+                <ReactMarkdown className="markdown" source={this.state.content} />
                 <Button fluid className="study-start-button bottom">시작</Button>
             </div>
         );
