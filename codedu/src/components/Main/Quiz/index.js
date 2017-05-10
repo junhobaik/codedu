@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react'; 
 import {Link} from 'react-router';
 
@@ -15,9 +15,5 @@ class Quiz extends Component {
         );
     }
 }
-
-Quiz.propTypes = {
-
-};
 
 export default Quiz;

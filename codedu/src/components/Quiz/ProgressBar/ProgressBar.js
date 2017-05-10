@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 import { Progress } from 'semantic-ui-react';
 
@@ -12,9 +12,5 @@ class ProgressBar extends Component {
         );
     }
 }
-
-Progress.propTypes = {
-
-};
 
 export default ProgressBar;

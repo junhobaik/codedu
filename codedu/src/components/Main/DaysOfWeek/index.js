@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Icon, Table } from 'semantic-ui-react'
 
 class DaysOfWeek extends Component {
@@ -19,9 +19,5 @@ class DaysOfWeek extends Component {
         );
     }
 }
-
-DaysOfWeek.propTypes = {
-
-};
 
 export default DaysOfWeek;

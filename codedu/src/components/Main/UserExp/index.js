@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Progress } from 'semantic-ui-react'
 
 class UserExp extends Component {
@@ -8,9 +8,5 @@ class UserExp extends Component {
         );
     }
 }
-
-UserExp.propTypes = {
-
-};
 
 export default UserExp;

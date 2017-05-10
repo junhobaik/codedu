@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react'; 
 
 const tests = [
@@ -14,9 +14,5 @@ class Test extends Component {
         );
     }
 }
-
-Test.propTypes = {
-
-};
 
 export default Test;

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 class UserExp extends Component {
     render() {
@@ -7,9 +7,5 @@ class UserExp extends Component {
         );
     }
 }
-
-UserExp.propTypes = {
-
-};
 
 export default UserExp;

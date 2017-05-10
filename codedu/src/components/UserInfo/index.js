@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import UserInfoForm from './UserInfoForm';
 import UserInfoSubmit from './UserInfoSubmit';
 import './index.css';
@@ -19,9 +19,5 @@ class UserInfo extends Component {
         );
     }
 }
-
-UserInfo.propTypes = {
-
-};
 
 export default UserInfo;

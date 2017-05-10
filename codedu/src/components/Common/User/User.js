@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import faker from 'faker';
 import { Dropdown, Image } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
 import * as profileImages from '../../../image/index';

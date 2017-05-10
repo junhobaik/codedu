@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react';
 import './study.css';
 import ReactMarkdown from 'react-markdown';
@@ -56,9 +56,5 @@ class StudyMaterial extends Component {
         );
     }
 }
-
-StudyMaterial.propTypes = {
-
-};
 
 export default StudyMaterial;

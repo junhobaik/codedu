@@ -1,5 +1,4 @@
-
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 import { Button } from 'semantic-ui-react'
 
@@ -43,9 +42,5 @@ class UserInfoSubmit extends Component {
         );
     }
 }
-
-UserInfoSubmit.propTypes = {
-
-};
 
 export default UserInfoSubmit;

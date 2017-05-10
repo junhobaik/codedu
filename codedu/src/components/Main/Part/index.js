@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Progress, Button, Divider } from 'semantic-ui-react';
 import Quiz from '../Quiz'
 
@@ -26,9 +26,5 @@ class UserExp extends Component {
         );
     }
 }
-
-UserExp.propTypes = {
-
-};
 
 export default UserExp;

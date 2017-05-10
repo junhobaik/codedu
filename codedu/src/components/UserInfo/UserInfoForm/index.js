@@ -1,5 +1,4 @@
-
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
 import { Input } from 'semantic-ui-react'
 import imgCastle from '../../../image/castle.png'
@@ -120,9 +119,5 @@ class UserInfoForm extends Component {
         );
     }
 }
-
-UserInfoForm.propTypes = {
-
-};
 
 export default UserInfoForm;
