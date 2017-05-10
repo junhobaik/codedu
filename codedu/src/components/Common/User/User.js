@@ -19,11 +19,6 @@ class User extends Component {
         </span>
     );
 
-    const options = [
-        { key: 'settings', text: '회원정보수정', icon: 'settings' },
-        { key: 'sign-out', text: '로그아웃', icon: 'sign out' },
-    ];
-
     return (
         <div className="user">
             <Dropdown trigger={trigger} pointing='top right' icon={null}>

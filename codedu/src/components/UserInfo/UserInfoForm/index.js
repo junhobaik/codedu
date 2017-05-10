@@ -1,21 +1,11 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
-import { Input } from 'semantic-ui-react'
 import imgCastle from '../../../image/castle.png'
 import imgDesert from '../../../image/desert.png'
 import imgIceberg from '../../../image/iceberg.png'
 import imgMountains from '../../../image/mountains.png'
 import imgVillage from '../../../image/village.png'
 import imgWaterfall from '../../../image/waterfall.png'
-
-const options = [
-    { key: 'icon01', text: 'castle', value: 'castle'},
-    { key: 'icon02', text: 'desert', value: 'desert'},
-    { key: 'icon03', text: 'iceberg', value: 'iceberg'},
-    { key: 'icon04', text: 'mountains', value: 'mountains'},
-    { key: 'icon05', text: 'village', value: 'village'},
-    { key: 'icon06', text: 'waterfall', value: 'waterfall'}
-]
 
 class UserInfoForm extends Component {
 
@@ -94,7 +84,6 @@ class UserInfoForm extends Component {
     }
 
     render() {
-        const { value } = this.state
 
         return (
             <Form className='user-info-form' action='/api/userinfo' method='post'>

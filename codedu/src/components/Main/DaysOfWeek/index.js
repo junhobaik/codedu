@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { Icon, Table } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
 class DaysOfWeek extends Component {
-
-    constructor(props) {
-        super(props)
-    }
 
     render() {
         return (

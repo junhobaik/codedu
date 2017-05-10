@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 
-import { Button, Form, Input, Message, Icon } from 'semantic-ui-react'
+import { Button, Form, Icon } from 'semantic-ui-react'
 
 class Join extends Component {
     constructor(props) {
@@ -63,7 +63,7 @@ class Join extends Component {
                         <Icon name='at'/>
                         <input/>
                     </Form.Input>
-                    <Form.Input name='password' iconPosition='left' label="Password" name="password" type="password" placeholder='비밀번호'>
+                    <Form.Input name='password' iconPosition='left' label="Password" type="password" placeholder='비밀번호'>
                         <Icon name='lock'/>
                         <input/>
                     </Form.Input>
