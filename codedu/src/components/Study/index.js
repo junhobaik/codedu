@@ -3,6 +3,7 @@ import { Button } from 'semantic-ui-react';
 import './study.css';
 import ReactMarkdown from 'react-markdown';
 import './markdown.css';
+import {Link} from 'react-router';
 
 class StudyMaterial extends Component {
 
@@ -51,7 +52,7 @@ class StudyMaterial extends Component {
                     <Button floated='right' className="study-start-button top">시작</Button>
                 </div>
                 <ReactMarkdown className="markdown" source={this.state.content} />
-                <Button fluid className="study-start-button bottom">시작</Button>
+                <Link to={"/quiz?quiz="+this.state.quiz_title}><Button fluid className="study-start-button bottom">시작</Button></Link>
             </div>
         );
     }

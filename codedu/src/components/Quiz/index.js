@@ -24,9 +24,7 @@ class Quiz extends Component {
     }
 
     fetchProblem = () => {
-
-        const Params = "Variable";
-        fetch('/api/quiz?quiz='+Params, 
+        fetch('/api'+window.location.pathname+window.location.search,
         {
             method: "GET",
             dataType: 'json',
@@ -38,11 +36,11 @@ class Quiz extends Component {
         }
         )
         .then((response) => {
-            console.log(response);
+            console.log('fetchProblem response is', response);
             return response.json();
         })
         .then((responseData) => {
-            console.log(responseData);
+            console.log('fetchProblem responseData is',responseData);
             this.setState({problem: responseData});
         })
         .catch((error) => {
