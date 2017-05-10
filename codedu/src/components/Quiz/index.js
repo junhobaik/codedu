@@ -12,6 +12,14 @@ import Result from './Result/Result';
 
 class Quiz extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            number : 0,
+            problem : null
+        }
+    }
+
     fetchProblem = () => {
         fetch('/api/quiz', 
         {
@@ -30,6 +38,7 @@ class Quiz extends Component {
         })
         .then((responseData) => {
             console.log(responseData);
+            this.setState({problem: responseData});
         })
         .catch((error) => {
             console.log("Fetch Error", error);
@@ -43,6 +52,8 @@ class Quiz extends Component {
 
     render() {
         const pageTitle = "PART 1 > BASIC";
+        let {number, problem} = this.state;
+        
         return (
             <div className='quiz-wrap'>
                 <div className='space'></div>
@@ -53,7 +64,7 @@ class Quiz extends Component {
                             <Link to="main"><Button floated='right'>나가기</Button></Link>
                         </div>
                         <ProgressBar/>
-                        <Content/>
+                        <Content problem={problem} />
                         <Result/>
                     </div>
                 </div>
