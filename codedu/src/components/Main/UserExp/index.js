@@ -4,7 +4,7 @@ import { Progress } from 'semantic-ui-react'
 class UserExp extends Component {
     render() {
         return (
-            <Progress className='user-exp-bar' percent={20} warning/>
+            <Progress className='user-exp-bar' percent={ this.props.exp % 100 } warning/>
         );
     }
 }
