@@ -14,10 +14,13 @@ class Result extends Component {
             style: { backgroundColor : '#B5CC51' }
         };
         let result = o;
+
+        const {next} = this.props;
+
         return (
             <div className='result-wrap' style={result.style}>
                 {result.text}
-                <Button floated='right'>다음</Button>
+                <Button floated='right' onClick={next}>다음</Button>
             </div>
         );
     }

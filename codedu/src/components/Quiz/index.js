@@ -16,12 +16,15 @@ class Quiz extends Component {
         super(props);
         this.state = {
             number : 0,
-            problem : null
+            problem : null,
+            result: false
         }
     }
 
     fetchProblem = () => {
-        fetch('/api/quiz', 
+
+        const Params = "Variable";
+        fetch('/api/quiz?quiz='+Params, 
         {
             method: "GET",
             dataType: 'json',
@@ -29,7 +32,7 @@ class Quiz extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            credentials : 'same-origin'
+            credentials : 'same-origin',
         }
         )
         .then((response) => {
@@ -43,6 +46,14 @@ class Quiz extends Component {
         .catch((error) => {
             console.log("Fetch Error", error);
         })
+    }
+
+    next = () => {
+        this.setState(function(state, props) {
+            return {
+                number: state.number+1
+            }
+        });
     }
 
     componentDidMount() {
@@ -63,9 +74,9 @@ class Quiz extends Component {
                             <h2>{pageTitle}</h2>
                             <Link to="main"><Button floated='right'>나가기</Button></Link>
                         </div>
-                        <ProgressBar/>
-                        <Content problem={problem} />
-                        <Result/>
+                        <ProgressBar number={number} />
+                        <Content number={number} problem={problem} />
+                        {this.state.result ? <Result next={this.next} /> : <div></div>}
                     </div>
                 </div>
                 <div className='space'></div>
