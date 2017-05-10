@@ -5,7 +5,9 @@ const Part = require('../../../../model/part')
 
 router.get('/', function(req, res) {
 
-  const quizTitle = "First Step";
+  //const quizTitle = "First Step";
+  const quizTitle = req.query.quiz;
+  console.log(quizTitle)
 
   Part.findOne({"quiz":{$elemMatch:{"quiz_title":quizTitle}}}, {"quiz":{$elemMatch:{"quiz_title":quizTitle}}, "quiz.problems":true}, function(err, part) {
     if(err) return res.status(500).json({error: err})
