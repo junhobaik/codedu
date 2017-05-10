@@ -5,6 +5,7 @@ const userinfo = require('./userinfo/index')
 const join = require('./join/index')
 const logout = require('./logout/index')
 const study = require('./study/index')
+const quiz = require('./quiz/index')
 const main = require('./main/index')
 const userstats = require('./userstats/index')
 
@@ -14,7 +15,7 @@ router.use('/userstats', userstats)
 router.use('/join', join)
 router.use('/logout', logout)
 router.use('/study', study)
+router.use('/quiz', quiz)
 router.use('/main', main)
-
 
 module.exports = router
