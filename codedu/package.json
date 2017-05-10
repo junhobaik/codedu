@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "base64-js": "^1.2.0",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "faker": "^4.1.0",
     "mongoose": "^4.9.6",
+    "morgan": "^1.8.1",
     "mysql": "^2.13.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-markdown": "^2.5.0",
     "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.68.1"
   },

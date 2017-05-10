@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Grid, Table } from 'semantic-ui-react'
 import DaysOfWeek from './DaysOfWeek';
 import Part from './Part';
@@ -7,13 +7,21 @@ import UserExp from './UserExp';
 import UserLevel from './UserLevel';
 import './index.css';
 
-const options = [
-    { key: '01', text: 'basic01', value: 'basic01'},
-    { key: '02', text: 'basic02', value: 'basic02'},
-    { key: '03', text: 'basic03', value: 'basic03'}
-]
-
 class Main extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: [],
+            email: 'test@test.com',
+            level: 1,
+            exp: 0,
+            daysOfWeek: {
+                yn: ['N','N','N','N','N','N','N'],
+                sevenDays: ['M','T','W','T','F','S','S']
+            }
+        }
+        this.initValues()
+    }
 
     initValues = () => {
         fetch('/api/userstats', {
@@ -44,31 +52,54 @@ class Main extends Component {
         .catch((error) => {
             console.log('Error Fetch', error)
         })
-
     }
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            email: 'test@test.com',
-            level: 1,
-            exp: 0,
-            daysOfWeek: {
-                yn: ['N','N','N','N','N','N','N'],
-                sevenDays: ['M','T','W','T','F','S','S']
+    getData = () => {
+        fetch('/api'+window.location.pathname, {
+            method: "get",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'same-origin'
+        })
+        .then((response) => {
+            console.log("getData response is",response);
+            return response.json();
+        })
+        .then((responseData) => {
+            console.log("getData responseData is",responseData);
+            const data = [];
+            for(let i = 0; i < responseData.length; i++){
+                data[i] = {title:responseData[i].part_title, quiz:responseData[i].quiz}
             }
-        }
-        this.initValues()
+            console.log("data is", data);
+            this.setState({
+                data: data
+            })
+        })
+        .catch((error) => {
+            console.log('fetch error', error);
+        })
+    }
+
+    componentDidMount() {
+        this.getData();
     }
 
     render() {
+        console.log("this.state is",this.state)
+        const state = [...this.state.data];
+        console.log("state is", state)
 
-        const listItems = options.map((option) =>
+
+        const listItems = state.map((v) =>
             <div className='part-wrap'>
-                <Part/>
+                <Part title={v.title} quiz={v.quiz}/>
                 <Test/>
             </div>
         );
+        console.log("listItems is",listItems);
 
         const ynArr = this.state.daysOfWeek.yn
         const seven = this.state.daysOfWeek.sevenDays
@@ -103,9 +134,5 @@ class Main extends Component {
         );
     }
 }
-
-Main.propTypes = {
-
-};
 
 export default Main;

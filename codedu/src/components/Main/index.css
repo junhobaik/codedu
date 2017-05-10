@@ -24,3 +24,10 @@
 .test-button {
     width: 100%;
 }
+
+.part-wrap .quiz-button{
+    width: 100%;
+}
+.part-wrap .quiz-button Button{
+    width: 100%;
+}

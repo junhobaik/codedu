@@ -20,7 +20,7 @@ ReactDOM.render(
       <Route path="/main" component={Main}/>
       <Route path="/quiz" component={Quiz}/>
       <Route path="/result" component={QuizResult}/>
-      <Route path="/study" component={Study}/>
+      <Route path="/study/:part" component={Study}/>
       <Route path="/user" component={UserInfo}/>
       <Route path="*" component={NotFound}/>
     </Route>
