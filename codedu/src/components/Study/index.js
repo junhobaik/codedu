@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { Button } from 'semantic-ui-react';
 import './study.css';
 import ReactMarkdown from 'react-markdown';
-import testmd from './test.md';
-import base64js from 'base64-js';
 import './markdown.css';
 
 class StudyMaterial extends Component {
@@ -38,29 +36,10 @@ class StudyMaterial extends Component {
         })
     }
 
-    getMdData = (title) => {
-        console.log(title);
-        fetch('/subjects/'+ title, {
-            method: "get",
-            credentials: 'same-origin'
-        })
-        .then((response) => {
-            console.log(response);
-            return response.text();
-        })
-        .then((responseData) => {
-            //console.log(responseData);
-            this.setState({md:responseData});
-        })
-        .catch((error) => {
-            console.log('fetch error', error);
-        })
-    }
-
     componentDidMount() {
         this.getData();
-        //this.getMdData(this.state.content);
     }
+
     render() {
 
         return (
