@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Progress, Button, Divider } from 'semantic-ui-react';
+import { Button, Divider } from 'semantic-ui-react';
 import Quiz from '../Quiz'
 
 
