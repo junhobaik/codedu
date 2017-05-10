@@ -1,5 +1,5 @@
 import faker from 'faker';
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 class Intro extends Component {
     render() {
@@ -12,9 +12,5 @@ class Intro extends Component {
         );
     }
 }
-
-Intro.propTypes = {
-
-};
 
 export default Intro;

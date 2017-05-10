@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 class Content extends Component {
     render() {
@@ -29,9 +29,5 @@ class Content extends Component {
         );
     }
 }
-
-Content.propTypes = {
-
-};
 
 export default Content;

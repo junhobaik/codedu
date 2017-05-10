@@ -1,19 +1,18 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Icon, Table } from 'semantic-ui-react'
 
-class UserExp extends Component {
+class DaysOfWeek extends Component {
+
+    constructor(props) {
+        super(props)
+    }
+
     render() {
         return (
             <Table textAlign='center'>
                 <Table.Body>
                     <Table.Row>
-                        <Table.Cell positive>M</Table.Cell>
-                        <Table.Cell negative>T</Table.Cell>
-                        <Table.Cell positive>W</Table.Cell>
-                        <Table.Cell negative>T</Table.Cell>
-                        <Table.Cell positive>F</Table.Cell>
-                        <Table.Cell positive>S</Table.Cell>
-                        <Table.Cell negative>S</Table.Cell>
+                        { this.props.sevenDayHistory }
                     </Table.Row>
                 </Table.Body>
             </Table>
@@ -21,8 +20,4 @@ class UserExp extends Component {
     }
 }
 
-UserExp.propTypes = {
-
-};
-
-export default UserExp;
+export default DaysOfWeek;

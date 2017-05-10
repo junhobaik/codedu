@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import './IndexPage.css';
 
 import Intro from './Intro/Intro';
@@ -18,9 +18,5 @@ class IndexPage extends Component {
         );
     }
 }
-
-IndexPage.propTypes = {
-
-};
 
 export default IndexPage;

@@ -12,22 +12,4 @@ const partSchema = new Schema({
   quiz: [quizSchema] 
 })
 
-
-
-module.exports = mongoose.model('part', partSchema)
-
-// {
-//   part_title: 'Javascript Basic of Basic',
-//   quiz: [
-//     {
-//       quiz_title: 'First Step',
-//       quiz_content: 'quiz1.md',
-//       problems: 'problem1.json'
-//     },
-//     {
-//       quiz_title: 'Variable',
-//       quiz_content: 'quiz2.md',
-//       problems: 'problem2.json'
-//     }
-//   ]
-// }
+module.exports = mongoose.model('Part', partSchema)

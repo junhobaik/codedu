@@ -1,15 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 class UserExp extends Component {
     render() {
         return (
-            <h3 className='user-level'>Lv. 3</h3>
+            <h3 className='user-level'>Lv. { this.props.level }</h3>
         );
     }
 }
-
-UserExp.propTypes = {
-
-};
 
 export default UserExp;

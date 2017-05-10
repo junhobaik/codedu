@@ -1,38 +1,30 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Progress, Button, Divider } from 'semantic-ui-react';
 import Quiz from '../Quiz'
 
 
-const options = [
-    { key: '01', text: 'basic01', value: 'basic01'},
-    { key: '02', text: 'basic02', value: 'basic02'},
-    { key: '03', text: 'basic03', value: 'basic03'}
-]
 
 class UserExp extends Component {
     
-    state = { 
-        partTitle: 'THE basic of basics'
-    };
-
     render() {
-        const listItems = options.map((option) =>
+        const quiz = this.props.quiz;
+        
+        console.log("Part title is", this.props.title)
+        console.log("Part quiz is",quiz);
+
+        const listItems = quiz.map((v) =>
             <Button.Group widths='3'>
-                <Quiz className='quiz-button'/>
+                <Quiz title={this.props.title} quiz={v} className='quiz-button'/>
             </Button.Group>
         );
         return (
             <div>
-                <h2>{this.state.partTitle}</h2>
+                <h2>{this.props.title}</h2>
                 <div className='part-item-list'>{listItems}</div>
                 <Divider/>
             </div>
         );
     }
 }
-
-UserExp.propTypes = {
-
-};
 
 export default UserExp;

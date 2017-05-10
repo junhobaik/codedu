@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 
 import { Button, Form, Input, Message, Icon } from 'semantic-ui-react'
@@ -79,9 +79,5 @@ class Join extends Component {
         );
     }
 }
-
-Join.propTypes = {
-
-};
 
 export default Join;
