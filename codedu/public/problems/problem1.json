@@ -2,7 +2,7 @@
   {
     "content" : "1+1은",
     "items" : ["1", "2", "3", "4"],
-    "answer" : 1
+    "answer" : 2
   },
   {
     "content" : "2+2는",

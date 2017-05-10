@@ -17,7 +17,9 @@ class Quiz extends Component {
         this.state = {
             number : 0,
             problem : null,
-            result: false
+            correct: false,
+            result: false,
+            score: 0
         }
     }
 
@@ -51,9 +53,34 @@ class Quiz extends Component {
     next = () => {
         this.setState(function(state, props) {
             return {
-                number: state.number+1
+                number: state.number+1,
+                result: false
             }
         });
+    }
+
+    checkAnswer = (AnswerNumber) => {
+
+        const currentNumber = this.state.number;
+        const currentAnswer = this.state.problem[currentNumber].answer - 1;
+
+        if(AnswerNumber !== currentAnswer) {
+            this.setState(function(state, props) {
+                return {
+                    result: true,
+                    correct: false,
+                    score: state.score
+                }
+            });
+        } else {
+            this.setState(function(state, props) {
+                return {
+                    result: true,
+                    correct: true,
+                    score: state.score + 1
+                }
+            })
+        }
     }
 
     componentDidMount() {
@@ -63,7 +90,7 @@ class Quiz extends Component {
 
     render() {
         const pageTitle = "PART 1 > BASIC";
-        let {number, problem} = this.state;
+        let {number, problem, result, correct} = this.state;
         
         return (
             <div className='quiz-wrap'>
@@ -75,8 +102,8 @@ class Quiz extends Component {
                             <Link to="main"><Button floated='right'>나가기</Button></Link>
                         </div>
                         <ProgressBar number={number} />
-                        <Content number={number} problem={problem} />
-                        {this.state.result ? <Result next={this.next} /> : <div></div>}
+                        <Content number={number} problem={problem} checkAnswer={this.checkAnswer} />
+                        {result ? <Result next={this.next} correct={correct} number={number} /> : <div></div>}
                     </div>
                 </div>
                 <div className='space'></div>

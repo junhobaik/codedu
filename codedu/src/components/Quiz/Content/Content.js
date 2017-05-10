@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 class Content extends Component {
     render() {
-        const {number, problem} = this.props;
+        const {number, problem, checkAnswer} = this.props;
         let content = null;
         let answer = null;
         let items = null;
@@ -11,7 +11,7 @@ class Content extends Component {
             content = problem[num].content;
             answer = problem[num].answer;
             items = problem[num].items.map((value, index) => {
-                return (<li className='items' key={index}>{value}</li>)
+                return (<li className='items' key={index} onClick={checkAnswer.bind(this, index)}>{value}</li>)
             });
         }
         

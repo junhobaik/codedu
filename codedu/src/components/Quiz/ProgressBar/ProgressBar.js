@@ -9,7 +9,7 @@ class ProgressBar extends Component {
 
         return (
             <div className='progress-wrap'>
-              <Progress success value={number} total={totalNumber} progress='ratio' >
+              <Progress success value={number+1} total={totalNumber} progress='ratio' >
               </Progress>
             </div>
         );
