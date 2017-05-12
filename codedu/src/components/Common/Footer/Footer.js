@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
       <div className="footer-wrap">
-         <div>footer</div>
+         <div>&copy;</div>
       </div>
     );
   }

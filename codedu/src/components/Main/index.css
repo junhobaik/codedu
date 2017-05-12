@@ -5,6 +5,7 @@
 .part-wrap,
 .exp-level-wrap,
 .days-of-week-wrap {
+    background-color: white;
     border: 1px solid lightgray;
     padding: 20px;
     margin-bottom: 30px;
@@ -30,4 +31,8 @@
 }
 .part-wrap .quiz-button Button{
     width: 100%;
+}
+
+.main-wrap .days-of-week-wrap tr{
+    padding:0 !important;
 }
