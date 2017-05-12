@@ -17,6 +17,7 @@ class Content extends Component {
 				<div className='problem'>
 					{content}
 				</div>
+				<div className='space'></div>
 				<ul>
 					{items}
 				</ul>

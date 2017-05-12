@@ -52,7 +52,9 @@ class StudyMaterial extends Component {
                     <Button floated='right' className="study-start-button top">시작</Button>
                 </div>
                 <ReactMarkdown className="markdown" source={this.state.content} />
-                <Link to={"/quiz?quiz="+this.state.quiz_title}><Button fluid className="study-start-button bottom">시작</Button></Link>
+                <div className="study-start-button wrap">
+                    <Link to={"/quiz?quiz="+this.state.quiz_title}><Button fluid className="study-start-button bottom">시작</Button></Link>
+                </div>
             </div>
         );
     }

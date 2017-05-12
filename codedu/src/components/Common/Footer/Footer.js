@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
       <div className="footer-wrap">
-         <div>footer</div>
+         <div>Copyright &copy; 2017 codedu. All Rights Reserved.</div>
       </div>
     );
   }

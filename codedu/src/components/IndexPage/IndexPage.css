@@ -40,11 +40,12 @@
 /*join*/
 
 .index-wrap .inner-wrap .join-wrap {
+    background-color: white;
     padding: 2rem 1rem 1rem 1rem;
     width: 320px;
     height: 480px;
     margin: 2rem;
-    border: 1px dotted lightgray;
+    border: 1px solid lightgray;
     border-radius: 3%;
 }
 

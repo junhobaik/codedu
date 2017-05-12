@@ -1,7 +1,6 @@
 .quiz-wrap {
     flex-grow: 1;
     display: flex;
-    margin-bottom: 4rem;
 }
 
 .quiz-wrap .space {
@@ -10,18 +9,21 @@
 
 .quiz-wrap .outter-wrap {
     flex-grow: 1;
-    max-width: 860px;
+    max-width: 820px;
     display: flex;
-    margin-top: 6rem;
+    flex-direction: column;
 }
 
 .quiz-wrap .outter-wrap .inner-wrap {
-    border: 1px solid lightgray;
+    background-color: white;
+    border: 1px solid #d8d8d8;
     border-radius: 3%;
     min-width: 100%;
-    height: 480px;
     padding: 2rem;
-    margin-bottom: 2rem;
+}
+
+.quiz-wrap .outter-wrap .inner-wrap .content-wrap {
+    padding: 0rem 0.5rem;
 }
 
 .quiz-wrap .outter-wrap .inner-wrap .top h2 {
@@ -30,20 +32,42 @@
 
 .quiz-wrap .outter-wrap .inner-wrap .progress-wrap {
     margin: 4rem 1rem 0rem 1rem;
+    padding: 0;
 }
 
 .quiz-wrap .outter-wrap .inner-wrap .content-wrap {
     margin: 1rem 1rem;
-    height: 15rem;
+    min-height: 15rem;
+}
+
+.quiz-wrap .outter-wrap .inner-wrap .content-wrap ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.quiz-wrap .outter-wrap .inner-wrap .content-wrap .items {
+    display: inline;
+    flex-grow: 1;
+    text-align: center;
+    margin: 1rem 2rem;
+    padding: 1rem;
+    background-color: #d8d8d8;
+    border-radius: 10%;
 }
 
 .quiz-wrap .outter-wrap .inner-wrap .result-wrap {
     display: flex;
     padding: 1rem;
+    margin: 0;
     font-size: 1.5rem;
     border-radius: 3%;
     width: inherit;
-    margin: 0 1rem;
+}
+
+.quiz-wrap .result-wrap button {
+    background-color: #d8d8d8 !important;
+    color: rgb(80, 80, 80) !important;
 }
 
 .quiz-wrap .outter-wrap .inner-wrap .result-wrap div {
@@ -54,12 +78,26 @@
 @media screen and (max-width:640px) {
     .quiz-wrap .outter-wrap {
         margin: 0;
+
     }
     .quiz-wrap .outter-wrap .inner-wrap {
-        border: none;
-        padding: 1rem 0;
+        padding: 1rem 0.5rem;
+    }
+    .quiz-wrap .space {
+        display: none;
     }
     .quiz-wrap .outter-wrap .inner-wrap .result-wrap .text {
         display: none;
+    }
+    .quiz-wrap .outter-wrap .inner-wrap .content-wrap ul {
+        flex-direction: column;
+    }
+    .quiz-wrap .outter-wrap .inner-wrap .content-wrap .items {
+        display: inline;
+        flex-grow: 1;
+        text-align: center;
+        margin: 1rem 3rem;
+        padding: 1rem 0;
+        border-radius: 3%;
     }
 }
