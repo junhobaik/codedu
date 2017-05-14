@@ -21,7 +21,9 @@ class UserInfoForm extends Component {
         target.className = target.className.replace(a, b)
     }
 
-    handleChange = (e, { value }) => this.setState({ value })
+    handleChange = (e, { value }) => {
+        this.setState({ value })
+    }
 
     handleClick = (e) => {
 
@@ -36,6 +38,7 @@ class UserInfoForm extends Component {
                 if(siblings[i] === e.target) {
                     let inputIcon = document.querySelector('input[name=photo]')
                     inputIcon.value = e.target.classList[0]
+                    sessionStorage.setItem('usericon', inputIcon.value)
                 }
                 
                 if(siblings[i].classList.contains('radio-on') && (siblings[i] !== e.target)) {
@@ -93,6 +96,23 @@ class UserInfoForm extends Component {
 
     render() {
 
+        let imageArr = [imgCastle, imgDesert, imgIceberg, imgMountains, imgVillage, imgWaterfall]
+        let filenameArr = ['castle', 'desert', 'iceberg', 'mountains', 'village', 'waterfall']
+
+        let imageItems = imageArr.map((img, index)=> {
+            if(sessionStorage.getItem('usericon') === filenameArr[index]) {
+                return <img 
+                    key={index} src={img} alt={filenameArr[index]} 
+                    onClick={this.handleClick} 
+                    className={filenameArr[index]+' '+'radio-on'} />
+            } else {
+                return <img 
+                    key={index} src={img} alt={filenameArr[index]} 
+                    onClick={this.handleClick} 
+                    className={filenameArr[index]+' '+'radio-off'} />
+            }
+        })
+
         return (
             <Form className='user-info-form' action='/api/userinfo' method='post'>
                 <p>{ this.state.validateMSG }</p>
@@ -105,12 +125,7 @@ class UserInfoForm extends Component {
                 </Form.Group>
                 <Form.Group inline className='user-icon'>
                     <label>User icon</label>
-                    <img src={imgCastle} alt='castle' onClick={this.handleClick} className='castle radio-off'/>
-                    <img src={imgDesert} alt='desert' onClick={this.handleClick} className='desert radio-off'/>
-                    <img src={imgIceberg} alt='iceberg' onClick={this.handleClick} className='iceberg radio-off'/>
-                    <img src={imgMountains} alt='mountains' onClick={this.handleClick} className='mountains radio-off'/>
-                    <img src={imgVillage} alt='village' onClick={this.handleClick} className='village radio-off'/>
-                    <img src={imgWaterfall} alt='waterfall' onClick={this.handleClick} className='waterfall radio-off'/>
+                    {imageItems}
                 </Form.Group>
             </Form>
         );
