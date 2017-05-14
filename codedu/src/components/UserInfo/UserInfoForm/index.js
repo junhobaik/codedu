@@ -10,10 +10,10 @@ import imgWaterfall from '../../../image/waterfall.png'
 class UserInfoForm extends Component {
 
     state = {
-        email: 'test@test.com',
-        password: 'test1234',
+        email: sessionStorage.getItem('useremail'),
+        password: '',
         newpassword: '',
-        icon: 'castle',
+        icon: sessionStorage.getItem('usericon'),
         validateMSG: ''
     }
     
@@ -45,7 +45,6 @@ class UserInfoForm extends Component {
             }
         }
     }
-    
     
     validate = () => {
         let form = document.querySelectorAll('.input>input');
@@ -83,6 +82,15 @@ class UserInfoForm extends Component {
         }
     }
 
+    componentWillMount() {
+        if(!this.state.email) {
+            this.setState({email: 'test@test.com'})
+        }
+        if(!this.state.icon) {
+            this.setState({icon: 'castle'})
+        }
+    }
+
     render() {
 
         return (
@@ -97,7 +105,7 @@ class UserInfoForm extends Component {
                 </Form.Group>
                 <Form.Group inline className='user-icon'>
                     <label>User icon</label>
-                    <img src={imgCastle} alt='castle' onClick={this.handleClick} className='castle radio-on'/>
+                    <img src={imgCastle} alt='castle' onClick={this.handleClick} className='castle radio-off'/>
                     <img src={imgDesert} alt='desert' onClick={this.handleClick} className='desert radio-off'/>
                     <img src={imgIceberg} alt='iceberg' onClick={this.handleClick} className='iceberg radio-off'/>
                     <img src={imgMountains} alt='mountains' onClick={this.handleClick} className='mountains radio-off'/>

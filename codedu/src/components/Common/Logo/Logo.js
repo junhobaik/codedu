@@ -5,11 +5,11 @@ import {Link} from 'react-router';
 class Logo extends Component {
   render() {
 
-    const {isLogin} = this.props;
-
     return (
       <div className="logo">
-        <Link to={isLogin ? "/main" : "/"}><img src={logo} alt="logo" /></Link>
+        <Link to={ sessionStorage.getItem('useremail') ? "/main" : "/" }>
+          <img src={logo} alt='logo'/>
+        </Link>
       </div>
     );
   }
