@@ -42,7 +42,13 @@ class StudyMaterial extends Component {
     }
 
     render() {
-
+        const titleData = {
+            part_title: this.state.part_title,
+            quiz_title: this.state.quiz_title
+        }
+        localStorage.setItem('part_title', titleData.part_title);
+        localStorage.setItem('quiz_title', titleData.quiz_title);
+        
         return (
             <div className="study-wrap">
                 <div className="study-header">
