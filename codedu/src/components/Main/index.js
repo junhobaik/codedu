@@ -32,7 +32,7 @@ class Main extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: this.state.email
+                email: sessionStorage.getItem('useremail')
             })
         })
         .then((response) => {
