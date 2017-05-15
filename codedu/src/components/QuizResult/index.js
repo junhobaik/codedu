@@ -3,13 +3,19 @@ import { Button } from 'semantic-ui-react';
 import './result.css';
 import Experience from './Experience/Experience';
 import Message from './Message/Message';
+
+import { connect } from 'react-redux';
+
 class QuizResult extends Component {
     render() {
-        const rightAnswer = 3;
+        const {data} = this.props;
+        console.log("result page data : ", data);
+
+        const rightAnswer = data.score;
         const totalAnswer = 10;
         const userLevel = 5;
         const userExp = 30;
-        const gainExp = 10;
+        const gainExp = 1 * rightAnswer;
         const totalExp = userExp + gainExp;
 
         return (
@@ -36,4 +42,9 @@ class QuizResult extends Component {
     }
 }
 
-export default QuizResult;
+const mapStateToProps = (state) => {
+    return {
+        data: state
+    }
+}
+export default connect(mapStateToProps)(QuizResult);

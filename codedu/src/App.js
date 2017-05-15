@@ -3,6 +3,12 @@ import Header from './components/Common/Header/Header';
 import Footer from './components/Common/Footer/Footer';
 import {browserHistory} from 'react-router';
 
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import scoreReducer from './store/reducer';
+const store = createStore(scoreReducer);
+
 class App extends Component {
 
   constructor(props) {
@@ -69,19 +75,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="wrap">
-        <Header
-          onClick={[this.login, this.logOut]}
-          isLogin={this.state.isLogin}
-          userName={this.state.userName}
-          message={this.state.message}
-          userPhoto={this.state.userPhoto}
-        />
-        <div className="content-wrap">
-          {this.props.children}
+      <Provider store={store}>
+        <div className="wrap">
+          <Header
+            onClick={[this.login, this.logOut]}
+            isLogin={this.state.isLogin}
+            userName={this.state.userName}
+            message={this.state.message}
+            userPhoto={this.state.userPhoto}
+          />
+          <div className="content-wrap">
+            {this.props.children}
+          </div>
+          <Footer/>
         </div>
-        <Footer/>
-      </div>
+      </Provider>
     );
   }
 }
