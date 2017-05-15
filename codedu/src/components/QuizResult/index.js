@@ -7,16 +7,87 @@ import Message from './Message/Message';
 import { connect } from 'react-redux';
 
 class QuizResult extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            level: 1,
+            exp: 0
+        }
+    }
+
+    initValues = () => {
+        fetch('/api/userstats', {
+            method: 'POST',
+            dataType: 'json',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: "latilt2@gmail.com"
+            })
+        })
+        .then((response) => {
+            return response.json()
+        })
+        .then((responseData) => {
+            console.log("initvalues", responseData);
+            this.setState({
+                level: responseData.level,
+                exp: responseData.exp,
+            })
+        })
+        .catch((error) => {
+            console.log('Error Fetch', error)
+        })
+    }
+
+    setResult = () => {
+        const totalExp = this.props.data.score * 5 + this.state.exp;
+        console.log("set Result ", totalExp);
+        
+        fetch('/api/result', {
+            method: 'POST',
+            dataType: 'json',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: "latilt2@gmail.com",
+                gainExp: totalExp
+            })
+        })
+        .then((response) => {
+            console.log(response);
+            return response.json();
+        })
+        .then((responseData) => {
+            console.log(responseData);
+        })
+        .catch((error) => {
+            console.log("fetch error ", error);
+        })
+    }
+
+    componentDidMount() {
+        this.initValues();
+        this.setResult();
+    }
+
     render() {
         const {data} = this.props;
         console.log("result page data : ", data);
 
         const rightAnswer = data.score;
         const totalAnswer = 10;
-        const userLevel = 5;
-        const userExp = 30;
-        const gainExp = 1 * rightAnswer;
+        const userLevel = this.state.level;
+        const getExp = 5;
+        const userExp = this.state.exp;
+        const gainExp = getExp * rightAnswer;
         const totalExp = userExp + gainExp;
+        
 
         return (
             <div className="result-wrap">

@@ -69,7 +69,7 @@ class App extends Component {
         if(response.status === 200) {
             this.setState({isLogin: false, message: null, userName: null});
             browserHistory.push('/');
-        }  
+        }
       });
   }
 
