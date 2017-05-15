@@ -19,7 +19,7 @@ class Quiz extends Component {
             problem : null,
             correct: false,
             result: false,
-            score: 0
+            score: 0,
         }
     }
 
@@ -87,7 +87,9 @@ class Quiz extends Component {
 
 
     render() {
-        const pageTitle = "PART 1 > BASIC";
+        const partTitle = localStorage.getItem('part_title');
+        const quizTitle = localStorage.getItem('quiz_title');
+        const pageTitle = partTitle + " > " + quizTitle;
         let {number, problem, result, correct} = this.state;
         
         return (
