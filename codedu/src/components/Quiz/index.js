@@ -113,7 +113,7 @@ class Quiz extends Component {
                     <div className='inner-wrap'>
                         <div className='top'>
                             <h2>{pageTitle}</h2>
-                            <Link to="main"><Button floated='right'>나가기</Button></Link>
+                            <Link to="main"><Button>나가기</Button></Link>
                         </div>
                         <ProgressBar number={number} problemLength={problemLength}/>
                         <Content number={number} problem={problem} checkAnswer={this.checkAnswer} />

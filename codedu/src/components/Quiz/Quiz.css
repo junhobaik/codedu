@@ -26,6 +26,15 @@
     padding: 0rem 0.5rem;
 }
 
+.quiz-wrap .outter-wrap .inner-wrap .top {
+    text-align: justify;
+}
+
+.quiz-wrap .outter-wrap .inner-wrap button {
+    float: right;
+    margin-left: 3rem;
+}
+
 .quiz-wrap .outter-wrap .inner-wrap .top h2 {
     display: inline;
 }
@@ -83,8 +92,19 @@
     .quiz-wrap .outter-wrap .inner-wrap {
         padding: 1.5rem 1rem;
     }
+
     .quiz-wrap .space {
         display: none;
+    }
+    .quiz-wrap .outter-wrap .inner-wrap .progress-wrap{
+        margin-top: 1rem !important;
+    }
+    .quiz-wrap .outter-wrap .inner-wrap .top {
+        text-align: center;
+    }
+    .quiz-wrap .outter-wrap .inner-wrap button {
+        float: none;
+        margin: 1rem 0 0 0;
     }
     .quiz-wrap .outter-wrap .inner-wrap .result-wrap .text {
         display: none;
