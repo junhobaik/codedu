@@ -49,6 +49,10 @@ class Quiz extends Component {
     }
 
     next = () => {
+        const liList = document.querySelectorAll(".quiz-wrap .content-wrap ul li")
+        for(let i = 0; i < liList.length; i++){
+            liList[i].style.backgroundColor = "#d8d8d8";
+        }
         this.setState(function(state, props) {
             return {
                 number: state.number+1,
@@ -58,7 +62,15 @@ class Quiz extends Component {
     }
 
     checkAnswer = (AnswerNumber) => {
-
+        console.log(document.querySelectorAll(".quiz-wrap .content-wrap ul li")[AnswerNumber]);
+        const liList = document.querySelectorAll(".quiz-wrap .content-wrap ul li")
+        for(let i = 0; i < liList.length; i++){
+            if(i !== AnswerNumber){
+                liList[i].style.backgroundColor = "#d8d8d8";
+            }else{
+                liList[i].style.backgroundColor = "rgb(32,196,145)";
+            }
+        }
         const currentNumber = this.state.number;
         const currentAnswer = this.state.problem[currentNumber].answer - 1;
 
