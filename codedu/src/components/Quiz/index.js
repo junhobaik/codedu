@@ -17,6 +17,7 @@ class Quiz extends Component {
         this.state = {
             number : 0,
             problem : null,
+            problemLength: 0,
             correct: false,
             result: false,
             score: 0,
@@ -41,7 +42,7 @@ class Quiz extends Component {
         })
         .then((responseData) => {
             console.log('fetchProblem responseData is',responseData);
-            this.setState({problem: responseData});
+            this.setState({problem: responseData, problemLength: responseData.length});
         })
         .catch((error) => {
             console.log("Fetch Error", error);
@@ -102,7 +103,7 @@ class Quiz extends Component {
         const partTitle = localStorage.getItem('part_title');
         const quizTitle = localStorage.getItem('quiz_title');
         const pageTitle = partTitle + " > " + quizTitle;
-        let {number, problem, result, correct} = this.state;
+        let {number, problem, problemLength, result, correct} = this.state;
         
         return (
             <div className='quiz-wrap'>
@@ -114,9 +115,9 @@ class Quiz extends Component {
                             <h2>{pageTitle}</h2>
                             <Link to="main"><Button floated='right'>나가기</Button></Link>
                         </div>
-                        <ProgressBar number={number} />
+                        <ProgressBar number={number} problemLength={problemLength}/>
                         <Content number={number} problem={problem} checkAnswer={this.checkAnswer} />
-                        {result ? <Result next={this.next} correct={correct} number={number} /> : <div></div>}
+                        {result ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} /> : <div></div>}
                     </div>
                     <div className='space'></div>
                 </div>

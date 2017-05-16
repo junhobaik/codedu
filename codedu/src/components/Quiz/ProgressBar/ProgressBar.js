@@ -5,7 +5,7 @@ import { Progress } from 'semantic-ui-react';
 class ProgressBar extends Component {
     render() {
         const {number} = this.props;
-        const totalNumber = 10;
+        const totalNumber = this.props.problemLength;
 
         return (
             <div className='progress-wrap'>
