@@ -101,8 +101,9 @@ class Main extends Component {
             <div className='part-wrap'>
                 <Part
                     title={v.title} quiz={v.quiz}
-                    progress={v.title === progress[index].part_title ? progress[index] : null}/>
-                <Test progress={this.state.progress}/>
+                    progress={v.title === progress[index].part_title ? progress[index] : null} />
+                <Test
+                    progress={v.title === progress[index].part_title ? progress[index].is_test_done : null} />
             </div>
         );
         console.log("listItems is",listItems);
