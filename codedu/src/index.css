@@ -1,22 +1,3 @@
-/*html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin: 0 0 2.5rem;
-  padding: 0;
-  font-family: sans-serif;
-}
-
-.wrap {
-  height: 100%;
-}
-
-.content-wrap {
-  min-height: 100%;
-}*/
-
 html {
   min-height: 100%;
   display: flex;
@@ -54,7 +35,6 @@ body #root .wrap .content-wrap{
 
 body #root .wrap .content-wrap{
   overflow: auto;
-  margin: 1rem;
 }
 
 .notfound-wrap {
