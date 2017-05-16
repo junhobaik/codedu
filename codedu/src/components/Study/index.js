@@ -55,7 +55,7 @@ class StudyMaterial extends Component {
                     <span className="mile">
                         {this.state.part_title} > {this.state.quiz_title}
                     </span>
-                    <Button floated='right' className="study-start-button top">시작</Button>
+                    <Link to={"/quiz?quiz="+this.state.quiz_title}><Button floated='right' className="study-start-button top">시작</Button></Link>
                 </div>
                 <ReactMarkdown className="markdown" source={this.state.content} />
                 <div className="study-start-button wrap">
