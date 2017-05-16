@@ -78,10 +78,10 @@
 @media screen and (max-width:640px) {
     .quiz-wrap .outter-wrap {
         margin: 0;
-
+        padding: 1rem;
     }
     .quiz-wrap .outter-wrap .inner-wrap {
-        padding: 1rem 0.5rem;
+        padding: 1.5rem 1rem;
     }
     .quiz-wrap .space {
         display: none;
