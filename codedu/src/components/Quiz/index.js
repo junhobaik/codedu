@@ -109,7 +109,6 @@ class Quiz extends Component {
             <div className='quiz-wrap'>
                 <div className='space'></div>
                 <div className='outter-wrap'>
-                    <div className='space'></div>
                     <div className='inner-wrap'>
                         <div className='top'>
                             <h2>{pageTitle}</h2>
@@ -119,7 +118,6 @@ class Quiz extends Component {
                         <Content number={number} problem={problem} checkAnswer={this.checkAnswer} />
                         {result ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} /> : <div></div>}
                     </div>
-                    <div className='space'></div>
                 </div>
                 <div className='space'></div>
             </div>

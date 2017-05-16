@@ -12,6 +12,7 @@
     max-width: 820px;
     display: flex;
     flex-direction: column;
+    padding-top: 5rem;
 }
 
 .quiz-wrap .outter-wrap .inner-wrap {
@@ -93,9 +94,6 @@
         padding: 1.5rem 1rem;
     }
 
-    .quiz-wrap .space {
-        display: none;
-    }
     .quiz-wrap .outter-wrap .inner-wrap .progress-wrap{
         margin-top: 1rem !important;
     }
@@ -104,7 +102,9 @@
     }
     .quiz-wrap .outter-wrap .inner-wrap button {
         float: none;
-        margin: 1rem 2rem;
+        display: block;
+        margin: 0 auto;
+        margin-top: 1rem;
     }
     .quiz-wrap .outter-wrap .inner-wrap .result-wrap .text {
         display: none;
