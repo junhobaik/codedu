@@ -11,42 +11,14 @@ class QuizResult extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            level: 1,
             exp: 0
         }
     }
 
-    initValues = () => {
-        fetch('/api/userstats', {
-            method: 'POST',
-            dataType: 'json',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: "latilt2@gmail.com"
-            })
-        })
-        .then((response) => {
-            return response.json()
-        })
-        .then((responseData) => {
-            console.log("initvalues", responseData);
-            this.setState({
-                level: responseData.level,
-                exp: responseData.exp,
-            })
-        })
-        .catch((error) => {
-            console.log('Error Fetch', error)
-        })
-    }
+    transResult = () => {
 
-    setResult = () => {
-        const totalExp = this.props.data.score * 5 + this.state.exp;
-        console.log("set Result ", totalExp);
-        
+        const score = this.props.data.score;
+
         fetch('/api/result', {
             method: 'POST',
             dataType: 'json',
@@ -56,7 +28,7 @@ class QuizResult extends Component {
             },
             body: JSON.stringify({
                 email: "latilt2@gmail.com",
-                gainExp: totalExp
+                score: score
             })
         })
         .then((response) => {
@@ -64,16 +36,18 @@ class QuizResult extends Component {
             return response.json();
         })
         .then((responseData) => {
-            console.log(responseData);
+            console.log("/api/result = ", responseData);
+            this.setState({
+                exp: responseData.exp
+            });
         })
         .catch((error) => {
-            console.log("fetch error ", error);
+            console.log('Error Fetch', error)
         })
     }
 
     componentDidMount() {
-        this.initValues();
-        this.setResult();
+        this.transResult();
     }
 
     render() {
@@ -82,12 +56,10 @@ class QuizResult extends Component {
 
         const rightAnswer = data.score;
         const totalAnswer = 10;
-        const userLevel = this.state.level;
+        const userLevel = Math.floor(this.state.exp / 100) + 1;
         const getExp = 5;
         const userExp = this.state.exp;
         const gainExp = getExp * rightAnswer;
-        const totalExp = userExp + gainExp;
-        
 
         return (
             <div className="result-wrap">
@@ -100,7 +72,7 @@ class QuizResult extends Component {
                 <div className="result-content">
                     <Experience 
                         userLevel={userLevel}
-                        totalExp={totalExp}
+                        totalExp={userExp}
                         gainExp={gainExp}
                     />
                     <Message 
