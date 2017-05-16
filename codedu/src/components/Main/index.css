@@ -36,3 +36,11 @@
 .main-wrap .days-of-week-wrap tr{
     padding:0 !important;
 }
+
+.quiz-not-done {
+    background: #E0E1E2 !important;
+}
+
+.test-button .quiz-not-done {
+    background: #E0E1E2 !important;
+}
