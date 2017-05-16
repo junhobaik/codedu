@@ -1,0 +1,14 @@
+[{
+    "content": [{
+            "h3": "변수 num은 숫자 24을 담고 있을때, 빈칸에 알맞은 데이터타입은?"
+        },
+        {
+            "code": {
+                "language": "javascript",
+                "content": "___ num = 24"
+            }
+        }
+    ],
+    "items": ["int", "double", "var", "Integer"],
+    "answer": 3
+}]
