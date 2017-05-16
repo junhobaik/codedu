@@ -30,7 +30,7 @@ db.parts.insert(
 			]
 		},
 		{
-			"part_title": "Javascript Basic",
+			"part_title": "Javascript Basic of Basic",
 			"quiz": [
 				{
 					"quiz_title": "First Step",
@@ -41,7 +41,12 @@ db.parts.insert(
 					"quiz_title": "Variable",
 					"quiz_content": "variable.md",
 					"problems": "variable.json"
-				}
+				},
+				{
+					"quiz_title": "Operator",
+					"quiz_content": "operator.md",
+					"problems": "operator.json"
+				}				
 			]
 		}
 	]
