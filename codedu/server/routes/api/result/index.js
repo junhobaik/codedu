@@ -8,17 +8,21 @@ let mysql = require('mysql');
 let connection = mysql.createConnection(mysqlConfig);
 
 router.post('/', function(req, res) {
-  const gainExp = req.body.gainExp
+  const score = req.body.score
   const email = req.body.email
 
-  console.log("gain exp ", gainExp)
-
-  const queryString = 'UPDATE user set exp = ? where email = ?'
-  const query = connection.query(queryString, [gainExp, email], function(err, rows) {
+  const query = connection.query('Select * from user where email = ?', [email], function(err, rows) {
     if(err) return err
 
-    res.json({result: "ok"})
+    if(rows) {
+      const currentExp = rows[0].exp
+      const totalExp = currentExp + score * 5;
+      const update = connection.query('UPDATE user set exp = ? where email = ?', [totalExp, email], function(err, rows) {
+        if(err) return err
 
+        res.json({result: "ok", exp: totalExp})
+      })
+    }
   })
 })
 

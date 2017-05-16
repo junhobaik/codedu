@@ -11,7 +11,6 @@ import {browserHistory} from 'react-router';
 
 import { connect } from 'react-redux';
 
-
 class Quiz extends Component {
 
     constructor(props) {
