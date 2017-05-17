@@ -18,9 +18,11 @@ class Main extends Component {
             daysOfWeek: {
                 yn: ['N','N','N','N','N','N','N'],
                 sevenDays: ['M','T','W','T','F','S','S']
+            },
+            progress: {
+                items: []
             }
         }
-        this.initValues()
     }
 
     initValues = () => {
@@ -46,7 +48,8 @@ class Main extends Component {
                 daysOfWeek: {
                     yn: ynArr,
                     sevenDays: this.state.daysOfWeek.sevenDays
-                }
+                },
+                progress: JSON.parse(responseData.progress)
             })
         })
         .catch((error) => {
@@ -85,18 +88,22 @@ class Main extends Component {
 
     componentDidMount() {
         this.getData();
+        this.initValues();
     }
 
     render() {
         console.log("this.state is",this.state)
-        const state = [...this.state.data];
+        const state = [...this.state.data]
         console.log("state is", state)
+        const progress = this.state.progress.items
 
-
-        const listItems = state.map((v) =>
+        const listItems = state.map((v, index) =>
             <div className='part-wrap'>
-                <Part title={v.title} quiz={v.quiz}/>
-                <Test/>
+                <Part
+                    title={v.title} quiz={v.quiz}
+                    progress={v.title === progress[index].part_title ? progress[index] : null} />
+                <Test
+                    progress={v.title === progress[index].part_title ? progress[index].is_test_done : null} />
             </div>
         );
         console.log("listItems is",listItems);
