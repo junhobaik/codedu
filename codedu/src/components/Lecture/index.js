@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input, TextArea, Form } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
+import MenuBorderless from './Menu';
 import './Lecture.css';
 
 class Lecture extends Component {
@@ -135,9 +136,10 @@ class Lecture extends Component {
                       </Form>
                     </div>
                     <div className="subject-problems-wrap">
-                      <Form>
+                      {/*<Form>
                         <TextArea placeholder="Add Problems"/>
-                      </Form>
+                      </Form>*/}
+                      <MenuBorderless />
                     </div>
                   </div>
                   
