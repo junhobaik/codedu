@@ -27,7 +27,7 @@ class QuizResult extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: "latilt2@gmail.com",
+                email: sessionStorage.getItem('useremail'),
                 score: score
             })
         })
