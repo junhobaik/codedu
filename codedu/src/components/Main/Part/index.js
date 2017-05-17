@@ -10,11 +10,12 @@ class UserExp extends Component {
         const quiz = this.props.quiz;
         
         console.log("Part title is", this.props.title)
-        console.log("Part quiz is",quiz);
-
+        console.log("Part quiz is",quiz)
+        const progress = this.props.progress.quiz_title
+        
         const listItems = quiz.map((v) =>
             <Button.Group widths='3'>
-                <Quiz title={this.props.title} quiz={v} className='quiz-button'/>
+                <Quiz title={this.props.title} quiz={v} progress={progress} className='quiz-button'/>
             </Button.Group>
         );
         return (
