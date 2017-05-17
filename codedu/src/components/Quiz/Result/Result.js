@@ -6,7 +6,7 @@ import 'semantic-ui-css/semantic.min.css';
 class Result extends Component {
     render() {
 
-        const {next, correct, number} = this.props;
+        const {next, correct, number, problemLength} = this.props;
 
         const x = { 
             text: <div> <Icon name='remove' size='big' /> <div className="text">"오답" 입니다.</div> </div>,
@@ -21,7 +21,7 @@ class Result extends Component {
         return (
             <div className='result-wrap' style={result.style}>
                 {result.text}
-                {(number < 9) ? <Button floated='right' onClick={next}>다음</Button> : <Button floated='right'>끝내기</Button>}
+                {(number < problemLength-1) ? <Button floated='right' onClick={next}>다음</Button> : <Button floated='right'>끝내기</Button>}
             </div>
         );
     }

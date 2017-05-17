@@ -20,11 +20,28 @@
   text-decoration: none;
 }
 
-.header-wrap .logo img {
+.header-wrap .logo .logo-img {
   height: 3.2rem;
+  background-image: url('../../../image/bg_bright_codedu.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
+
 .header-wrap .user .user-icon img {
   height: 2rem;
   width: 2rem;
   border-radius: 100%;
+}
+
+@media screen and (max-width:640px) {
+  .header-wrap {
+    height: 4rem;
+    min-height: 4rem;
+    font-size: 1.2rem;
+    padding: 0 2rem 0 2rem;
+  }
+  .header-wrap .logo .logo-img {
+    height: 3.2rem;
+    background-image: url('../../../image/cd_bg_green_hex.png');
+  }
 }

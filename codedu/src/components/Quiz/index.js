@@ -17,6 +17,7 @@ class Quiz extends Component {
         this.state = {
             number : 0,
             problem : null,
+            problemLength: 0,
             correct: false,
             result: false,
             score: 0,
@@ -41,7 +42,7 @@ class Quiz extends Component {
         })
         .then((responseData) => {
             console.log('fetchProblem responseData is',responseData);
-            this.setState({problem: responseData});
+            this.setState({problem: responseData, problemLength: responseData.length});
         })
         .catch((error) => {
             console.log("Fetch Error", error);
@@ -49,6 +50,10 @@ class Quiz extends Component {
     }
 
     next = () => {
+        const liList = document.querySelectorAll(".quiz-wrap .content-wrap ul li")
+        for(let i = 0; i < liList.length; i++){
+            liList[i].style.backgroundColor = "#d8d8d8";
+        }
         this.setState(function(state, props) {
             return {
                 number: state.number+1,
@@ -58,7 +63,15 @@ class Quiz extends Component {
     }
 
     checkAnswer = (AnswerNumber) => {
-
+        console.log(document.querySelectorAll(".quiz-wrap .content-wrap ul li")[AnswerNumber]);
+        const liList = document.querySelectorAll(".quiz-wrap .content-wrap ul li")
+        for(let i = 0; i < liList.length; i++){
+            if(i !== AnswerNumber){
+                liList[i].style.backgroundColor = "#d8d8d8";
+            }else{
+                liList[i].style.backgroundColor = "rgb(32,196,145)";
+            }
+        }
         const currentNumber = this.state.number;
         const currentAnswer = this.state.problem[currentNumber].answer - 1;
 
@@ -90,23 +103,21 @@ class Quiz extends Component {
         const partTitle = localStorage.getItem('part_title');
         const quizTitle = localStorage.getItem('quiz_title');
         const pageTitle = partTitle + " > " + quizTitle;
-        let {number, problem, result, correct} = this.state;
+        let {number, problem, problemLength, result, correct} = this.state;
         
         return (
             <div className='quiz-wrap'>
                 <div className='space'></div>
                 <div className='outter-wrap'>
-                    <div className='space'></div>
                     <div className='inner-wrap'>
                         <div className='top'>
                             <h2>{pageTitle}</h2>
-                            <Link to="main"><Button floated='right'>나가기</Button></Link>
+                            <Link to="main"><Button>나가기</Button></Link>
                         </div>
-                        <ProgressBar number={number} />
+                        <ProgressBar number={number} problemLength={problemLength}/>
                         <Content number={number} problem={problem} checkAnswer={this.checkAnswer} />
-                        {result ? <Result next={this.next} correct={correct} number={number} /> : <div></div>}
+                        {result ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} /> : <div></div>}
                     </div>
-                    <div className='space'></div>
                 </div>
                 <div className='space'></div>
             </div>
