@@ -37,10 +37,6 @@
     padding:0 !important;
 }
 
-.quiz-not-done {
-    background: #E0E1E2 !important;
-}
-
-.test-button .quiz-not-done {
+.quiz-done {
     background: #E0E1E2 !important;
 }
