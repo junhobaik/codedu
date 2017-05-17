@@ -2,6 +2,14 @@
   display: none;
 }
 
-.subject-content-wrap.active {
+.subject-problems-wrap {
+  display: none;
+}
+
+.content-add.content > .subject-content-wrap {
+  display: block;
+}
+
+.content-add.problems > .subject-problems-wrap {
   display: block;
 }

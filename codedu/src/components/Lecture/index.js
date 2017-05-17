@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Input, Accordion, TextArea, Form } from 'semantic-ui-react';
+import { Button, Input, TextArea, Form } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
 import './Lecture.css';
 
@@ -75,13 +75,29 @@ class Lecture extends Component {
     this.structure.part[part_key].subject[subject_key].subject_title = subject_title;
     this.forceUpdate();
   }
-  nextSubject = (part_title, subject_title, evt) => {
+  toggleContent = (evt) => {
     const target = evt.target.parentElement.nextSibling;
-    target.classList.add("active");
+    const value = evt.target.innerText;
+
+    if(value === "Content") {
+      target.classList.remove("problems");
+      target.classList.toggle("content");
+    } else {
+      target.classList.remove("content");
+      target.classList.toggle("problems");
+    }
     this.forceUpdate();
-    console.log(evt.target.parentElement.nextSibling);
-    console.log(`${part_title}, ${subject_title}`);
   }
+  editContent = (part_key, subject_key, evt) => {
+    const contentString = evt.target.value;
+
+    this.structure.part[part_key].subject[subject_key].subject_content = contentString;
+  }
+
+  addProblems = () => {
+
+  }
+
 
   render() {
     console.log("render ", this.structure);
@@ -109,12 +125,20 @@ class Lecture extends Component {
                   <div className="ui action input">
                     <input type="text" placeholder="Add Subject" defaultValue={subject_value.subject_title} />
                     <Button primary onClick={this.editSubject.bind(this, part_index, subject_index)}>EDIT</Button>
-                    <Button secondary onClick={this.nextSubject.bind(this, part_value.part_title, subject_value.subject_title)}>Content</Button>
+                    <Button secondary onClick={this.toggleContent}>Content</Button>
+                    <Button onClick={this.toggleContent}>Problems</Button>
                   </div>
-                  <div className="subject-content-wrap">
-                    <Form>
-                      <TextArea placeholder="Add Subject Content" />
-                    </Form>
+                  <div className="content-add">
+                    <div className="subject-content-wrap">
+                      <Form>
+                        <TextArea onChange={this.editContent.bind(this, part_index, subject_index)} placeholder="Add Subject Content" />
+                      </Form>
+                    </div>
+                    <div className="subject-problems-wrap">
+                      <Form>
+                        <TextArea placeholder="Add Problems"/>
+                      </Form>
+                    </div>
                   </div>
                   
                 </div>
