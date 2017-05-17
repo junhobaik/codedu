@@ -1,0 +1,7 @@
+.subject-content-wrap {
+  display: none;
+}
+
+.subject-content-wrap.active {
+  display: block;
+}
