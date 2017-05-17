@@ -42,15 +42,22 @@ class StudyMaterial extends Component {
     }
 
     render() {
-
+        const titleData = {
+            part_title: this.state.part_title,
+            quiz_title: this.state.quiz_title
+        }
+        localStorage.setItem('part_title', titleData.part_title);
+        localStorage.setItem('quiz_title', titleData.quiz_title);
+        
         return (
             <div className="study-wrap">
                 <div className="study-header">
                     <span className="mile">
                         {this.state.part_title} > {this.state.quiz_title}
                     </span>
-                    <Button floated='right' className="study-start-button top">시작</Button>
+                    <Link to={"/quiz?quiz="+this.state.quiz_title}><Button className="study-start-button top">시작</Button></Link>
                 </div>
+                <div className="study-hr"><br/><hr/></div>
                 <ReactMarkdown className="markdown" source={this.state.content} />
                 <div className="study-start-button wrap">
                     <Link to={"/quiz?quiz="+this.state.quiz_title}><Button fluid className="study-start-button bottom">시작</Button></Link>

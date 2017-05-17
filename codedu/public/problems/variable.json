@@ -1,0 +1,132 @@
+[{
+        "content": [{
+                "h3": "변수 num은 숫자 24을 담고 있을때, 빈칸에 알맞은 데이터타입은?"
+            },
+            {
+                "code": {
+                    "language": "javascript",
+                    "content": "___ num = 24"
+                }
+            }
+        ],
+        "items": ["int", "double", "var", "Integer"],
+        "answer": 3
+    },
+    {
+        "content": [{
+                "h3": "문자열을 담는 변수 str이 있다 빈칸에 알맞은 것은?"
+            },
+            {
+                "code": {
+                    "language": "javascript",
+                    "content": "var str = ___"
+                }
+            }
+        ],
+        "items": ["<String>comment<String>", "\"comment\"", "(String)comment", "comment"],
+        "answer": 2
+    },
+    {
+        "content": [{
+                "h3": "console 출력 결과가 codedu가 되도록 빈칸에 알맞은 것을 고르세요"
+            },
+            {
+                "code": {
+                    "language": "javascript",
+                    "content": [
+                        "var ___ = 'codedu';",
+                        "console.log(ce);"
+                    ]
+                }
+            }
+        ],
+        "items": ["codedu", "string", "print", "ce"],
+        "answer": 4
+    },
+    {
+        "content": [{
+                "h3": "아래 코드의 console 출력 결과는 무엇일지 고르세요"
+            },
+            {
+                "code": {
+                    "language": "javascript",
+                    "content": [
+                        "var codedu;",
+                        "console.log(codedu);"
+                    ]
+                }
+            }
+        ],
+        "items": ["null", "string", "number", "undefined"],
+        "answer": 4
+    },
+    {
+        "content": [{
+                "h3": "아래 코드의 출력 결과를 고르세요"
+            },
+            {
+                "code": {
+                    "language": "javascript",
+                    "content": [
+                        "var a = 'a';",
+                        "b = 'b';",
+                        "document.write(a,'/',b);"
+                    ]
+                }
+            }
+        ],
+        "items": ["error", "a/", "a/b", "a/undefined"],
+        "answer": 3
+    },
+    {
+        "content": [{
+                "h3": "아래 코드의 출력 결과를 고르세요"
+            },
+            {
+                "code": {
+                    "language": "javascript",
+                    "content": [
+                        "var x = '1';",
+                        "console.log(typeof x);"
+                    ]
+                }
+            }
+        ],
+        "items": ["x", "1", "string", "var"],
+        "answer": 3
+    },
+    {
+        "content": [{
+                "h3": "아래 코드의 출력 결과를 고르세요"
+            },
+            {
+                "code": {
+                    "language": "javascript",
+                    "content": [
+                        "var x = '1' + 2 + 3;",
+                        "console.log(x);"
+                    ]
+                }
+            }
+        ],
+        "items": ["6", "5", "1+5", "123"],
+        "answer": 4
+    },
+    {
+        "content": [{
+                "h3": "아래 코드의 출력 결과를 고르세요"
+            },
+            {
+                "code": {
+                    "language": "javascript",
+                    "content": [
+                        "var x = 10 + 11 + '12';",
+                        "console.log(x);"
+                    ]
+                }
+            }
+        ],
+        "items": ["2112", "21", "33", "101112"],
+        "answer": 1
+    }
+]

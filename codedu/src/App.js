@@ -47,6 +47,8 @@ class App extends Component {
       console.log(responseData);
       
       if(responseData.isLogin) {
+        sessionStorage.setItem('useremail', responseData.userName);
+        sessionStorage.setItem('usericon', responseData.photo);
         this.setState({isLogin: responseData.isLogin, message: responseData.message, userName: responseData.userName, userPhoto: responseData.photo});
         browserHistory.push('/main');
       } else {
@@ -67,6 +69,10 @@ class App extends Component {
       .then((response) => {
         console.log(response);
         if(response.status === 200) {
+            sessionStorage.removeItem('useremail');
+            sessionStorage.removeItem('usericon');
+            console.log('session removed')
+            
             this.setState({isLogin: false, message: null, userName: null});
             browserHistory.push('/');
         }
