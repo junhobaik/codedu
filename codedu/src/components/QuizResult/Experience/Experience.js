@@ -13,7 +13,7 @@ class Experience extends React.Component {
         <div className="result-level">
             Lv. {userLevel}
         </div>
-        <Progress percent={totalExp} style={{margin: 0}}/>
+        <Progress percent={totalExp % 100} progress style={{margin: 0}}/>
         <div className="result-up">
             + {gainExp}%
         </div>

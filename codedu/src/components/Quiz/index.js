@@ -7,8 +7,9 @@ import { Link } from 'react-router';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Content from './Content/Content';
 import Result from './Result/Result';
+import {browserHistory} from 'react-router';
 
-
+import { connect } from 'react-redux';
 
 class Quiz extends Component {
 
@@ -104,6 +105,7 @@ class Quiz extends Component {
         const quizTitle = localStorage.getItem('quiz_title');
         const pageTitle = partTitle + " > " + quizTitle;
         let {number, problem, problemLength, result, correct} = this.state;
+        let {data, setScore} = this.props;
         
         return (
             <div className='quiz-wrap'>
@@ -116,7 +118,7 @@ class Quiz extends Component {
                         </div>
                         <ProgressBar number={number} problemLength={problemLength}/>
                         <Content number={number} problem={problem} checkAnswer={this.checkAnswer} />
-                        {result ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} /> : <div></div>}
+                        {result ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} setScore={setScore.bind(this)} /> : <div></div>}
                     </div>
                 </div>
                 <div className='space'></div>
@@ -125,4 +127,22 @@ class Quiz extends Component {
     }
 }
 
-export default Quiz;
+const mapStateToProps = (state) => {
+  return {
+    data: state
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setScore() {
+        console.log(this.state.score);
+      dispatch({
+        type: "quiz.QUIZ_SETSCORE",
+        value: this.state.score
+      });
+      browserHistory.push('/result');
+    }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Quiz);
