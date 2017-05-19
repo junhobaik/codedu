@@ -116,7 +116,7 @@ class Main extends Component {
         const listItems = state.map((v, index) =>
             <div className='part-wrap'>
                 <Part title={v.title} quiz={v.quiz} progress={partProgress[index]}/>
-                <Test progress={quizProgress[index]}/>
+                <Test title={v.title} quiz={v.quiz} progress={quizProgress[index]}/>
             </div>
         );
         console.log("listItems is",listItems);
