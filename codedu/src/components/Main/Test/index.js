@@ -11,8 +11,8 @@ class Test extends Component {
     render() {
         return (
             <Button
-                color='blue' key={tests.key}
-                className={this.props.progress? 'test-button quiz-done' : 'test-button quiz-not-done'}>
+                key={tests.key}
+                className={this.props.progress !== null ? 'test-button quiz-done' : 'test-button quiz-not-done'}>
                 TEST
             </Button>
         );

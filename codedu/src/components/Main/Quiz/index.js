@@ -11,7 +11,11 @@ class Quiz extends Component {
     componentWillMount() {
         const progress = this.props.progress
         const quiz_title = this.props.quiz.quiz_title
-        if(progress.indexOf(quiz_title) > -1) {
+        if (progress === null) {
+            this.setState({
+                is_quiz_done: false
+            })
+        } else {
             this.setState({
                 is_quiz_done: true
             })
@@ -25,7 +29,7 @@ class Quiz extends Component {
         return (
             <div className="quiz-button">
                 <Link to={"/study/"+this.props.title+"&"+this.props.quiz.quiz_title}>
-                    <Button className={this.state.is_quiz_done? 'quiz-done' : 'quiz-not-done'}>{this.props.quiz.quiz_title}</Button>
+                    <Button className={this.state.is_quiz_done ? 'quiz-done' : 'quiz-not-done'}>{this.props.quiz.quiz_title}</Button>
                 </Link>
             </div>
         );

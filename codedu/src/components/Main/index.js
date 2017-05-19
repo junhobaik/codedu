@@ -96,14 +96,27 @@ class Main extends Component {
         const state = [...this.state.data]
         console.log("state is", state)
         const progress = this.state.progress.items
+        console.log("progress is ", progress);
+        const partProgress = [];
+        const quizProgress = [];
+
+        for(let i = 0; i < state.length; i++){
+            for (let j = 0; j < progress.length; j++) {
+                if (state[i].title === progress[j].part_title) {
+                    partProgress[i] = progress[j]
+                    quizProgress[i] = progress[j].is_test_done;
+                }
+            }
+            if(typeof partProgress[i] == "undefined"){
+                partProgress[i] = null;
+                quizProgress[i] = null;
+            }
+        }
 
         const listItems = state.map((v, index) =>
             <div className='part-wrap'>
-                <Part
-                    title={v.title} quiz={v.quiz}
-                    progress={v.title === progress[index].part_title ? progress[index] : null} />
-                <Test
-                    progress={v.title === progress[index].part_title ? progress[index].is_test_done : null} />
+                <Part title={v.title} quiz={v.quiz} progress={partProgress[index]}/>
+                <Test progress={quizProgress[index]}/>
             </div>
         );
         console.log("listItems is",listItems);

@@ -11,7 +11,9 @@ class UserExp extends Component {
         
         console.log("Part title is", this.props.title)
         console.log("Part quiz is",quiz)
-        const progress = this.props.progress.quiz_title
+        //const progress = this.props.progress.quiz_title
+        const progress = this.props.progress
+        console.log("Part progress is",progress);
         
         const listItems = quiz.map((v) =>
             <Button.Group widths='3'>
