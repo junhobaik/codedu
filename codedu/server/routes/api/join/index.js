@@ -36,7 +36,8 @@ passport.use('local-join', new LocalStrategy({
   };
   var query = connection.query('insert into user set ?', sql, function (err, rows) {
     if (err) throw err;
-    console.log("ok")
+    const queryStr = 'update user set progress = "{\\"items\\":[]}" where email = "' + email + '"';
+    query = connection.query(queryStr);
     return done(null, {
       'email': email,
       'id': rows.insertId
