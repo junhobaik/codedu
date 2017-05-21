@@ -5,11 +5,11 @@ const Part = require('../../../../model/part')
 const fs = require('fs')
 const LocalStorage = require('node-localstorage').LocalStorage,
 localStorage = new LocalStorage('./scratch');
-var testQuizList = [];
 
 
 router.get('/', function(req, res) {
   const quizTitle = req.query.quiz;
+  //localStorage.clear();
   console.log("localstorage is", localStorage.getItem('part_title'), localStorage.getItem('quiz_title'));
 
   if(localStorage.getItem('quiz_title') !== 'parttest'){
@@ -22,27 +22,44 @@ router.get('/', function(req, res) {
   }else{
     Part.find({"part_title":localStorage.getItem('part_title')}, function(err, part){
       const quizList = part[0].quiz;
-      for(v of quizList){
-        fs.readFile(path.resolve(__dirname, '../../../../public/problems/'+v.problems), 'utf8', function(err, data) {
+      for(let i = 0; i < quizList.length; i++){
+        fs.readFile(path.resolve(__dirname, '../../../../public/problems/'+quizList[i].problems), 'utf8', function(err, data) {
           if(err) return console.log(err)
+          if(i === 0) {
+            localStorage.setItem('testQuizList', "");
+          }
           const datas = JSON.parse(data);
-          const test = [];
+          let QuizListStr = "";
+
           let randomArr = [];
           let cnt = Math.floor(datas.length / 2);
+
           while(cnt !== 0){
             var random = Math.floor(Math.random() * datas.length);
+
             if(randomArr.indexOf(random) == -1){
               randomArr.push(random);
-              testQuizList.push(datas[random]);
+
+              QuizListStr += JSON.stringify(datas[random]);
+
               cnt--;
             }
           }
+          localStorage.setItem('testQuizList', localStorage.getItem('testQuizList') + QuizListStr);
         })
       }
-      console.log("testQuizList is", testQuizList);
-      res.send(testQuizList);
+
+      let str = "[" + localStorage.getItem('testQuizList') + "]"
+      const TestQuizList = JSON.parse(str.replace(/}{"content"/g, '},{"content"' ));
+      res.send(TestQuizList);
     })
   }
 })
 
 module.exports = router
+
+/*
+
+
+
+          */
