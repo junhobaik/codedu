@@ -75,8 +75,6 @@ class UserInfoForm extends Component {
             isMatch = false;
         }
 
-        let msg = ''
-
         if(isNotEmpty && isMatch) {
             // enable submit button
             this.setState({ 
@@ -85,7 +83,6 @@ class UserInfoForm extends Component {
             button.disabled = false
             button.classList.remove('disabled')
         } else {
-            let msg = '';
             if (!isNotEmpty) {
                 this.setState({ 
                     validateMSG : '(모든 항목에 내용을 입력해주세요.)'
