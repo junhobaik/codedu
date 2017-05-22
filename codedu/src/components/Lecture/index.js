@@ -95,7 +95,7 @@ class Lecture extends Component {
     this.structure.part[part_key].subject[subject_key].subject_content = contentString;
   }
 
-  addProblems = () => {
+  addProblems = (part_key, subject_key, evt) => {
 
   }
 
@@ -139,7 +139,7 @@ class Lecture extends Component {
                       {/*<Form>
                         <TextArea placeholder="Add Problems"/>
                       </Form>*/}
-                      <MenuBorderless />
+                      <MenuBorderless problems={this.structure.part[part_index].subject[subject_index].problems} />
                     </div>
                   </div>
                   

@@ -6,7 +6,6 @@ export default class MenuBorderless extends Component {
   constructor() {
     super();
     this.state = { activeItem: 1,
-    items: [],
     value: null
     }
   }
@@ -28,22 +27,50 @@ export default class MenuBorderless extends Component {
     this.setState({ activeItem: name });
   }
 
-  handleChange = (e, { value }) => this.setState({ value: value })
-
   addItem = () => {
     this.setState((state, props) => {
-      const arr = state.items;
-      const length = arr.length;
-      arr.push(length+1);
-      return {
-        items: arr
+      //const arr = state.items;
+      const arr = props.problems;
+      const problemsData = {
+        problems_content: "",
+        problems_items: [],
+        problems_answer: null
       }
+      arr.push(problemsData);
     });
   }
 
+  handleChangeRadio = (index, e, { value }) => {
+    let answer;
+    switch(value) {
+      case "First":
+        answer = 1;
+        break;
+      case "Second":
+        answer = 2;
+        break;
+      case "Third":
+        answer = 3;
+        break;
+      case "Fourth":
+        answer = 4;
+        break;
+    }
+
+    this.props.problems[index].problems_answer = answer;
+    this.forceUpdate();
+  }
+
+  handleChangeTextArea = (index, evt) => {
+    const textAreaString = evt.target.value;
+
+    this.props.problems[index].problems_content = textAreaString;
+  }
+
   render() {
-    const { activeItem, items, value } = this.state;
-    const menuItem = items.map((value, index) => {
+    const { activeItem, value } = this.state;
+    const { problems } = this.props;
+    const menuItem = problems.map((value, index) => {
       return (
         <Menu.Item
           key={index}
@@ -54,10 +81,12 @@ export default class MenuBorderless extends Component {
       )
     });
 
-    const formItem = items.map((formValue, index) => {
+    const formItem = problems.map((formValue, index) => {
+      const radioValue = formValue.problems_answer;
+
       return (
         <Form key={index} className="problems-form">
-          <Form.TextArea label='Problems' placeholder='Add Problems' />
+          <Form.TextArea label='Problems' placeholder='Add Problems' onChange={this.handleChangeTextArea.bind(this, index)} />
           <Form.Group widths='equal'>
             <Form.Input label='First' />
             <Form.Input label='Second' />
@@ -66,10 +95,10 @@ export default class MenuBorderless extends Component {
           </Form.Group>
           <Form.Group inline>
             <label>Answer</label>
-            <Form.Radio label="First" value="First" checked={value === "First"} onChange={this.handleChange} />
-            <Form.Radio label="Second" value="Second" checked={value === "Second"} onChange={this.handleChange} />
-            <Form.Radio label="Third" value="Third" checked={value === "Third"} onChange={this.handleChange} />
-            <Form.Radio label="Fourth" value="Fourth" checked={value === "Fourth"} onChange={this.handleChange} />
+            <Form.Radio label="First" value="First" checked={radioValue === 1} onChange={this.handleChangeRadio.bind(this, index)} />
+            <Form.Radio label="Second" value="Second" checked={radioValue === 2} onChange={this.handleChangeRadio.bind(this, index)} />
+            <Form.Radio label="Third" value="Third" checked={radioValue === 3} onChange={this.handleChangeRadio.bind(this, index)} />
+            <Form.Radio label="Fourth" value="Fourth" checked={radioValue === 4} onChange={this.handleChangeRadio.bind(this, index)} />
           </Form.Group>
         </Form>
       )
