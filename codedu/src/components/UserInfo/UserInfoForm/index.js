@@ -50,39 +50,56 @@ class UserInfoForm extends Component {
     }
     
     validate = () => {
+
         let form = document.querySelectorAll('.input>input');
+        let button = document.querySelector('.user-info-submit')
 
         let password = form[1].value
-        let passwordConfirm = form[2].value
-        let newPassword = form[3].value
+        let newPassword = form[2].value
+        let newConfirm = form[3].value
 
-        let button = document.querySelector('.user-info-submit')
+        let lengths = [password.length, newPassword.length, newConfirm.length];
+
+        let isNotEmpty = false;
+        let isMatch = false;
+
+        if(lengths.indexOf(0) === -1){
+            isNotEmpty = true;
+        } else {
+            isNotEmpty = false;
+        }
         
-        let hasEmptyInput = password === '' || passwordConfirm === '' || newPassword === ''
-        let hasBothPassword = password !== '' || passwordConfirm !== '' 
-        let isPasswordEqual = password === passwordConfirm
-        let isNewPasswordEmpty =  newPassword === ''
+        if(newPassword === newConfirm) {
+            isMatch = true;
+        } else {
+            isMatch = false;
+        }
 
+        let msg = ''
 
-        if(!hasEmptyInput && isPasswordEqual && !isNewPasswordEmpty) {
+        if(isNotEmpty && isMatch) {
             // enable submit button
-            this.setState({ validateMSG : ''})
+            this.setState({ 
+                validateMSG : ''
+            })
             button.disabled = false
             button.classList.remove('disabled')
         } else {
-
-            if(hasBothPassword && isNewPasswordEmpty) {
-                this.setState({ validateMSG : '(새 비밀번호를 입력하세요.)'})
-            }
-
-            if(hasBothPassword && !isPasswordEqual) {
-                this.setState({ validateMSG : '(비밀번호와 비밀번호 확인이 일치하지 않습니다.)'})
-            }
-
+            let msg = '';
+            if (!isNotEmpty) {
+                this.setState({ 
+                    validateMSG : '(모든 항목에 내용을 입력해주세요.)'
+                })
+            } else if (!isMatch) {
+                this.setState({ 
+                    validateMSG : '(비밀번호와 비밀번호 확인이 일치하지 않습니다..)'
+                })
+            } 
             // disable submit button
             button.disabled = true
             button.classList.add('disabled')
         }
+
     }
 
     componentWillMount() {
@@ -119,8 +136,8 @@ class UserInfoForm extends Component {
                 <Form.Group widths='equal'>
                     <Form.Input type='text' name='email' label='E-mail' placeholder='codedu@codedu.com' value={ this.state.email } disabled/>
                     <Form.Input type='password' name='password' label='Password' placeholder='Password' onChange={ this.validate }/>
-                    <Form.Input type='password' name='passwordConfirm'label='Password (confirm)' placeholder='Password' onChange={ this.validate }/>
                     <Form.Input type='password' name='newPassword'label='New Password' placeholder='New Password' onChange={ this.validate }/>
+                    <Form.Input type='password' name='newConfirm'label='New Password (confirm)' placeholder='New Password (confirm)' onChange={ this.validate }/>
                     <Form.Input type='hidden' name='photo' value={ this.state.icon }/>
                 </Form.Group>
                 <Form.Group inline className='user-icon'>
