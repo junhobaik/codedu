@@ -59,7 +59,7 @@ class QuizResult extends Component {
         const pageTitle = partTitle + " > " + quizTitle;
 
         const rightAnswer = data.score;
-        const totalAnswer = 10;
+        const totalAnswer = data.length;
         const userLevel = Math.floor(this.state.exp / 100) + 1;
         const getExp = 5;
         const userExp = this.state.exp;
