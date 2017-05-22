@@ -5,8 +5,7 @@ export default class MenuBorderless extends Component {
   
   constructor() {
     super();
-    this.state = { activeItem: 1,
-    value: null
+    this.state = { activeItem: 1
     }
   }
   
@@ -55,6 +54,8 @@ export default class MenuBorderless extends Component {
       case "Fourth":
         answer = 4;
         break;
+      default:
+        break;
     }
 
     this.props.problems[index].problems_answer = answer;
@@ -67,8 +68,33 @@ export default class MenuBorderless extends Component {
     this.props.problems[index].problems_content = textAreaString;
   }
 
+  handleChangeGroup = (index, evt) => {
+
+    const targetString = evt.target.value;
+    const target = evt.target.parentElement.previousSibling.innerText;
+    let targetNumber;
+    switch(target) {
+      case "First":
+        targetNumber = 0;
+        break;
+      case "Second":
+        targetNumber = 1;
+        break;
+      case "Third":
+        targetNumber = 2;
+        break;
+      case "Fourth":
+        targetNumber = 3;
+        break;
+        default:
+        break;
+    }
+
+    this.props.problems[index].problems_items[targetNumber] = targetString;
+  }
+
   render() {
-    const { activeItem, value } = this.state;
+    const { activeItem } = this.state;
     const { problems } = this.props;
     const menuItem = problems.map((value, index) => {
       return (
@@ -86,12 +112,17 @@ export default class MenuBorderless extends Component {
 
       return (
         <Form key={index} className="problems-form">
-          <Form.TextArea label='Problems' placeholder='Add Problems' onChange={this.handleChangeTextArea.bind(this, index)} />
-          <Form.Group widths='equal'>
-            <Form.Input label='First' />
-            <Form.Input label='Second' />
-            <Form.Input label='Third' />
-            <Form.Input label='Fourth' />
+          <Form.TextArea
+            label='Problems'
+            placeholder='Add Problems'
+            onChange={this.handleChangeTextArea.bind(this, index)}
+            defaultValue={formValue.problems_content}
+          />
+          <Form.Group widths='equal' onChange={this.handleChangeGroup.bind(this, index)}>
+            <Form.Input label='First' defaultValue={formValue.problems_items[0]} />
+            <Form.Input label='Second' defaultValue={formValue.problems_items[1]} />
+            <Form.Input label='Third' defaultValue={formValue.problems_items[2]} />
+            <Form.Input label='Fourth' defaultValue={formValue.problems_items[3]} />
           </Form.Group>
           <Form.Group inline>
             <label>Answer</label>
