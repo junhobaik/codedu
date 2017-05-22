@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Menu, Form } from 'semantic-ui-react'
+import { Menu, Form, TextArea, Button, Segment } from 'semantic-ui-react'
+import ReactMarkdown from 'react-markdown';
 
 export default class MenuBorderless extends Component {
   
@@ -93,6 +94,20 @@ export default class MenuBorderless extends Component {
     this.props.problems[index].problems_items[targetNumber] = targetString;
   }
 
+  handleChangeRaw = (evt) => {
+    evt.preventDefault();
+    const value = evt.target.innerText;
+    const target = evt.target.parentElement.parentElement;
+
+    if(value === "Raw") {
+      target.classList.add("raw");
+    } else {
+      target.classList.remove("raw");
+    }
+
+    this.forceUpdate();
+  }
+
   render() {
     const { activeItem } = this.state;
     const { problems } = this.props;
@@ -122,12 +137,28 @@ export default class MenuBorderless extends Component {
 
       return (
         <Form key={index} className="problems-form">
-          <Form.TextArea
+          {/*<Form.TextArea
             label='Problems'
             placeholder='Add Problems'
             onChange={this.handleChangeTextArea.bind(this, index)}
             defaultValue={formValue.problems_content}
-          />
+          />*/}
+          <Form.Field className="raw">
+            <label>Problems
+              <Button onClick={this.handleChangeRaw}>Raw</Button>
+              <Button onClick={this.handleChangeRaw}>Markdown</Button>
+            </label>
+            
+            <TextArea 
+              placeholder='Add Problems'
+              onChange={this.handleChangeTextArea.bind(this, index)}
+              defaultValue={formValue.problems_content}
+            />
+
+            <Segment>
+              <ReactMarkdown className="markdown" source={formValue.problems_content} />
+            </Segment>
+          </Form.Field>
           <Form.Group widths='equal' onChange={this.handleChangeGroup.bind(this, index)}>
             <Form.Input label='First' defaultValue={formValue.problems_items[0]} />
             <Form.Input label='Second' defaultValue={formValue.problems_items[1]} />

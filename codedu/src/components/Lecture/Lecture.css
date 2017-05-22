@@ -37,3 +37,19 @@
 .subject_content-wrap > .segment {
   display: block;
 }
+
+.field.raw > textarea {
+  display: inline-block;
+}
+
+.field.raw > .segment {
+  display: none;
+}
+
+.field > textarea {
+  display: none;
+}
+
+.field > .segment {
+  display: block;
+}
