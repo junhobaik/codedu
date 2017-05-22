@@ -13,3 +13,11 @@
 .content-add.problems > .subject-problems-wrap {
   display: block;
 }
+
+.problems-form {
+  display: none;
+}
+
+.problems-form.active {
+  display: block;
+}
