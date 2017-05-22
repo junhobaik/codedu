@@ -8,12 +8,31 @@ class Lecture extends Component {
 
   constructor() {
     super();
-    this.state = {
-      lecture: false
-    };
+    
+    // this.structure = {
+    //   lecture_title: "",
+    //   part: []
+    // };
     this.structure = {
-      lecture_title: "",
-      part: []
+      lecture_title: "lecture1",
+      part: [
+        {
+          part_title: "part1",
+          subject: [
+            {
+              subject_title: "sub1",
+              subject_content: "sub1 content",
+              problems: [
+                {
+                  problems_content: "problems Content 1",
+                  problems_items: ["first", "second", "third", "fourth"],
+                  problems_answer: 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
     };
   }
 
@@ -23,11 +42,12 @@ class Lecture extends Component {
 
     this.structure.lecture_title = lecture_title;
     this.structure.part = [];
-    this.setState((state, props) => {
-      return {
-        lecture: true
-      }
-    });
+    // this.setState((state, props) => {
+    //   return {
+    //     lecture: true
+    //   }
+    // });
+    this.forceUpdate();
   }
   editLecture = (evt) => {
     const lecture_title = evt.target.previousSibling.value;
@@ -103,17 +123,13 @@ class Lecture extends Component {
   render() {
     console.log("render ", this.structure);
 
-    const { lecture } = this.state;
-
-    const { part } = this.structure;
-    let partArray;
-    if(part.length) {
-      partArray = part.map((part_value, part_index) => {
+    const { lecture_title, part } = this.structure;
+    const lecture = lecture_title.length;
+   
+    const partArray = part.map((part_value, part_index) => {
         
         /* subject render */
-        let subjectArray;
-        if(part_value.subject.length) {
-          subjectArray = part_value.subject.map((subject_value, subject_index) => {
+        const subjectArray = part_value.subject.map((subject_value, subject_index) => {
             return (
               <div className="subject" key={subject_value.subject_title}>
                 <div className="subject-edit">
@@ -132,14 +148,18 @@ class Lecture extends Component {
                   <div className="content-add">
                     <div className="subject-content-wrap">
                       <Form>
-                        <TextArea onChange={this.editContent.bind(this, part_index, subject_index)} placeholder="Add Subject Content" />
+                        <TextArea 
+                          onChange={this.editContent.bind(this, part_index, subject_index)}
+                          placeholder="Add Subject Content"
+                          defaultValue={subject_value.subject_content}
+                        />
                       </Form>
                     </div>
                     <div className="subject-problems-wrap">
                       {/*<Form>
                         <TextArea placeholder="Add Problems"/>
                       </Form>*/}
-                      <MenuBorderless problems={this.structure.part[part_index].subject[subject_index].problems} />
+                      <MenuBorderless problems={subject_value.problems} />
                     </div>
                   </div>
                   
@@ -147,7 +167,6 @@ class Lecture extends Component {
               </div>
             )
           });
-        }
 
         /* part render */
         return (
@@ -171,7 +190,6 @@ class Lecture extends Component {
           </div>
         )
       });
-    }
 
     return (
       <div className="main-wrap">
@@ -181,6 +199,7 @@ class Lecture extends Component {
               <Button onClick={this.editLecture}>EDIT</Button> : 
               <Button onClick={this.addLecture}>ADD</Button>}
             placeholder="Add Lecture" 
+            defaultValue={lecture_title}
           />
         </div>
         {lecture ?
