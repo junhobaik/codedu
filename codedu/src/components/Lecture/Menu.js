@@ -96,7 +96,7 @@ export default class MenuBorderless extends Component {
   render() {
     const { activeItem } = this.state;
     const { problems } = this.props;
-    const menuItem = problems.map((value, index) => {
+    /*const menuItem = problems.map((value, index) => {
       return (
         <Menu.Item
           key={index}
@@ -105,10 +105,20 @@ export default class MenuBorderless extends Component {
           active={activeItem === (index+1).toString()}
         />
       )
-    });
+    });*/
+
+    const menuItem = [];
 
     const formItem = problems.map((formValue, index) => {
       const radioValue = formValue.problems_answer;
+
+      menuItem.push(
+        (<Menu.Item
+          key={index}
+          name={(index+1).toString()}
+          onClick={this.handleItemClick}
+          active={activeItem === (index+1).toString()}
+        />));
 
       return (
         <Form key={index} className="problems-form">

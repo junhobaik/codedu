@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Button, Input, TextArea, Form } from 'semantic-ui-react';
-import { browserHistory } from 'react-router';
+import { Button, Input, TextArea, Form, Segment, Menu } from 'semantic-ui-react';
 import MenuBorderless from './Menu';
+import ReactMarkdown from 'react-markdown';
 import './Lecture.css';
 
 class Lecture extends Component {
@@ -119,6 +119,17 @@ class Lecture extends Component {
 
   }
 
+  handleChangeSubjectContent = (evt) => {
+    const target = evt.target.parentElement.parentElement;
+    const value = evt.target.innerText;
+
+    if(value === "Raw") {
+      target.classList.add("raw");
+    } else {
+      target.classList.remove("raw");
+    }
+    this.forceUpdate();
+  }
 
   render() {
     console.log("render ", this.structure);
@@ -146,7 +157,12 @@ class Lecture extends Component {
                     <Button onClick={this.toggleContent}>Problems</Button>
                   </div>
                   <div className="content-add">
-                    <div className="subject-content-wrap">
+                    <div className="subject-content-wrap raw">
+                      <Menu>
+                        <Menu.Item name="Raw" onClick={this.handleChangeSubjectContent} />
+                        <Menu.Item name="Markdown" onClick={this.handleChangeSubjectContent} />
+                      </Menu>
+                      
                       <Form>
                         <TextArea 
                           onChange={this.editContent.bind(this, part_index, subject_index)}
@@ -154,6 +170,10 @@ class Lecture extends Component {
                           defaultValue={subject_value.subject_content}
                         />
                       </Form>
+                      
+                      <Segment>
+                          <ReactMarkdown className="markdown" source={subject_value.subject_content} />
+                        </Segment>
                     </div>
                     <div className="subject-problems-wrap">
                       {/*<Form>

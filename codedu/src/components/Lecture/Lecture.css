@@ -21,3 +21,19 @@
 .problems-form.active {
   display: block;
 }
+
+.subject-content-wrap.raw > .form {
+  display: block;
+}
+
+.subject-content-wrap.raw > .segment {
+  display: none;
+}
+
+.subject-content-wrap > .form {
+  display: none;
+}
+
+.subject_content-wrap > .segment {
+  display: block;
+}
