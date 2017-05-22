@@ -3,8 +3,12 @@ import json2md from 'json2md';
 import ReactMarkdown from 'react-markdown';
 
 class Content extends Component {
+	constructor(props){
+		super();
+	}
 	render() {
-		const { number, problem, checkAnswer } = this.props;
+		const { number, problem, checkAnswer, onClickDisable } = this.props;
+		console.log(onClickDisable);
 		let content = null;
 		let items = null;
 
@@ -12,7 +16,7 @@ class Content extends Component {
 			content = problem[number].content;
 			content = json2md(content);
 			items = problem[number].items.map((value, index) => {
-				return (<li className='items' refs={index} key={index} onClick={checkAnswer.bind(this, index)}>{value}</li>)
+				return (<li className='items' refs={index} key={index} onClick={onClickDisable ? null : checkAnswer.bind(this, index)}>{value}</li>)
 			});
 		}
 
