@@ -101,8 +101,12 @@ class Quiz extends Component {
 
     componentDidMount() {
         this.fetchProblem();
+        
     }
 
+    componentWillUnmount() {
+        this.props.setLength(this.state.problemLength);
+    }
 
     render() {
         const partTitle = localStorage.getItem('part_title');
@@ -142,10 +146,18 @@ const mapDispatchToProps = (dispatch) => {
     setScore() {
         console.log(this.state.score);
       dispatch({
-        type: "quiz.QUIZ_SETSCORE",
+        type: "QUIZ_SETSCORE",
         value: this.state.score
       });
       browserHistory.push('/result');
+    },
+
+    setLength(length) {
+        console.log("problems length = ", length);
+        dispatch({
+            type: "QUIZ_SETLENGTH",
+            value: length
+        });
     }
   }
 }
