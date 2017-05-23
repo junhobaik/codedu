@@ -20,38 +20,38 @@ router.get('/', function(req, res) {
       res.sendFile(path.resolve(__dirname, '../../../../public/problems/'+ problem))
     })
   }else{
+    console.log("test quiz start");
     Part.find({"part_title":localStorage.getItem('part_title')}, function(err, part){
       const quizList = part[0].quiz;
       for(let i = 0; i < quizList.length; i++){
         fs.readFile(path.resolve(__dirname, '../../../../public/problems/'+quizList[i].problems), 'utf8', function(err, data) {
-          if(err) return console.log(err)
-          if(i === 0) {
-            localStorage.setItem('testQuizList', "");
+          console.log(i,"번째 fs");
+          if(err) return console.log(err);
+      
+          var datas = JSON.parse(data);
+          var dataStr = "";
+          for(v of datas){
+            dataStr += JSON.stringify(v);
           }
-          const datas = JSON.parse(data);
-          let QuizListStr = "";
 
-          let randomArr = [];
-          let cnt = Math.floor(datas.length / 2);
+          if(i==0) var oldStorage = "";
+          else oldStorage = localStorage.getItem('testQuizList');
 
-          while(cnt !== 0){
-            var random = Math.floor(Math.random() * datas.length);
+          var newStorage = oldStorage + dataStr;
+          localStorage.setItem('testQuizList', newStorage);
 
-            if(randomArr.indexOf(random) == -1){
-              randomArr.push(random);
+          if(i === (quizList.length - 1)){
+            console.log("마지막");
 
-              QuizListStr += JSON.stringify(datas[random]);
-
-              cnt--;
-            }
+            var str = "[" + localStorage.getItem('testQuizList') + "]"
+            var TestQuizList = JSON.parse(str.replace(/}{"content"/g, '},{"content"' ));
+            console.log(TestQuizList);
+            res.send(TestQuizList);
           }
-          localStorage.setItem('testQuizList', localStorage.getItem('testQuizList') + QuizListStr);
         })
       }
+      
 
-      let str = "[" + localStorage.getItem('testQuizList') + "]"
-      const TestQuizList = JSON.parse(str.replace(/}{"content"/g, '},{"content"' ));
-      res.send(TestQuizList);
     })
   }
 })
