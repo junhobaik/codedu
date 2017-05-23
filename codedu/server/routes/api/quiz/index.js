@@ -28,23 +28,31 @@ router.get('/', function(req, res) {
           console.log(i,"번째 fs");
           if(err) return console.log(err);
       
-          var datas = JSON.parse(data);
-          var dataStr = "";
-          for(v of datas){
-            dataStr += JSON.stringify(v);
+          let datas = JSON.parse(data);
+          let dataStr = "";
+
+          let randomArr = [];
+          let cnt = Math.floor(datas.length / 2);
+          while(cnt !== 0){
+            let random = Math.floor(Math.random() * datas.length);
+            if(randomArr.indexOf(random) === -1){
+              randomArr.push(random);
+              dataStr += (JSON.stringify(datas[random]));
+              cnt--;
+            }
           }
 
           if(i==0) var oldStorage = "";
           else oldStorage = localStorage.getItem('testQuizList');
 
-          var newStorage = oldStorage + dataStr;
+          let newStorage = oldStorage + dataStr;
           localStorage.setItem('testQuizList', newStorage);
 
           if(i === (quizList.length - 1)){
             console.log("마지막");
 
-            var str = "[" + localStorage.getItem('testQuizList') + "]"
-            var TestQuizList = JSON.parse(str.replace(/}{"content"/g, '},{"content"' ));
+            let str = "[" + localStorage.getItem('testQuizList') + "]"
+            let TestQuizList = JSON.parse(str.replace(/}{"content"/g, '},{"content"' ));
             console.log(TestQuizList);
             res.send(TestQuizList);
           }
