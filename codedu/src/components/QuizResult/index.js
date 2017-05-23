@@ -54,8 +54,12 @@ class QuizResult extends Component {
         const {data} = this.props;
         console.log("result page data : ", data);
 
+        const partTitle = localStorage.getItem('part_title');
+        const quizTitle = localStorage.getItem('quiz_title');
+        const pageTitle = partTitle + " > " + quizTitle;
+
         const rightAnswer = data.score;
-        const totalAnswer = 10;
+        const totalAnswer = data.length;
         const userLevel = Math.floor(this.state.exp / 100) + 1;
         const getExp = 5;
         const userExp = this.state.exp;
@@ -65,9 +69,9 @@ class QuizResult extends Component {
             <div className="result-wrap">
                 <div className="result-header">
                     <span className="mile">
-                        PART1 > BASIC
+                        {pageTitle}
                     </span>
-                    <a href="/"><Button floated="right" className="result-button-out">나가기</Button></a>
+                    <a href="/main"><Button floated="right" className="result-button-out">나가기</Button></a>
                 </div>
                 <div className="result-content">
                     <Experience 

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router'
 
 import { Button, Form, Icon } from 'semantic-ui-react'
+
+
 
 class Join extends Component {
     constructor(props) {
@@ -32,9 +34,13 @@ class Join extends Component {
             .then((response) => {
                 console.log("response", response);
                 if (response.redirected === true) {
-                    const path = response.url.split('/')[3];
-                    console.log("local-join Strategy success, move to /", path);
-                    browserHistory.push(path);
+                    // const path = response.url.split('/')[3];
+                    // console.log("local-join Strategy success, move to /", path);
+                    // browserHistory.push(path);
+                    this.setState({
+                        message: "가입이 완료되었습니다"
+                    })
+                    document.join-form.reset();
                 } else {
                     return response.json();
                 }
@@ -58,7 +64,7 @@ class Join extends Component {
                     학습하시려면 가입해주세요.
                 </div>
                 <hr/>
-                <Form action='/api/join' method='post'>
+                <Form name="join-form" action='/api/join' method='post'>
                     <Form.Input name='email' iconPosition='left' label='Email' placeholder='이메일 주소' >
                         <Icon name='at'/>
                         <input/>

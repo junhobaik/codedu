@@ -22,6 +22,7 @@ class Quiz extends Component {
             correct: false,
             result: false,
             score: 0,
+            onClickDisable: false
         }
     }
 
@@ -58,7 +59,8 @@ class Quiz extends Component {
         this.setState(function(state, props) {
             return {
                 number: state.number+1,
-                result: false
+                result: false,
+                onClickDisable: false
             }
         });
     }
@@ -81,7 +83,8 @@ class Quiz extends Component {
                 return {
                     result: true,
                     correct: false,
-                    score: state.score
+                    score: state.score,
+                    onClickDisable: true
                 }
             });
         } else {
@@ -89,7 +92,8 @@ class Quiz extends Component {
                 return {
                     result: true,
                     correct: true,
-                    score: state.score + 1
+                    score: state.score + 1,
+                    onClickDisable: true
                 }
             })
         }
@@ -97,15 +101,19 @@ class Quiz extends Component {
 
     componentDidMount() {
         this.fetchProblem();
+        
     }
 
+    componentWillUnmount() {
+        this.props.setLength(this.state.problemLength);
+    }
 
     render() {
         console.log("part_title is",localStorage.getItem('part_title'))
         const partTitle = localStorage.getItem('part_title');
         const quizTitle = localStorage.getItem('quiz_title');
         const pageTitle = partTitle + " > " + quizTitle;
-        let {number, problem, problemLength, result, correct} = this.state;
+        let {number, problem, problemLength, result, correct, onClickDisable} = this.state;
         let {data, setScore} = this.props;
         
         return (
@@ -118,7 +126,7 @@ class Quiz extends Component {
                             <Link to="main"><Button>나가기</Button></Link>
                         </div>
                         <ProgressBar number={number} problemLength={problemLength}/>
-                        <Content number={number} problem={problem} checkAnswer={this.checkAnswer} />
+                        <Content number={number} problem={problem} onClickDisable={onClickDisable} checkAnswer={this.checkAnswer} />
                         {result ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} setScore={setScore.bind(this)} /> : <div></div>}
                     </div>
                 </div>
@@ -139,10 +147,18 @@ const mapDispatchToProps = (dispatch) => {
     setScore() {
         console.log(this.state.score);
       dispatch({
-        type: "quiz.QUIZ_SETSCORE",
+        type: "QUIZ_SETSCORE",
         value: this.state.score
       });
       browserHistory.push('/result');
+    },
+
+    setLength(length) {
+        console.log("problems length = ", length);
+        dispatch({
+            type: "QUIZ_SETLENGTH",
+            value: length
+        });
     }
   }
 }
