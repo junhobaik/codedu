@@ -8,6 +8,7 @@ const study = require('./study/index')
 const quiz = require('./quiz/index')
 const main = require('./main/index')
 const userstats = require('./userstats/index')
+const lecture = require('./lecture/index')
 
 router.use('/user', user)
 router.use('/userinfo', userinfo)
@@ -17,5 +18,6 @@ router.use('/logout', logout)
 router.use('/study', study)
 router.use('/quiz', quiz)
 router.use('/main', main)
+router.use('/lecture', lecture)
 
 module.exports = router
