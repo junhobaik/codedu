@@ -13,7 +13,6 @@ class Main extends Component {
         this.state = {
             data: [],
             email: 'test@test.com',
-            level: 1,
             exp: 0,
             daysOfWeek: {
                 yn: ['N','N','N','N','N','N','N'],
@@ -43,7 +42,6 @@ class Main extends Component {
         .then((responseData) => {
             const ynArr = responseData.days_of_week.split('')
             this.setState({
-                level: responseData.level,
                 exp: responseData.exp,
                 daysOfWeek: {
                     yn: ynArr,
@@ -140,7 +138,7 @@ class Main extends Component {
                         <div className='exp-level-wrap'>
                             <div>
                                 <h3>경험치</h3>
-                                <UserLevel className='level' level={ this.state.level }/>
+                                <UserLevel className='level' level={ Math.floor(this.state.exp / 100) + 1 }/>
                             </div>
                             <UserExp exp={ this.state.exp }/>
                     </div>
