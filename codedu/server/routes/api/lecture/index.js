@@ -12,7 +12,12 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
   console.log("req.body = ", req.body)
-  res.json({message: "ok"})
+  const data = req.body
+  Lecture.update({_id:data._id}, data, function(err, part) {
+    if(err) throw err
+    console.log(part)
+    res.json(part)
+  })
 })
 
 module.exports = router
