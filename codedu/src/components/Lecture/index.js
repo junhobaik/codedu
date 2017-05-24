@@ -55,8 +55,9 @@ class Lecture extends Component {
     }
 
     this.setState((state, props) => {
+      state.part.push(partData);
       return {
-        part: state.part.push(partData)
+        part: state.part
       }
     });
     evt.target.previousSibling.value = "";
@@ -231,11 +232,11 @@ class Lecture extends Component {
       credentials : 'same-origin',
     })
     .then((response) => {
-      console.log(response);
+      console.log("get = ", response);
       return response.json();
     })
     .then((responseData) => {
-      console.log(responseData);
+      console.log("get = ", responseData);
       this.setState(function(state, props) {
         return {
           ...responseData
@@ -247,9 +248,40 @@ class Lecture extends Component {
     })
   }
 
+  setLectureData = () => {
+    fetch('/api/lecture', {
+      method: 'POST',
+      dataType: 'json',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(this.state),
+      credentials: 'same-origin'
+    })
+    .then((response) => {
+      console.log("set = ", response);
+      return response.json();
+    })
+    .then((responseData) => {
+      console.log("set = ", responseData);
+    })
+    .catch((error) => {
+      console.log("Fetch Set Error", error);
+    })
+  }
+
   componentDidMount() {
     this.getLectureData();
+    this.setTimer = setInterval(
+      () => this.setLectureData(), 1000 * 60
+    );
   }
+
+  componentWillUnmount() {
+    //clearInterval(this.setTimer);
+  }
+  
 
   render() {
     console.log("state = " , this.state);
