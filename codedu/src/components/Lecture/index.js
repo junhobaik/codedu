@@ -8,93 +8,99 @@ class Lecture extends Component {
 
   constructor() {
     super();
-    
+    this.state = {
+      lecture_title: "",
+      part: []
+    }
+
     // this.structure = {
-    //   lecture_title: "",
-    //   part: []
+    //   lecture_title: "lecture1",
+    //   part: [
+    //     {
+    //       part_title: "part1",
+    //       subject: [
+    //         {
+    //           subject_title: "sub1",
+    //           subject_content: "sub1 content",
+    //           problems: [
+    //             {
+    //               problems_content: "problems Content 1",
+    //               problems_items: ["first", "second", "third", "fourth"],
+    //               problems_answer: 3
+    //             }
+    //           ]
+    //         }
+    //       ]
+    //     }
+    //   ]
     // };
-    this.structure = {
-      lecture_title: "lecture1",
-      part: [
-        {
-          part_title: "part1",
-          subject: [
-            {
-              subject_title: "sub1",
-              subject_content: "sub1 content",
-              problems: [
-                {
-                  problems_content: "problems Content 1",
-                  problems_items: ["first", "second", "third", "fourth"],
-                  problems_answer: 3
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    };
   }
 
-  addLecture = (evt) => {
-    const lecture_title = evt.target.previousSibling.value;
-    if(!lecture_title.length) return;
-
-    this.structure.lecture_title = lecture_title;
-    this.structure.part = [];
-    // this.setState((state, props) => {
-    //   return {
-    //     lecture: true
-    //   }
-    // });
-    this.forceUpdate();
-  }
-  editLecture = (evt) => {
-    const lecture_title = evt.target.previousSibling.value;
-    if(!lecture_title.length) return;
-
-    this.structure.lecture_title = lecture_title;
+  handleChangeLecture = (evt) => {
+    const value = evt.target.value;
+    this.setState((state, props) => {
+      return {
+        lecture_title: value
+      }
+    });
   }
 
   addPart = (evt) => {
     const part_title = evt.target.previousSibling.value;
     if(!part_title.length) return;
 
-    const objectData = {
+    const partData = {
       part_title: part_title,
       subject: []
     }
-    this.structure.part.push(objectData);
+
+    this.setState((state, props) => {
+      return {
+        part: state.part.push(partData)
+      }
+    });
     evt.target.previousSibling.value = "";
-    this.forceUpdate();
   }
-  editPart = (key, evt) => {
+  editPart = (part_key, evt) => {
     const part_title = evt.target.previousSibling.value;
     if(!part_title.length) return;
 
-    this.structure.part[key].part_title = part_title;
-    this.forceUpdate();
+    this.setState((state, props) => {
+      state.part[part_key].part_title = part_title;
+      return {
+        part: state.part
+      }
+    });
   }
 
-  addSubject = (key, evt) => {
+  addSubject = (part_key, evt) => {
     const subject_title = evt.target.previousSibling.value;
     if(!subject_title.length) return;
 
-    const objectData = {
+    const subjectData = {
       subject_title: subject_title,
       subject_content: "",
       problems: []
     }
-    this.structure.part[key].subject.push(objectData);
+
+    this.setState((state, props) => {
+      state.part[part_key].subject.push(subjectData);
+      return {
+        part: state.part
+      }
+    });
     evt.target.previousSibling.value = "";
-    this.forceUpdate();
   }
   editSubject = (part_key, subject_key, evt) => {
     const subject_title = evt.target.previousSibling.value;
     if(!subject_title.length) return;
 
-    this.structure.part[part_key].subject[subject_key].subject_title = subject_title;
-    this.forceUpdate();
+    this.setState((state, props) => {
+      state.part[part_key].subject[subject_key].subject_title = subject_title;
+      return {
+        part: state.part
+      }
+    });
   }
   toggleContent = (evt) => {
     const target = evt.target.parentElement.nextSibling;
@@ -112,11 +118,12 @@ class Lecture extends Component {
   editContent = (part_key, subject_key, evt) => {
     const contentString = evt.target.value;
 
-    this.structure.part[part_key].subject[subject_key].subject_content = contentString;
-  }
-
-  addProblems = (part_key, subject_key, evt) => {
-
+    this.setState((state, props) => {
+      state.part[part_key].subject[subject_key].subject_content = contentString;
+      return {
+        part: state.part
+      }
+    });
   }
 
   handleChangeSubjectContent = (evt) => {
@@ -131,10 +138,123 @@ class Lecture extends Component {
     this.forceUpdate();
   }
 
-  render() {
-    console.log("render ", this.structure);
+  addProblems = (part_key, subject_key) => {
+    const problemsData = {
+        problems_content: "",
+        problems_items: [],
+        problems_answer: null
+    }
+    this.setState((state, props) => {
+      state.part[part_key].subject[subject_key].problems.push(problemsData);
+      return {
+        part: state.part
+      }
+    });
+  }
 
-    const { lecture_title, part } = this.structure;
+  handleChangeRadio = (part_key, subject_key, problems_key, e, { value }) => {
+    let answer;
+    switch(value) {
+      case "First":
+        answer = 1;
+        break;
+      case "Second":
+        answer = 2;
+        break;
+      case "Third":
+        answer = 3;
+        break;
+      case "Fourth":
+        answer = 4;
+        break;
+      default:
+        break;
+    }
+
+    this.setState((state, props) => {
+      state.part[part_key].subject[subject_key].problems[problems_key].problems_answer = answer;
+      return {
+        part: state.part
+      }
+    });
+  }
+
+  handleChangeTextArea = (part_key, subject_key, problems_key, evt) => {
+    const textAreaString = evt.target.value;
+
+    this.setState((state, props) => {
+      state.part[part_key].subject[subject_key].problems[problems_key].problems_content = textAreaString
+      return {
+        part: state.part
+      }
+    });
+  }
+
+  handleChangeGroup = (part_key, subject_key, problems_key, evt) => {
+
+    const targetString = evt.target.value;
+    const target = evt.target.parentElement.previousSibling.innerText;
+    let targetNumber;
+    switch(target) {
+      case "First":
+        targetNumber = 0;
+        break;
+      case "Second":
+        targetNumber = 1;
+        break;
+      case "Third":
+        targetNumber = 2;
+        break;
+      case "Fourth":
+        targetNumber = 3;
+        break;
+        default:
+        break;
+    }
+
+    this.setState((state, props) => {
+      state.part[part_key].subject[subject_key].problems[problems_key].problems_items[targetNumber] = targetString;
+      return {
+        part: state.part
+      }
+    });
+  }
+
+  getLectureData = () => {
+    fetch('/api/lecture', {
+      method: 'GET',
+      dataType: 'json',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials : 'same-origin',
+    })
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    })
+    .then((responseData) => {
+      console.log(responseData);
+      this.setState(function(state, props) {
+        return {
+          ...responseData
+        }
+      });
+    })
+    .catch((error) => {
+      console.log("Fetch Error", error);
+    })
+  }
+
+  componentDidMount() {
+    this.getLectureData();
+  }
+
+  render() {
+    console.log("state = " , this.state);
+
+    const { lecture_title, part } = this.state;
     const lecture = lecture_title.length;
    
     const partArray = part.map((part_value, part_index) => {
@@ -144,12 +264,6 @@ class Lecture extends Component {
             return (
               <div className="subject" key={subject_value.subject_title}>
                 <div className="subject-edit">
-                  {/*<Input 
-                    action={<div><Button onClick={this.editSubject.bind(this, part_index, subject_index)}>EDIT</Button>
-                    <Button onClick={this.nextSubject.bind(this, part_value.part_title, subject_value.subject_title)}>NEXT</Button></div>}
-                    placeholder="Add Subject"
-                    defaultValue={subject_value.subject_title} 
-                  />*/}
                   <div className="ui action input">
                     <input type="text" placeholder="Add Subject" defaultValue={subject_value.subject_title} />
                     <Button primary onClick={this.editSubject.bind(this, part_index, subject_index)}>EDIT</Button>
@@ -176,10 +290,15 @@ class Lecture extends Component {
                         </Segment>
                     </div>
                     <div className="subject-problems-wrap">
-                      {/*<Form>
-                        <TextArea placeholder="Add Problems"/>
-                      </Form>*/}
-                      <MenuBorderless problems={subject_value.problems} />
+                      <MenuBorderless
+                        problems={subject_value.problems}
+                        part_key={part_index}
+                        subject_key={subject_index}
+                        addProblems={this.addProblems}
+                        handleChangeRadio={this.handleChangeRadio}
+                        handleChangeTextArea={this.handleChangeTextArea}
+                        handleChangeGroup={this.handleChangeGroup}
+                        />
                     </div>
                   </div>
                   
@@ -215,11 +334,9 @@ class Lecture extends Component {
       <div className="main-wrap">
         <div className="lecture-wrap">
           <Input 
-            action={lecture ? 
-              <Button onClick={this.editLecture}>EDIT</Button> : 
-              <Button onClick={this.addLecture}>ADD</Button>}
-            placeholder="Add Lecture" 
-            defaultValue={lecture_title}
+            placeholder="Add Lecture"
+            value={lecture_title}
+            onChange={this.handleChangeLecture}
           />
         </div>
         {lecture ?
