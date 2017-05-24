@@ -40,3 +40,59 @@
 .quiz-done {
     background: #E0E1E2 !important;
 }
+
+@media screen and (max-width:640px){
+    .main-wrap {
+        padding: 1rem;
+    }
+    .main-wrap .ui.grid{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .main-wrap .ui.grid .main-quiz-grid>div{
+        margin: 1rem 0;
+    }
+    .main-wrap .ui.grid>.column:not(.row){
+        width: 100% !important;
+    }
+    .main-wrap .ui.grid .main-user-grid{
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    .main-wrap .ui.grid .main-user-grid>div{
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+    .main-wrap .ui.grid .main-user-grid .exp-level-wrap{
+    }
+    .main-wrap .ui.grid .main-user-grid .exp-level-wrap .user-exp-bar{
+        margin:0.5rem 0 0 0;
+    }
+    .main-wrap .ui.grid .main-user-grid .exp-level-wrap div .exp-title{
+        display: inline;
+    }
+    .main-wrap .ui.grid .main-user-grid .exp-level-wrap div .user-level{
+        display: inline;
+        float: right;
+    }
+    .main-wrap .ui.grid .main-user-grid .days-of-week-wrap{
+        margin:0;
+        padding:0;
+    }
+    .main-wrap .ui.grid .main-user-grid .days-of-week-wrap h3{
+        display: none;
+    }
+    .main-wrap .ui.grid .main-user-grid .days-of-week-wrap table{
+        border: 0;
+        margin: 0;
+        padding: 0;
+    }
+    .main-wrap .ui.grid .main-user-grid .days-of-week-wrap table tr{
+        display: flex !important;
+        flex-direction: row !important;
+    }
+
+    .main-wrap .ui.grid .main-user-grid .days-of-week-wrap table tr td {
+        flex-grow:1;
+    }
+}

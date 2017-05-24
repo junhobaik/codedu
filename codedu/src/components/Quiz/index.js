@@ -127,7 +127,9 @@ class Quiz extends Component {
                         </div>
                         <ProgressBar number={number} problemLength={problemLength}/>
                         <Content number={number} problem={problem} onClickDisable={onClickDisable} checkAnswer={this.checkAnswer} />
-                        {result ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} setScore={setScore.bind(this)} /> : <div></div>}
+                        {result
+                            ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} setScore={setScore.bind(this)} />
+                            : <div className='result-wrap'></div>}
                     </div>
                 </div>
                 <div className='space'></div>

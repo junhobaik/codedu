@@ -131,13 +131,13 @@ class Main extends Component {
         return (
             <div className='main-wrap'>
                 <Grid>
-                    <Grid.Column width={10}>
+                    <Grid.Column className="main-quiz-grid" width={10}>
                         {listItems}
                     </Grid.Column>
-                    <Grid.Column width={6}>
+                    <Grid.Column className="main-user-grid" width={6}>
                         <div className='exp-level-wrap'>
                             <div>
-                                <h3>경험치</h3>
+                                <h3 className="exp-title">경험치</h3>
                                 <UserLevel className='level' level={ Math.floor(this.state.exp / 100) + 1 }/>
                             </div>
                             <UserExp exp={ this.state.exp }/>
