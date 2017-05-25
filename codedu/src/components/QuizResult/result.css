@@ -1,6 +1,11 @@
-.result-wrap {
+.content-wrap>.result-wrap {
   width: 75%;
   margin: 0 auto;
+  background-color: white;
+  border: 1px solid #d8d8d8;
+  border-radius: 3%;
+  padding: 1rem 2rem;
+  margin-top: 5rem;
 }
 
 .result-header {
@@ -8,18 +13,33 @@
   overflow: hidden;
 }
 
-.result-button-out {
+.result-header .result-button-out {
+  display: inline;
+  float: right;
+}
+.result-header .mile {
+  font-size: 1.2rem;
 }
 
 .result-content {
   margin-top: 2rem;
 }
+.result-content p:last-child{
+  font-weight: bold;
+}
 
 .result-exp {
   display: flex;
-  background-color: bisque;
+  background-color: white;
+  border: 1px solid #d8d8d8;
   align-items: center;
   height: 50px;
+}
+.result-exp .ui.progress {
+  background: rgba(0,0,0,.1) !important;
+}
+.result-exp .ui.progress .bar{
+  background: #F2C037 !important;
 }
 
 .result-exp .result-level {
@@ -40,4 +60,18 @@
   margin-top: 2rem;
   display: flex;
   justify-content: space-around;
+}
+
+@media screen and (max-width:640px) {
+  .content-wrap>.result-wrap{
+    width:90%;
+  }
+  .result-header {
+    text-align: center;
+  }
+  .result-header .result-button-out{
+    display: block;
+    float: none;
+    margin: 1rem auto;
+  }
 }

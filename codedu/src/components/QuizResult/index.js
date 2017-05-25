@@ -71,7 +71,7 @@ class QuizResult extends Component {
                     <span className="mile">
                         {pageTitle}
                     </span>
-                    <a href="/main"><Button floated="right" className="result-button-out">나가기</Button></a>
+                    <a href="/main"><Button className="result-button-out">나가기</Button></a>
                 </div>
                 <div className="result-content">
                     <Experience 
