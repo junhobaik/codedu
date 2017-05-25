@@ -138,8 +138,10 @@ class UserInfoForm extends Component {
                     <Form.Input type='hidden' name='photo' value={ this.state.icon }/>
                 </Form.Group>
                 <Form.Group inline className='user-icon'>
-                    <label>User icon</label>
-                    {imageItems}
+                    <p>User icon</p>
+                    <div>
+                        {imageItems}
+                    </div>
                 </Form.Group>
             </Form>
         );

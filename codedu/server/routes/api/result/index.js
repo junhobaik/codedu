@@ -47,12 +47,14 @@ router.post('/', function(req, res) {
               progressItem[partIndex].is_test_done = 1;
               break;
             } else {
-              console.log("일반 퀴즈입니다");
-              if(v.quiz_title.indexOf(quizTitle) !== -1){
-                console.log("이미 푼 퀴즈입니다")
+              console.log("일반 퀴즈입니다", quizTitle);
+
+              if(progressItem[partIndex].quiz_title.indexOf(quizTitle) !== -1){
+                console.log("이미 푼 퀴즈입니다");
                 break;
               }else{
-                console.log("새로 푼 퀴즈입니다")
+                console.log("새로 푼 퀴즈입니다");
+
                 progressItem[partIndex].quiz_title.push(quizTitle);
                 break;
               }
@@ -69,7 +71,7 @@ router.post('/', function(req, res) {
               updateStr = '{"part_title": "'+ partTitle +'", "quiz_title": [], "is_test_done": 1}';
               progressItem.push(JSON.parse(updateStr));
               break;
-            }          
+            }
           }
         }
 
