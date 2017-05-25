@@ -109,6 +109,7 @@ class Quiz extends Component {
     }
 
     render() {
+        console.log("part_title is",localStorage.getItem('part_title'))
         const partTitle = localStorage.getItem('part_title');
         const quizTitle = localStorage.getItem('quiz_title');
         const pageTitle = partTitle + " > " + quizTitle;
