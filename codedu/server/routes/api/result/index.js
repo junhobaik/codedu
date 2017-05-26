@@ -66,8 +66,21 @@ router.post('/', function(req, res) {
       const currentExp = rows[0].exp;
       const totalExp = currentExp + score * 5;
 
-      const update = connection.query('UPDATE user set exp = ?, progress = ? where email = ?', [totalExp, progress, email], function(err, rows) {
-        if(err) return err;
+
+      let daysOfWeek = rows[0].days_of_week;  // 월화수목금토일
+      let today = new Date().getDay();  // 일월화수목금토 index: 0,1,2,3,4,5,6
+      let lastQuizDate = new Date().toISOString().substr(0,10);  // 2017-05-26
+
+      today--;
+      
+      if(today < 0) {
+        today = 6;
+      }
+
+      daysOfWeek = daysOfWeek.substr(0, today) + 'Y' + daysOfWeek.substr(today + 1);
+
+      const update = connection.query('UPDATE user set exp = ?, progress = ?, days_of_week = ?, last_quiz_date = ? where email = ?', [totalExp, progress, daysOfWeek, lastQuizDate, email], function(err, rows) {
+        if(err) return err
 
         res.json({result: "ok", exp: totalExp})
       })
