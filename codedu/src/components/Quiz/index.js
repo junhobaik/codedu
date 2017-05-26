@@ -101,10 +101,15 @@ class Quiz extends Component {
 
     componentDidMount() {
         this.fetchProblem();
+        
     }
 
+    componentWillUnmount() {
+        this.props.setLength(this.state.problemLength);
+    }
 
     render() {
+        console.log("part_title is",localStorage.getItem('part_title'))
         const partTitle = localStorage.getItem('part_title');
         const quizTitle = localStorage.getItem('quiz_title');
         const pageTitle = partTitle + " > " + quizTitle;
@@ -122,7 +127,9 @@ class Quiz extends Component {
                         </div>
                         <ProgressBar number={number} problemLength={problemLength}/>
                         <Content number={number} problem={problem} onClickDisable={onClickDisable} checkAnswer={this.checkAnswer} />
-                        {result ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} setScore={setScore.bind(this)} /> : <div></div>}
+                        {result
+                            ? <Result problemLength={problemLength} next={this.next} correct={correct} number={number} setScore={setScore.bind(this)} />
+                            : <div className='result-wrap'></div>}
                     </div>
                 </div>
                 <div className='space'></div>
@@ -142,10 +149,18 @@ const mapDispatchToProps = (dispatch) => {
     setScore() {
         console.log(this.state.score);
       dispatch({
-        type: "quiz.QUIZ_SETSCORE",
+        type: "QUIZ_SETSCORE",
         value: this.state.score
       });
       browserHistory.push('/result');
+    },
+
+    setLength(length) {
+        console.log("problems length = ", length);
+        dispatch({
+            type: "QUIZ_SETLENGTH",
+            value: length
+        });
     }
   }
 }

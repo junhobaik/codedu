@@ -30,7 +30,12 @@ class StudyMaterial extends Component {
         })
         .then((responseData) => {
             console.log("study responseData is",responseData);
-            this.setState({part_title: responseData[0].part_title, quiz_title: responseData[0].quiz[0].quiz_title, content: responseData[0].quiz[0].quiz_content})
+            const data = responseData[0];
+            this.setState({
+                part_title: data.part_title,
+                quiz_title: data.quiz[0].quiz_title,
+                content: data.quiz[0].quiz_content
+            })
         })
         .catch((error) => {
             console.log('fetch error', error);

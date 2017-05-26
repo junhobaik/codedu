@@ -8,7 +8,7 @@ class Message extends React.Component {
     return (
       <div className="result-message">
           <p>정답 : {rightAnswer} / {totalAnswer}</p>
-          {rightAnswer < 6 ? <p>다시 공부하세요!</p> : <p>퀴즈를 통과했습니다.</p>}
+          {rightAnswer <= Math.floor(totalAnswer / 2) ? <p>다시 공부하세요!</p> : <p>퀴즈를 통과했습니다.</p>}
       </div>
     )
   }
