@@ -29,8 +29,15 @@ class UserInfoSubmit extends Component {
             })
         })
         .then((response) => {
-            const path = '/main'
-            browserHistory.push(path)
+            console.log(response)
+            return response.json()
+        })
+        .then((responseData) => {
+            alert(responseData.message)
+            if(responseData.flag) {
+                const path = '/main'
+                browserHistory.push(path)
+            }
         })
         .catch((error) => {
             console.log(error)
