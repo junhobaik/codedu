@@ -58,32 +58,6 @@ router.post('/', function(req, res, next) {
     req.logIn(user, function(err) {
       if(err) return next(err)
       console.log("req.logIn", req.user)
-        
-      // if monday, reset days_of_week
-
-      // ??? how to know ???
-      // 1. today is not sunday
-      // 2. daysOfWeek is not 'NNNNNNN'
-      // 3. has 'Y' in substring of daysOfWeek from bigger index of today
-
-      // let today = new Date().getDay();  // 일월화수목금토 index: 0,1,2,3,4,5,6
-      // today--;
-      
-      // if(today > -1) {
-      //   // 1. today is not sunday
-      //   if(daysOfWeek !== 'NNNNNNN') {
-      //     // 2. daysOfWeek is not 'NNNNNNN'
-      //     if(daysOfWeek.substring(today+1).indexOf('Y') > -1) {
-      //       // 3. has 'Y' in daysOfWeek string from bigger index of today
-      //       const update = connection.query('UPDATE user set days_of_week = ? where email = ?', [daysOfWeek,  user.email], function(err, rows) {
-      //         if(err) return err
-      //         return res.json({isLogin: true, message: "Succese", userName: user.email, photo: info.photo})
-      //       })  
-      //     }
-      //   }
-      // }
-
-      
       
       return res.json({isLogin: true, message: "Succese", userName: user.email, photo: info.photo})
                                            

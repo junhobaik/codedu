@@ -95,7 +95,7 @@ router.post('/', function(req, res) {
 
       daysOfWeek = daysOfWeek.substr(0, today) + 'Y' + daysOfWeek.substr(today + 1);
 
-      const update = connection.query('UPDATE user set exp = ?, progress = ?, days_of_week = ?, last_quiz_date = ?, where email = ?', [totalExp, progress, daysOfWeek, lastQuizDate, email], function(err, rows) {
+      const update = connection.query('UPDATE user set exp = ?, progress = ?, days_of_week = ?, last_quiz_date = ? where email = ?', [totalExp, progress, daysOfWeek, lastQuizDate, email], function(err, rows) {
         if(err) return err
 
         res.json({result: "ok", exp: totalExp})
