@@ -1,0 +1,51 @@
+.study-wrap {
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 5rem;
+  max-width: 820px;
+  background-color: white;
+  padding: 1rem 4rem 2rem 4rem;
+  border: 1px solid lightgray;
+  border-radius: 3%;
+}
+
+.study-wrap .study-header {
+  margin-top: 2rem;
+  position: relative;
+  font-size: 1.3rem;
+}
+
+.study-wrap .study-start-button.top {
+  margin-left: 3rem;
+  float: right;
+}
+
+.study-wrap .study-start-button.wrap {
+  width: 100%;
+  text-align: center;
+  padding: 0 4rem;
+}
+
+.study-wrap .markdown {
+  margin: 2rem 0;
+}
+
+.study-wrap .study-hr {
+  margin: 1rem 0;
+  border-color: lightgray;
+}
+
+@media screen and (max-width:640px) {
+  .study-wrap {
+    margin: 5%;
+    width: 90%;
+    padding: 1rem 1rem 1rem 1rem;
+  }
+  .study-wrap .study-header {
+    text-align: center;
+  }
+  .study-wrap .study-start-button.top {
+    margin: 1rem 3rem ;
+    float: none;
+  }
+}

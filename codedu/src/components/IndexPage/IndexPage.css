@@ -1,0 +1,90 @@
+.index-wrap {
+    flex-grow: 1;
+    display: flex;
+}
+
+.index-wrap .space {
+    flex-grow: 1;
+}
+
+.index-wrap .inner-wrap {
+    flex-grow: 1;
+    max-width: 1080px;
+    display: flex;
+    /*align-items: center;*/
+    margin-top: 6rem;
+}
+
+@media screen and (max-width:640px) {
+    .index-wrap .inner-wrap {
+        display: flex;
+        flex-direction: column;
+        flex-flow: column-reverse;
+        align-items: center;
+        padding: 1rem 0;
+        margin: 0;
+    }
+    .index-wrap .inner-wrap .join-wrap {
+        margin: 1rem 0 !important;
+    }
+    .index-wrap .inner-wrap .intro-wrap {
+        margin: 1rem 0 !important;
+    }
+    .index-wrap .inner-wrap .intro-wrap img{
+        margin-bottom: 1rem !important;
+    }
+    
+}
+
+
+/*join*/
+
+.index-wrap .inner-wrap .join-wrap {
+    background-color: white;
+    padding: 2rem 1rem 1rem 1rem;
+    width: 320px;
+    height: 480px;
+    margin: 2rem;
+    border: 1px solid lightgray;
+    border-radius: 3%;
+}
+
+.index-wrap .inner-wrap .join-wrap .join-intro {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.index-wrap .inner-wrap .join-wrap hr {
+    margin: 1.5rem 0;
+}
+
+.index-wrap .inner-wrap .join-wrap .submit {
+    margin: 3rem 0 0 0;
+}
+
+.index-wrap .inner-wrap .join-wrap .messege {
+    text-align: center;
+    padding-top: 1rem;
+    color: red;
+}
+
+/*intro*/
+
+.index-wrap .inner-wrap .intro-wrap {
+    flex-grow: 1;
+    width: 320px;
+    height: 480px;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.index-wrap .inner-wrap .intro-wrap img {
+    max-width: 800px;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    border-radius: 3%;
+}
+

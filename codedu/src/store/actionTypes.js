@@ -1,0 +1,2 @@
+export const QUIZ_SETSCORE = 'QUIZ_SETSCORE';
+export const QUIZ_SETLENGTH = 'QUIZ_SETLENGTH';
