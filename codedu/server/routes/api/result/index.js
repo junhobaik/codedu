@@ -1,9 +1,9 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 const LocalStorage = require('node-localstorage').LocalStorage,
 localStorage = new LocalStorage('./scratch');
 
-const mysqlConfig = require('../../../../config/mysql_config')
+const mysqlConfig = require('../../../../config/mysql_config');
 
 //MySQL
 let mysql = require('mysql');
@@ -16,70 +16,54 @@ router.post('/', function(req, res) {
   const quizTitle = localStorage.getItem('quiz_title');
 
 
-  const score = req.body.score
-  const email = req.body.email
+  const score = req.body.score;
+  const email = req.body.email;
 
   const query = connection.query('Select * from user where email = ?', [email], function(err, rows) {
-    if(err) return err
+    if(err) return err;
 
     if(rows) {
-      progressJson = JSON.parse(rows[0].progress);
-      progressItem = progressJson.items;
-      console.log("before progressJson",progressJson);
+      let progressJson = JSON.parse(rows[0].progress);
+      let progressItem = progressJson.items;
+      console.log("before progressJson", progressJson);
 
-      var updateStr = "";
-      if(progressItem.length === 0){
-        console.log("items가 비어있다");
-          if(quizTitle !== "parttest"){
-            updateStr = '{"part_title": "'+ partTitle +'", "quiz_title": ["'+ quizTitle +'"], "is_test_done": 0}';
-          }else{
-            updateStr = '{"part_title": "'+ partTitle +'", "quiz_title": [], "is_test_done": 1}';
-          }
-          progressItem.push(JSON.parse(updateStr));
+      let updateStr = "";
+
+      const partIndex = progressItem.findIndex((items) => {return items.part_title === partTitle;});
+      console.log("partIndex", partIndex);
+
+      if(partIndex === -1){
+        console.log("해당 파트는 DB에 없습니다");
+
+        if(quizTitle !== "parttest"){
+          console.log("해당 퀴즈는 일반 퀴즈입니다");
+          updateStr = '{"part_title": "'+ partTitle +'", "quiz_title": ["'+ quizTitle +'"], "is_test_done": 0}';
+        }else{
+          console.log("해당 퀴즈는 테스트 퀴즈입니다");
+          updateStr = '{"part_title": "'+ partTitle +'", "quiz_title": [], "is_test_done": 1}';
+        }
+        progressItem.push(JSON.parse(updateStr));
 
       }else{
-        for (v of progressItem) {
-          if (v.part_title === partTitle) {
-            const partIndex = progressItem.findIndex((items) => {return items.part_title === partTitle;});
-            console.log("파트가 ", partIndex ,"번째 디비에 있다");
-            if (quizTitle === "parttest") {
-              console.log("테스트 퀴즈입니다");
-              progressItem[partIndex].is_test_done = 1;
-              break;
-            } else {
-              console.log("일반 퀴즈입니다", quizTitle);
-
-              if(progressItem[partIndex].quiz_title.indexOf(quizTitle) !== -1){
-                console.log("이미 푼 퀴즈입니다");
-                break;
-              }else{
-                console.log("새로 푼 퀴즈입니다");
-
-                progressItem[partIndex].quiz_title.push(quizTitle);
-                break;
-              }
-            }
+          console.log("해당 파트는 ", partIndex ,"번째 DB에 있습니다");
+          if(quizTitle === "parttest"){
+            console.log("해당 퀴즈는 테스트 퀴즈입니다");
+            progressItem[partIndex].is_test_done = 1;
           }else{
-            console.log("파트가 디비에 없다");
-            if(quizTitle !== "parttest"){
-              console.log("일반 퀴즈입니다");
-              updateStr = '{"part_title": "'+ partTitle +'", "quiz_title": ["'+ quizTitle +'"], "is_test_done": 0}';
-              progressItem.push(JSON.parse(updateStr));
-              break;
+            console.log("해당 퀴즈는 일반 퀴즈입니다");
+            if(progressItem[partIndex].quiz_title.indexOf(quizTitle) !== -1) {
+              console.log("해당 퀴즈는 이미 풀었던 퀴즈입니다");
             }else{
-              console.log("테스트 퀴즈입니다");
-              updateStr = '{"part_title": "'+ partTitle +'", "quiz_title": [], "is_test_done": 1}';
-              progressItem.push(JSON.parse(updateStr));
-              break;
+              console.log("해당 퀴즈는 새로 푼 퀴즈입니다");
+              progressItem[partIndex].quiz_title.push(quizTitle);
             }
           }
-        }
-
       }
+
       console.log("after progressJson",progressJson);
       const progress = JSON.stringify(progressJson);
 
-      const currentExp = rows[0].exp
+      const currentExp = rows[0].exp;
       const totalExp = currentExp + score * 5;
 
 
@@ -102,6 +86,6 @@ router.post('/', function(req, res) {
       })
     }
   })
-})
+});
 
-module.exports = router
+module.exports = router;
