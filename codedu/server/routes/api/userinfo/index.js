@@ -39,11 +39,12 @@ router.post('/', function (req, res, next) {
                     user.photo = photo;
                     user.email = email;
 
-                    res.send(user);
+                    res.status(200).json({flag : 1, message : "변경이 완료되었습니다."});
                 }
             })
         } else {
             console.log('wrong id, pw')
+            res.status(200).json({flag : 0, message : "패스워드가 틀렸습니다."})
         }
     })
 })
