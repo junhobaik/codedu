@@ -29,7 +29,7 @@ class LoginButton extends Component {
                     <input/>
                 </Form.Input>
               </Form.Field>
-              <div>{message}</div>
+              <div className="login-message">{message}</div>
               <Button type='submit' onClick={onClick}>Go</Button>
             </Form>
 
