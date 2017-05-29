@@ -16,7 +16,7 @@ class Content extends Component {
 			content = problem[number].content;
 			content = json2md(content);
 			items = problem[number].items.map((value, index) => {
-				return (<li className='items' refs={index} key={index} onClick={onClickDisable ? null : checkAnswer.bind(this, index)}>{value}</li>)
+				return (<li className='items btn-hover' refs={index} key={index} onClick={onClickDisable ? null : checkAnswer.bind(this, index)}>{value}</li>)
 			});
 		}
 
