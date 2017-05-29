@@ -34,11 +34,9 @@ class QuizResult extends Component {
             })
         })
         .then((response) => {
-            console.log(response);
             return response.json();
         })
         .then((responseData) => {
-            console.log("/api/result = ", responseData);
             this.setState({
                 exp: responseData.exp
             });
@@ -54,7 +52,6 @@ class QuizResult extends Component {
 
     render() {
         const {data} = this.props;
-        console.log("result page data : ", data);
 
         const partTitle = localStorage.getItem('part_title');
         const quizTitle = localStorage.getItem('quiz_title');
