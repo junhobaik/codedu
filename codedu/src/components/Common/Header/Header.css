@@ -33,6 +33,11 @@
   border-radius: 100%;
 }
 
+.login-message {
+  display:inline;
+  float: right;
+}
+
 @media screen and (max-width:640px) {
   .header-wrap {
     height: 4rem;

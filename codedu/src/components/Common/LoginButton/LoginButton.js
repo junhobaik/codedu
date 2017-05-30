@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Modal, Form } from 'semantic-ui-react';
+import { Button, Modal, Form, Icon } from 'semantic-ui-react';
 import 'whatwg-fetch';
 
 class LoginButton extends Component {
 
-  
-  
+
+
   render() {
 
     const {onClick, message} = this.props;
@@ -16,16 +16,23 @@ class LoginButton extends Component {
             <Form>
               <Form.Field>
                 <label>E-Mail</label>
-                <input type='email' name='email' placeholder='E-Mail' />
+                <Form.Input type='email' iconPosition='left' name='email' placeholder='이메일 주소' >
+                    <Icon name='at'/>
+                    <input/>
+                </Form.Input>
               </Form.Field>
+
               <Form.Field>
                 <label>Password</label>
-                <input type='password' name='password' placeholder='Password' />
+                <Form.Input type='password' iconPosition='left' name='password' placeholder='비밀번호' >
+                    <Icon name="lock"/>
+                    <input/>
+                </Form.Input>
               </Form.Field>
-              <div>{message}</div>
+              <div className="login-message">{message}</div>
               <Button type='submit' onClick={onClick}>Go</Button>
             </Form>
-            
+
           </Modal.Content>
         </Modal>
     );

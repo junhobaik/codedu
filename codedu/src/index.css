@@ -56,6 +56,10 @@ button {
   font-size: 1.2rem !important;
 }
 
+.btn-hover:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width:640px) {
   body #root .wrap .footer-wrap {
     display: none;
