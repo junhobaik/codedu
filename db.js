@@ -2,15 +2,6 @@ db.parts.drop();
 db.parts.insert(
 	[
 		{
-			"part_title": "TESTING",
-			"quiz": [{
-					"quiz_title": "FUNCTION TEST",
-					"quiz_content": "test.md",
-					"problems": "test.json"
-				}
-			]
-		},
-		{
 			"part_title": "Javascript Basic of Basic",
 			"quiz": [
 				{
@@ -37,6 +28,7 @@ db.parts.insert(
 
 /**************************** */
 
+//수정 필요
 CREATE TABLE `codedu`.`user` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(128) NOT NULL,
@@ -48,19 +40,3 @@ CREATE TABLE `codedu`.`user` (
   `progress` JSON NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC));
-
-// CREATE TABLE `codedu`.`user_progress` (
-//   `part_id` VARCHAR(128) NOT NULL,
-//   `user_id` INT NOT NULL,
-//   `part_done` VARCHAR(128) NULL DEFAULT 'N',
-//   `quiz_done` VARCHAR(128) NULL DEFAULT 'NNNN',
-//   INDEX `user_id_idx` (`user_id` ASC),
-//   CONSTRAINT `user_id`
-//     FOREIGN KEY (`user_id`)
-//     REFERENCES `codedu`.`user` (`user_id`)
-//     ON DELETE NO ACTION
-//     ON UPDATE NO ACTION);
-
-
-
-// 	DEFAULT '{"items": []}'
