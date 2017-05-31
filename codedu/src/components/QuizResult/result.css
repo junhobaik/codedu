@@ -18,7 +18,8 @@
   float: right;
 }
 .result-header .mile {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .result-content {
@@ -57,6 +58,7 @@
 }
 
 .result-message {
+  font-size: 1.5rem;
   margin-top: 2rem;
   display: flex;
   justify-content: space-around;
@@ -73,5 +75,9 @@
     display: block;
     float: none;
     margin: 1rem auto;
+  }
+  .result-message {
+    display:block;
+    text-align: center;
   }
 }

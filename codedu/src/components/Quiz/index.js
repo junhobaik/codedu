@@ -99,17 +99,22 @@ class Quiz extends Component {
         }
     }
 
+    exit = () => {
+        if (confirm("정말 나가시겠습니까? 나가시면 현재 진행상황이 사라집니다")) browserHistory.push('/main');
+    }
+
     componentDidMount() {
         this.fetchProblem();
-        
     }
 
     componentWillUnmount() {
         this.props.setLength(this.state.problemLength);
     }
 
+
+
     render() {
-        console.log("part_title is",localStorage.getItem('part_title'))
+        console.log("part_title is",localStorage.getItem('part_title'));
         const partTitle = localStorage.getItem('part_title');
         const quizTitle = localStorage.getItem('quiz_title');
         const pageTitle = partTitle + " > " + quizTitle;
@@ -123,7 +128,7 @@ class Quiz extends Component {
                     <div className='inner-wrap'>
                         <div className='top'>
                             <h2>{pageTitle}</h2>
-                            <Link to="main"><Button>나가기</Button></Link>
+                            <Button onClick={this.exit}>나가기</Button>
                         </div>
                         <ProgressBar number={number} problemLength={problemLength}/>
                         <Content number={number} problem={problem} onClickDisable={onClickDisable} checkAnswer={this.checkAnswer} />

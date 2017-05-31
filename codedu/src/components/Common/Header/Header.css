@@ -27,10 +27,22 @@
   background-size: contain;
 }
 
+.header-wrap .user div span{
+  font-size: 1.6rem;
+}
+.header-wrap .user div span img{
+  font-size: 1.4rem;
+}
+
 .header-wrap .user .user-icon img {
   height: 2rem;
   width: 2rem;
   border-radius: 100%;
+}
+
+.login-message {
+  display:inline;
+  float: right;
 }
 
 @media screen and (max-width:640px) {
@@ -38,7 +50,7 @@
     height: 4rem;
     min-height: 4rem;
     font-size: 1.2rem;
-    padding: 0 2rem 0 2rem;
+    padding: 0 1rem 0 2rem;
   }
   .header-wrap .logo .logo-img {
     height: 3.2rem;

@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 class QuizResult extends Component {
 
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             exp: 0
         }
@@ -18,6 +18,7 @@ class QuizResult extends Component {
     transResult = () => {
 
         const score = this.props.data.score;
+        const length = this.props.data.length;
 
         fetch('/api/result', {
             method: 'POST',
@@ -28,15 +29,14 @@ class QuizResult extends Component {
             },
             body: JSON.stringify({
                 email: sessionStorage.getItem('useremail'),
-                score: score
+                score,
+                length
             })
         })
         .then((response) => {
-            console.log(response);
             return response.json();
         })
         .then((responseData) => {
-            console.log("/api/result = ", responseData);
             this.setState({
                 exp: responseData.exp
             });
@@ -44,7 +44,7 @@ class QuizResult extends Component {
         .catch((error) => {
             console.log('Error Fetch', error)
         })
-    }
+    };
 
     componentDidMount() {
         this.transResult();
@@ -52,7 +52,6 @@ class QuizResult extends Component {
 
     render() {
         const {data} = this.props;
-        console.log("result page data : ", data);
 
         const partTitle = localStorage.getItem('part_title');
         const quizTitle = localStorage.getItem('quiz_title');
@@ -93,5 +92,5 @@ const mapStateToProps = (state) => {
     return {
         data: state
     }
-}
+};
 export default connect(mapStateToProps)(QuizResult);
